@@ -2,8 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  height: var(--tg-viewport-stable-height);
-  height: var(--tg-viewport-height);
+  /* height: var(--tg-viewport-stable-height);
+  height: var(--tg-viewport-height); */
 
 }
 
@@ -17,7 +17,7 @@ body {
 }
 .video-bg {
 
-
+height: var(--tg-viewport-height);
   display: flex;
   justify-content: center;
   position: relative;
@@ -25,7 +25,7 @@ body {
 
 .video-bg video {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   position: fixed;
   top: 0;
   left: 0;
