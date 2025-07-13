@@ -13,7 +13,7 @@ function App() {
   }
   return (
        <div className="video-bg">
-        <video className="video-bg.mp4" type="video/mp4" autoPlay loop preload='auto' src="earth-fon.mp4"></video>
+        <video className="video-bg.mp4" type="video/mp4" autoPlay loop muted preload='auto' src="earth-fon.mp4"></video>
         <div className='effects'></div>
         <div className="video-bg__content">
            <div className="App">
