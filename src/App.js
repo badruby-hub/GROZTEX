@@ -13,12 +13,19 @@ function App() {
   }
   return (
        <div className="video-bg">
-        <video className="video-bg.mp4" type="video/mp4" autoPlay loop muted src="earth-fon.mp4"></video>
+        <video className="video-bg.mp4" type="video/mp4" autoPlay loop preload='auto' src="earth-fon.mp4"></video>
         <div className='effects'></div>
         <div className="video-bg__content">
            <div className="App">
-             <h1>work</h1>
+             <h1>GROZ⍑EX</h1>
              <button onClick={onClose}>закрыть</button>
+             <ul>
+              <li className='exchange'><a className='link' href='/Exchange'>Купить/Продать USDT</a></li>
+              <li className='about'><a className='link' href='/About'>О нас</a></li>
+              <li className='requests'><a className='link' href='/Requests'>Все заявки</a></li>
+              <li className='support'><a className='link' href='/Support'>Поддержка</a></li>
+              <li className='valuation'><a className='link' href='/Valuation'>Курс</a></li>
+             </ul>
            </div>
         </div>
     </div>   
