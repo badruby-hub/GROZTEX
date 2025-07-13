@@ -70,8 +70,11 @@ ul {
   border: none;
   color: white;
   font-weight: 400;
+  font-size: 20px;
 }
-
+.close{
+    margin: 20px 0 0 0;
+}
 li{
   border: 1px solid blue;
   padding: 15px 35px ;
@@ -84,7 +87,7 @@ li{
 }
 
 li:hover{
-  background-color: rgba(5, 51, 116, 0.9);
+  background-color: rgba(5, 51, 116, 0.3);
 }
 
 .link {
