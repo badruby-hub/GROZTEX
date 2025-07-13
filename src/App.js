@@ -24,9 +24,10 @@ function App() {
               <li className='requests'><a className='link' href='/Requests'>Все заявки</a></li>
               <li className='support'><a className='link' href='/Support'>Поддержка</a></li>
               <li className='valuation'><a className='link' href='/Valuation'>Курс</a></li>
+              <li className='close'><button className='btn__close' onClick={onClose}>закрыть</button></li>
              </ul>
            </div>
-           <button onClick={onClose}>закрыть</button>
+           
         </div>
     </div>   
    
