@@ -17,7 +17,7 @@ body {
 }
 .video-bg {
 
-height: var(--tg-viewport-height);
+height: 100vh;
   display: flex;
   justify-content: center;
   position: relative;
