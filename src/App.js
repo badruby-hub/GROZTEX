@@ -12,10 +12,17 @@ function App() {
      tg.close()
   }
   return (
-    <div className="App">
-    <h1>work</h1>
-    <button onClick={onClose}>закрыть</button>
-    </div>
+       <div className="video-bg">
+        <video className="video-bg.mp4" type="video/mp4" autoPlay loop muted src="heart-bg.mp4"></video>
+        <div className='effects'></div>
+        <div className="video-bg__content">
+           <div className="App">
+             <h1>work</h1>
+             <button onClick={onClose}>закрыть</button>
+           </div>
+        </div>
+    </div>   
+   
   );
 }
 
