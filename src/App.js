@@ -17,8 +17,7 @@ function App() {
         <div className='effects'></div>
         <div className="video-bg__content">
            <div className="App">
-             <h1>GROZ⍑EX</h1>
-             <button onClick={onClose}>закрыть</button>
+             <div className='logo'>GROZ⍑EX</div>
              <ul>
               <li className='exchange'><a className='link' href='/Exchange'>Купить/Продать USDT</a></li>
               <li className='about'><a className='link' href='/About'>О нас</a></li>
@@ -27,6 +26,7 @@ function App() {
               <li className='valuation'><a className='link' href='/Valuation'>Курс</a></li>
              </ul>
            </div>
+           <button onClick={onClose}>закрыть</button>
         </div>
     </div>   
    

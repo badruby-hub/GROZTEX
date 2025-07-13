@@ -9,7 +9,9 @@ body {
   background: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
 }
-
+.logo{
+  margin: 40px 0 20px 0;
+}
 .video-bg {
   height: 100vh;
   width: 100%;
@@ -54,15 +56,24 @@ body {
 ul {
   list-style-type: none;
   display: grid;
+  grid-template-columns: 1fr 1fr ;
+  font-weight: 400;
 }
+.exchange{
+ grid-column-start: 1;
+ grid-column-end: 3;
+ margin-bottom: 15px;
+}
+
 li{
   border: 1px solid blue;
-  padding: 15px;
-  margin: 10px;
+  padding: 15px 35px ;
+  margin: 7px;
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
   font-size: 15px;
+
 }
 
 li:hover{
