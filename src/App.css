@@ -2,8 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* height: var(--tg-viewport-stable-height);
-  height: var(--tg-viewport-height); */
+  height: var(--tg-viewport-stable-height);
+  /* height: var(--tg-viewport-height); */
 
 }
 
