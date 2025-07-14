@@ -1,16 +1,15 @@
- *{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-height: var(--tg-viewport-height);
+
 }
+
 body {
   background: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
-  /* height: var(--tg-viewport-height); */
+  height: var(--tg-viewport-height);
 }
-/* *
-
 .logo{
   margin: 40px 0 20px 0;
 }
@@ -96,4 +95,4 @@ li:active{
 .link {
   text-decoration: none;
   color: white;
-} */
+}
