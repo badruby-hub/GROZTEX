@@ -15,7 +15,7 @@ function App() {
   return (
        <div className="video-bg">
         <video className="video-bg__video" autoPlay loop muted preload='auto' >
-        <source src="./earth-fon.mp4" type='video/mp4'/>
+        <source src="earth-fon.mp4" type='video/mp4'/>
         </video>
         <div className='effects'></div>
         <div className="video-bg__content">
