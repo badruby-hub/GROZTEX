@@ -14,7 +14,7 @@ function App() {
   return (
        <div className="video-bg">
         <video className="video-bg__video"  autoPlay loop muted preload='auto' src="./earth-fon.mp4"></video>
-        <div className='effects'></div>
+        {/* <div className='effects'></div>
         <div className="video-bg__content">
            <div className="App">
              <div className='logo'>GROZ⍑EX</div>
@@ -28,7 +28,7 @@ function App() {
              </ul>
            </div>
            
-        </div>
+        </div> */}
     </div>   
    
   );
