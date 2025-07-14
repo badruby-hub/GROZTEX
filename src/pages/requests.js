@@ -1,6 +1,11 @@
-export function Request() {
-    return<>
-     <h1>About us</h1>
-     <p>Loremadsdsd</p>
-    </>
+import { Link } from "react-router-dom";
+import { BtnBackHome } from "../button/buttonBackHome";
+
+export default function RequestsPage() {
+  return (
+    <div className="block__content__request">
+      <h1>Все заявки</h1>
+      <BtnBackHome/>
+    </div>
+  );
 }

@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 
 }
 
@@ -10,12 +11,14 @@ body {
   color: var(--tg-theme-text-color);
   height: var(--tg-viewport-height);
 }
-.logo{
+
+.logo {
   margin: 40px 0 20px 0;
 }
+
 .video-bg {
 
-height: 100vh;
+
   display: flex;
   justify-content: center;
   position: relative;
@@ -24,21 +27,52 @@ height: 100vh;
 .video-bg video {
   width: 100%;
   min-height: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   object-fit: cover;
-  z-index: 1;
+  z-index: 0;
 }
 
-.video-bg__content {
+.block__content__home,
+.block__content__about,
+.block__content__request,
+.block__content__exchange,
+.block__content__support,
+.block__content__valuation {
+  position: relative;
   z-index: 2;
   color: white;
   font-size: 40px;
 }
 
-.App{
-   display: flex;
+.block__content__about{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ font-size: 15px;
+ font-weight: 400;
+}
+
+
+.container__text{
+  display: flex;
+  flex-direction: column;
+  max-width: 375px;
+}
+.container__text h1{
+  margin: 20px 0px;
+}
+
+.text__about{
+  display: flex;
+  flex-direction: column;
+  gap: 20px 0;
+}
+
+.App {
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -57,19 +91,22 @@ height: 100vh;
 ul {
   list-style-type: none;
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   font-weight: 400;
 }
-.exchange, .close{
- grid-column-start: 1;
- grid-column-end: 3;
- margin-bottom: 15px;
+
+.exchange,
+.close {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin-bottom: 15px;
 }
 
-.close{
-    margin: 20px 7px 0 7px;
+.close {
+  margin: 20px 7px 0 7px;
 }
-li{
+
+li {
   user-select: none;
   border: 1px solid blue;
   margin: 7px;
@@ -80,13 +117,27 @@ li{
 
 }
 
-li:active, li:hover{
+.btn__back__home{
+    user-select: none;
+  border: 1px solid blue;
+  margin: 10px 0;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+li:active,
+li:hover,
+.btn__back__home:hover,
+.btn__back__home:active {
   background-color: rgba(5, 51, 116, 0.3);
 }
 
-.link, .btn__close {
+.link,
+.btn__close {
   display: block;
   text-decoration: none;
   color: white;
-  padding: 15px 35px ; 
+  padding: 15px 35px;
 }

@@ -1,39 +1,38 @@
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import './App.css';
-const tg = window.Telegram.WebApp;
 
-function App() {
-  useEffect(()=>{
-   tg.ready();
-   tg.expand();
-  },[])
-  
-  const onClose =()=>{
-     tg.close()
-  }
-  return (
-       <div className="video-bg">
+import HomePage from"./pages/Home";
+import NoFoundPage from"./pages/NotFoundpage";
+import AboutPage from"./pages/About";
+import ExchangePage from"./pages/Exchange";
+import RequestsPage from"./pages/Requests";
+import SupportPage from"./pages/Support";
+import ValuationPage from"./pages/Valuation";
+
+
+
+
+export default function App() {
+
+  return <>
+  <div className="video-bg">
         <video className="video-bg__video" playsInline type='video/mp4'autoPlay loop muted preload='auto' src="./earth-fon.mp4">
         </video>
         <div className='effects'></div>
-        <div className="video-bg__content">
-           <div className="App">
-             <div className='logo'>GROZ⍑EX</div>
-             <ul>
-              <li className='exchange'><a className='link' href='/Exchange'>Купить/Продать USDT</a></li>
-              <li className='about'><a className='link' href='/About'>О нас</a></li>
-              <li className='requests'><a className='link' href='/Requests'>Все заявки</a></li>
-              <li className='support'><a className='link' href='/Support'>Поддержка</a></li>
-              <li className='valuation'><a className='link' href='/Valuation'>Курс</a></li>
-              <li onClick={onClose} className='close'><div className='btn__close'>закрыть приложение</div></li>
-             </ul>
-           </div>
-           
-        </div>
-    </div>   
-   
-  );
+         </div>   
+  <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<HomePage/>}/>
+      <Route path='/exchange' element={<ExchangePage/>}/>
+      <Route path='/about' element={<AboutPage/>}/>
+      <Route path='/requests' element={<RequestsPage/>}/>
+      <Route path='/support' element={<SupportPage/>}/>
+      <Route path='/valuation' element={<ValuationPage/>}/>
+      <Route path='*' element={<NoFoundPage/>}/>
+      <Route/>
+    </Routes>
+    </BrowserRouter>
+  </>
 }
 
-export default App;
