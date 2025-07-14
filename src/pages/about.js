@@ -5,7 +5,7 @@ export default function AboutPage() {
   return (
     <div className="block__content__about">
       <div className="container__text">
- <h1>О нас</h1>
+      <h1>О нас</h1>
       <div className="text__about">
         <p>Занимаемся обменом криптовалют более 3х лет.</p>
         <p>Работаем 24/7. При первом визите необходимо иметь паспорт.</p>
