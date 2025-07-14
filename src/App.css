@@ -24,7 +24,7 @@ height: 100vh;
 .video-bg video {
   height: var(--tg-viewport-height);
   width: 100%;
-  min-height: 100%;
+  /* min-height: 100%; */
   position: fixed;
   top: 0;
   left: 0;
