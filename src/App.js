@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import HomePage from"./pages/Home";
-import NoFoundPage from"./pages/NotFoundpage";
-import AboutPage from"./pages/About";
-import ExchangePage from"./pages/Exchange";
-import RequestsPage from"./pages/Requests";
-import SupportPage from"./pages/Support";
-import ValuationPage from"./pages/Valuation";
+import HomePage from"./pages/Home.js";
+import NoFoundPage from"./pages/NotFoundpage.js";
+import AboutPage from"./pages/About.js";
+import ExchangePage from"./pages/Exchange.js";
+import RequestsPage from"./pages/Requests.js";
+import SupportPage from"./pages/Support.js";
+import ValuationPage from"./pages/Valuation.js";
 
 
 
@@ -24,7 +24,7 @@ export default function App() {
     <Routes>
       <Route path='/' element={<HomePage/>}/>
       <Route path='/exchange' element={<ExchangePage/>}/>
-      <Route path='/about' element={<AboutPage/>}/>
+      <Route path='/About' element={<AboutPage/>}/>
       <Route path='/requests' element={<RequestsPage/>}/>
       <Route path='/support' element={<SupportPage/>}/>
       <Route path='/valuation' element={<ValuationPage/>}/>
