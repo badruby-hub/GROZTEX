@@ -14,7 +14,7 @@ function App() {
   }
   return (
        <div className="video-bg">
-        <video className="video-bg__video"  autoPlay loop muted preload='auto' src="./earth-fon.mp4"></video>
+        <video className="video-bg__video"  autoplay loop muted preload='auto' src="./earth-fon.mp4"></video>
         <div className='effects'></div>
         <div className="video-bg__content">
            <div className="App">
@@ -25,7 +25,7 @@ function App() {
               <li className='requests'><a className='link' href='/Requests'>Все заявки</a></li>
               <li className='support'><a className='link' href='/Support'>Поддержка</a></li>
               <li className='valuation'><a className='link' href='/Valuation'>Курс</a></li>
-              <li className='close'><button className='btn__close' onClick={onClose}>закрыть</button></li>
+              <li onClick={onClose} className='close'><div className='btn__close'>закрыть приложение</div></li>
              </ul>
            </div>
            

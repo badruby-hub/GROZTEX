@@ -66,20 +66,12 @@ ul {
  margin-bottom: 15px;
 }
 
-.btn__close{
-  background:none;
-  border: none;
-  color: white;
-  font-weight: 400;
-  font-size: 20px;
-}
 .close{
     margin: 20px 7px 0 7px;
 }
 li{
   user-select: none;
   border: 1px solid blue;
-  padding: 15px 35px ;
   margin: 7px;
   border-radius: 10px;
   text-align: center;
@@ -88,11 +80,13 @@ li{
 
 }
 
-li:active{
+li:active, li:hover{
   background-color: rgba(5, 51, 116, 0.3);
 }
 
-.link {
+.link, .btn__close {
+  display: block;
   text-decoration: none;
   color: white;
+  padding: 15px 35px ; 
 }
