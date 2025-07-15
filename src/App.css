@@ -15,6 +15,16 @@ body {
 .logo {
   margin: 40px 0 20px 0;
 }
+.logo__name{
+  display: flex;
+  align-items: center;
+  font-size: 85px;
+}
+
+.svg__logo{
+  width: 120px;
+  height: 90px;
+}
 
 .video-bg {
 
@@ -27,7 +37,7 @@ body {
 .video-bg video {
   width: 100%;
   min-height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   object-fit: cover;
