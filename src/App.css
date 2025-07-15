@@ -18,12 +18,12 @@ body {
 .logo__name{
   display: flex;
   align-items: center;
-  font-size: 85px;
+  font-size: 65px;
 }
 
 .svg__logo{
-  width: 120px;
-  height: 90px;
+  width: 100px;
+  height: 75px;
 }
 
 .video-bg {
