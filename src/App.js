@@ -3,11 +3,11 @@ import './App.css';
 
 import HomePage from "./pages/Home";
 import NoFoundPage from "./pages/NotFoundpage";
-import AboutPage from "./pages/About";
-import ExchangePage from "./pages/Exchange";
-import RequestsPage from "./pages/Requests";
-import SupportPage from "./pages/Support";
-import ValuationPage from "./pages/Valuation";
+import AboutPage from "./pages/about";
+import ExchangePage from "./pages/exchange";
+import RequestsPage from "./pages/requests";
+import SupportPage from "./pages/support";
+import ValuationPage from "./pages/valuation";
 
 
 
