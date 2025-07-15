@@ -1,20 +1,9 @@
-import { useEffect } from "react";
+
 import { BtnBackHome } from "../button/buttonBackHome";
-const tg = window.Telegram.WebApp;
+import { BackButtonOnclick } from "../button/buttonBackOnClickTg";
+
 export default function AboutPage() {
-    useEffect(()=>{
-      tg.BackButton.show();
-      const btnBackClick=()=>{
-             window.history.back()
-      };
-
-      tg.BackButton.onClick(btnBackClick);
-
-        return () => {
-      tg.BackButton.hide();
-      tg.BackButton.offClick(btnBackClick);
-    };
-    },[])
+   <BackButtonOnclick/>
   return (
     <div className="block__content__about">
       <div className="container__text">
