@@ -46,30 +46,69 @@ body {
   font-size: 40px;
 }
 
-.block__content__about{
- display: flex;
- flex-direction: column;
- justify-content: center;
- align-items: center;
- font-size: 15px;
- font-weight: 400;
+.block__content__about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 400;
 }
 
+.block__content__support {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 400;
+}
 
-.container__text{
+.block__content__valuation{
+    display: flex;
+  flex-direction: column;
+  padding-inline: 10px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.container__valuation{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0 auto;
+}
+
+.container__text {
   display: flex;
   flex-direction: column;
   max-width: 375px;
+  padding-inline: 10px;
+  gap: 15px;
 }
-.container__text h1{
+
+.container__text__support {
+  display: flex;
+  flex-direction: column;
+  max-width: 375px;
+  padding-inline: 10px;
+}
+
+
+.container__text h1,
+.container__text__support h1,
+.container__valuation h1 {
   margin: 20px 0px;
 }
 
-.text__about{
+.text__about,
+.text__support {
   display: flex;
   flex-direction: column;
-  gap: 20px 0;
+  gap: 20px;
 }
+
+
 
 .App {
   display: flex;
@@ -117,8 +156,9 @@ li {
 
 }
 
-.btn__back__home{
-    user-select: none;
+.btn__back__home,
+.btn__chat__tg {
+  user-select: none;
   border: 1px solid blue;
   margin: 10px 0;
   border-radius: 10px;
@@ -130,14 +170,38 @@ li {
 li:active,
 li:hover,
 .btn__back__home:hover,
-.btn__back__home:active {
+.btn__back__home:active,
+.btn__chat__tg:hover,
+.btn__chat__tg:active {
   background-color: rgba(5, 51, 116, 0.3);
 }
 
 .link,
-.btn__close {
+.btn__close,
+.link__tg {
   display: block;
   text-decoration: none;
   color: white;
   padding: 15px 35px;
+}
+
+.link__tg{
+  padding: 5px 0;
+}
+
+.buy,.sell{
+  font-size: 1rem;
+  margin: 0;
+}
+.well{
+  font-size: 32px;
+  font-weight: 400;
+  font-family:'Times New Roman', Times, serif;
+}
+
+.container__buy {
+  margin-bottom: 7.5px;
+}
+.container__sell{
+  margin-top: 7.5px;
 }
