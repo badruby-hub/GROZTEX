@@ -29,6 +29,7 @@ body {
 .logo__title{
   margin: 10px 0 5px 0;
   font-size: 20px;
+  text-align: center;
 }
 
 .video-bg {
