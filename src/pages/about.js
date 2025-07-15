@@ -3,7 +3,8 @@ import { BtnBackHome } from "../button/buttonBackHome";
 const tg = window.Telegram.WebApp;
 export default function AboutPage() {
     useEffect(()=>{
-      tg.BackButton.show()
+      tg.BackButton.show();
+      tg.BackButton.onClick(window.history.back())
         return () => {
       tg.BackButton.hide();
     };
