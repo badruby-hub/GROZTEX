@@ -18,7 +18,7 @@ export default function HomePage() {
        
         <div className="block__content__home">
            <div className="App">
-             <div className='logo'><div className="logo__name">GROZ<img className="svg__logo" src="./logo.svg"/>EX</div></div>
+             <div className='logo'><div className="logo__name">GROZ<img className="svg__logo" src="./logo.svg"/>EX</div><div className="logo__title">best exchange</div></div>
              <ul>
               <li className='exchange'><Link className='link' to='/exchange'>Купить/Продать USDT</Link></li>
               <li className='about'><Link className='link' to='/about'>О нас</Link></li>
