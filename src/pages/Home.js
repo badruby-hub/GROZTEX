@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import {Link} from "react-router-dom";
-
-
 const tg = window.Telegram.WebApp;
+
+
 
 export default function HomePage() {
       useEffect(()=>{

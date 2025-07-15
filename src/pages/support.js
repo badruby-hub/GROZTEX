@@ -1,8 +1,23 @@
 import { Link } from "react-router-dom";
 import { BtnChatTg } from "../button/btnChatTg";
 import { BtnBackHome } from "../button/buttonBackHome";
+import { useEffect } from "react";
+const tg = window.Telegram.WebApp;
 
 export default function SupportPage() {
+       useEffect(()=>{
+          tg.BackButton.show();
+          const btnBackClick=()=>{
+                 window.history.back()
+          };
+    
+          tg.BackButton.onClick(btnBackClick);
+    
+            return () => {
+          tg.BackButton.hide();
+          tg.BackButton.offClick(btnBackClick);
+        };
+        },[])
     return<div className="block__content__support">
         <div className="container__text__support">
   <h1>Поддержка</h1>
