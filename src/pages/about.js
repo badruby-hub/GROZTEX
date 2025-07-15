@@ -4,9 +4,15 @@ const tg = window.Telegram.WebApp;
 export default function AboutPage() {
     useEffect(()=>{
       tg.BackButton.show();
-      tg.BackButton.onClick(window.history.back())
+      const btnBackClick=()=>{
+             window.history.back()
+      };
+
+      tg.BackButton.onClick(btnBackClick);
+
         return () => {
       tg.BackButton.hide();
+      tg.BackButton.offClick(btnBackClick);
     };
     },[])
   return (
