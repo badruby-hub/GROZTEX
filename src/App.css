@@ -167,7 +167,7 @@ li {
   font-size: 20px;
 }
 
-li:hover,
+li:active,
 .btn__back__home:active,
 .btn__chat__tg:active {
   background-color: rgba(5, 51, 116, 0.3);
