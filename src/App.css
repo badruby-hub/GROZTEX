@@ -20,11 +20,7 @@ body {
   align-items: center;
   font-size: 65px;
 }
-/* 
-.svg__logo{
-  width: 100px;
-  height: 75px;
-} */
+
 
 .logo__title{
   margin: 10px 0 5px 0;
@@ -164,6 +160,7 @@ ul {
 li {
   user-select: none;
   border: 1px solid blue;
+  background-color: rgb(16 16 213 / 32%);;
   margin: 7px;
   border-radius: 10px;
   text-align: center;
