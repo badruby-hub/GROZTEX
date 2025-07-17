@@ -172,7 +172,7 @@ li {
 .btn__back__home,
 .btn__chat__tg {
   user-select: none;
-  border: 1px solid blue;
+  background-color: rgba(19, 216, 197, 0.5);
   margin: 10px 0;
   border-radius: 10px;
   text-align: center;
@@ -183,7 +183,7 @@ li {
 li:active,
 .btn__back__home:active,
 .btn__chat__tg:active {
-  background-color: rgba(5, 51, 116, 0.3);
+ background-color: rgba(19, 216, 197, 0.8);
 }
 
 .link,
