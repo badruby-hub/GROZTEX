@@ -15,14 +15,15 @@ body {
 .logo {
   margin: 40px 0 20px 0;
 }
-.logo__name{
+
+.logo__name {
   display: flex;
   align-items: center;
   font-size: 65px;
 }
 
 
-.logo__title{
+.logo__title {
   margin: 10px 0 5px 0;
   font-size: 20px;
   text-align: center;
@@ -88,7 +89,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin: 15px ;
+  margin: 15px;
 }
 
 .container__text {
@@ -159,8 +160,7 @@ ul {
 
 li {
   user-select: none;
-  border: 1px solid blue;
-  background-color: rgb(16 16 213 / 32%);;
+  background-color: rgba(19, 216, 197, 0.5);
   margin: 7px;
   border-radius: 10px;
   text-align: center;
