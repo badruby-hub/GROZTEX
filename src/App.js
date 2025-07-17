@@ -18,7 +18,7 @@ export default function App() {
   <div className="video-bg">
         <video className="video-bg__video" playsInline type='video/mp4'autoPlay loop muted preload='auto' src="./earth-fon.mp4">
         </video>
-        <div className='effects'></div>
+        {/* <div className='effects'></div> */}
          </div>   
   <BrowserRouter>
     <Routes>
