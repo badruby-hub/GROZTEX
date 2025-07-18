@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import './App.css';
 
 import HomePage from "./pages/Home";
@@ -12,14 +13,15 @@ import ValuationPage from "./pages/valuation";
 
 
 
+
 export default function App() {
 
   return <>
   <div className="video-bg">
         <video className="video-bg__video" playsInline type='video/mp4'autoPlay loop muted preload='auto' src="./earth-fon.mp4">
         </video>
-        {/* <div className='effects'></div> */}
          </div>   
+         <Toaster/>
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<HomePage/>}/>
