@@ -18,7 +18,7 @@ export default function App() {
 
   return <>
   <div className="video-bg">
-    <img className="video-bg__video" src='./earth.gif'/>
+    <img className="video-bg__video" playsInline autoPlay loop muted preload='auto' src='./earth.gif'/>
         {/* <video className="video-bg__video" playsInline type='video/mp4'autoPlay loop muted preload='auto' src="./earth-fon.mp4"> */}
         {/* </video> */}
          </div>   
