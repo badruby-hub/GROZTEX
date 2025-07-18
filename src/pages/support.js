@@ -24,7 +24,7 @@ export default function SupportPage() {
   <div className="text__support">
      <p> Наша операторы на связи 24/7. Готовы ответить на любые вопросы.</p>
      <p> Для покупки USDT, вам нужно создать заявку через бота</p>
-     <p> Для связи с нами напишите в Telegram канал —<Link className="link__tg" to="https://t.me/gess13">@gess13</Link></p>
+     <p> Для связи с нами напишите в Telegram канал —<Link className="link__tg" to="https://t.me/gess13">GROZTEX__SUPPORT</Link></p>
   </div>
      <BtnChatTg/>
      <BtnBackHome/>
