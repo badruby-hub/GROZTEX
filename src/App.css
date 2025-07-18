@@ -37,13 +37,12 @@ body {
   position: relative;
 }
 
-.video-bg video {
+.video-bg img {
   width: 100%;
   min-height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  object-fit: cover;
   z-index: 0;
 }
 
