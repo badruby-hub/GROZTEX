@@ -84,6 +84,7 @@ export default function ExchangePage(event) {
             <button className={`btn__select__sell ${selectBtnSell ? "active__sell" : ''}`} onClick={onFocusSell} type="button" id="sell" value="Продажу">Продать USDT</button>
           </div>
           <input type="hidden" id="selectBtnValue" name="selectBtnValue" value={selectBtnValue} />
+          
          <label>
           <h2>Имя</h2>
           <input className="first__name" type="text" id="first__name"  name="first_name" minLength="3"  placeholder="Введите ваше имя"  required/>
