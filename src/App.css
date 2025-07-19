@@ -134,9 +134,8 @@ body {
 label {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   max-width: 350px;
-  height: 130px;
+  margin: 15px 0;
 }
 
 label h2 {
