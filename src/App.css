@@ -135,7 +135,7 @@ label {
   display: flex;
   flex-direction: column;
   max-width: 350px;
-  margin: 15px 0;
+   margin: 15px 0;
 }
 
 label h2 {
