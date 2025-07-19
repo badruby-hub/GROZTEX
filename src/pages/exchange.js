@@ -18,6 +18,8 @@ export default function ExchangePage() {
   const [selectBtnValue, setSelectBtnValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [count, setCount] = useState("");
+  const [firstName,setFirstName] = useState("");
+  const [lastName,setLastName] = useState("");
   const [phone, setPhone] = useState("");
   
       useEffect(()=>{
@@ -59,6 +61,18 @@ export default function ExchangePage() {
          }else{
            setCount('');
          }
+    };
+    const formatFirstName = (event)=>{
+        const value = event.target.value;
+        const stringFormat = String(value.replace(/[^а-яА-ЯёЁ]/g, ''));
+          setFirstName(stringFormat);
+    };
+
+        const formatLastName = (event)=>{
+        const value = event.target.value;
+        const stringFormat = String(value.replace(/[^а-яА-ЯёЁ]/g, ''));
+          setLastName(stringFormat);
+
     };
        const sendEmailTelegram = async (event) =>{
             event.preventDefault();
@@ -126,11 +140,11 @@ export default function ExchangePage() {
         </label> 
          <label>
           <h2>Имя</h2>
-          <input className="first__name" type="text" id="first__name"  name="first_name" minLength="3"  placeholder="Введите ваше имя"  required/>
+          <input className="first__name" value={firstName} onChange={formatFirstName} type="text" id="first__name"  name="first_name" minLength="3"  placeholder="Введите ваше имя"  required/>
         </label>
           <label>
           <h2>Фамилия</h2>
-          <input type="text" className="last__name" id="last__name"  name="last_name" minLength="3" placeholder="Введите вашу фамилию" required/>
+          <input type="text" className="last__name" value={lastName} onChange={formatLastName} id="last__name"  name="last_name" minLength="3" placeholder="Введите вашу фамилию" required/>
         </label>
       
          <label>
