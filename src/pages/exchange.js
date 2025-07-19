@@ -12,11 +12,12 @@ const tg = window.Telegram.WebApp;
 
 
 
-export default function ExchangePage(event) {
+export default function ExchangePage() {
   const [selectBtnBuy, setSelectBtnBuy] = useState(false);
   const [selectBtnSell, setSelectBtnSell] = useState(false);
   const [selectBtnValue, setSelectBtnValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [count, setCount] = useState("");
   const [phone, setPhone] = useState("");
   
       useEffect(()=>{
@@ -50,8 +51,31 @@ export default function ExchangePage(event) {
         setSelectBtnBuy(false); 
         setSelectBtnValue(valueSell); 
     };
+    const formatCountChange=(event)=>{
+         const value = event.target.value;
+         const numberValue = Number(value.replace(/\s/g, ''));
+         if (!isNaN(numberValue)) {
+           setCount(numberValue.toLocaleString('ru-RU'));
+         }else{
+           setCount('');
+         }
+    };
        const sendEmailTelegram = async (event) =>{
             event.preventDefault();
+            if(!tg.initDataUnsafe?.user){
+              toast.error("Для отправки заявки, войдите в мини приложение через телеграм",{
+                 style: {
+                     border: '1px solid rgb(246, 2, 35)',
+                     padding: '16px',
+                     color: 'rgb(246, 2, 35)',
+                     },
+                 iconTheme: {
+                     primary: 'rgb(246, 2, 35)',
+                     secondary: '#FFFAEE',
+                },
+              })
+              return
+            }
             if(!selectBtnValue){
               toast.error("Выберите Покупку или Продажу")
               return
@@ -98,7 +122,7 @@ export default function ExchangePage(event) {
           
           <label>
           <h2 className="text_sum">Сумма в рублях</h2>
-          <input className="sum" type="tel" id="sum"  name="sum" minLength="3"  placeholder="0"  required/>
+          <input className="sum" type="tel" id="sum"  name="sum" minLength="3"  placeholder="0" value={count} onChange={formatCountChange} required/>
         </label> 
          <label>
           <h2>Имя</h2>
