@@ -22,6 +22,17 @@ export default function ExchangePage() {
   const [lastName,setLastName] = useState("");
   const [phone, setPhone] = useState("");
   
+   const resetForm=()=>{
+              setSelectBtnBuy(false);
+              setSelectBtnSell(false);
+              setSelectBtnValue("");
+              setCount("");
+              setFirstName("");
+              setLastName("");
+              setPhone("");
+   };
+
+
       useEffect(()=>{
          tg.BackButton.show();
          const btnBackClick=()=>{
@@ -98,6 +109,7 @@ export default function ExchangePage() {
             const {first_name, last_name, phone, sum} = Object.fromEntries(new FormData(form).entries());
             const applicationForm = `Заявка на ${selectBtnValue}\nСумма: ${sum}₽\nИмя: ${first_name}\nФамилия: ${last_name}\nник телеграм: @${tg.initDataUnsafe?.user?.username}\nНомер телефона: ${phone} `;
             setIsLoading(true);
+            
             console.log(applicationForm)
             try {
               let response = await fetch(API,{
@@ -113,6 +125,7 @@ export default function ExchangePage() {
               if(response.ok){
               toast.success("Заявка успешно отправлена");
               form.reset();
+              resetForm();
               }else{
                  toast.error("Заявка не отправлена");
               }
