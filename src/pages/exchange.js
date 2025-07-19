@@ -58,7 +58,7 @@ export default function ExchangePage(event) {
             }
             const form = event.target;
             const {first_name, last_name, phone, sum} = Object.fromEntries(new FormData(form).entries());
-            const applicationForm = `Заявка на ${selectBtnValue}\nСумма: ${sum}₽\nИмя: ${first_name}\nФамилия: ${last_name}\nник телеграм: ${tg.initDataUnsafe?.user?.username}\nНомер телефона: ${phone} `;
+            const applicationForm = `Заявка на ${selectBtnValue}\nСумма: ${sum}₽\nИмя: ${first_name}\nФамилия: ${last_name}\nник телеграм: @${tg.initDataUnsafe?.user?.username}\nНомер телефона: ${phone} `;
             setIsLoading(true);
             console.log(applicationForm)
             try {
