@@ -330,3 +330,7 @@ li:active,
 .container__sell {
   margin-top: 7.5px;
 }
+
+.special-label{
+  display: none;
+}

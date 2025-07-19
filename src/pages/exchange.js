@@ -1,6 +1,7 @@
 import {  useEffect, useState } from "react";
 import { BtnBackHome } from "../button/buttonBackHome";
 import toast from "react-hot-toast";
+import PhoneInput from "react-phone-input-2";
 
 const token = process.env.REACT_APP_BOT_TOKEN;
 const CHAT_ID_TG = process.env.REACT_APP_CHAT_ID;
@@ -8,11 +9,15 @@ const API = `https://api.telegram.org/bot${token}/sendMessage`;
 
 
 const tg = window.Telegram.WebApp;
+
+
+
 export default function ExchangePage(event) {
   const [selectBtnBuy, setSelectBtnBuy] = useState(false);
   const [selectBtnSell, setSelectBtnSell] = useState(false);
   const [selectBtnValue, setSelectBtnValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [phone, setPhone] = useState("");
   
       useEffect(()=>{
          tg.BackButton.show();
@@ -27,7 +32,12 @@ export default function ExchangePage(event) {
          tg.BackButton.offClick(btnBackClick);
        };
        },[])
-       
+       const checkingTheNumbers = (value) => {
+  if (value && value.length > 0 && value[1] !== '7') {
+    value = '7' + value.slice(1);
+  }
+  setPhone(value);
+};
       const onFocusBuy = (e) => {
          const valueBuy = e.target.value;
         setSelectBtnBuy(true);
@@ -48,7 +58,7 @@ export default function ExchangePage(event) {
             }
             const form = event.target;
             const {first_name, last_name, phone, sum} = Object.fromEntries(new FormData(form).entries());
-            const applicationForm = `Заявка на ${selectBtnValue}\nСумма: ${sum}₽\nИмя: ${first_name}\nФамилия: ${last_name}\nНомер телефона: ${phone} `;
+            const applicationForm = `Заявка на ${selectBtnValue}\nСумма: ${sum}₽\nИмя: ${first_name}\nФамилия: ${last_name}\nтелеграм${tg.initDataUnsafe?.user?.username}\nНомер телефона: ${phone} `;
             setIsLoading(true);
             console.log(applicationForm)
             try {
@@ -85,6 +95,7 @@ export default function ExchangePage(event) {
             <button className={`btn__select__sell ${selectBtnSell ? "active__sell" : ''}`} onClick={onFocusSell} type="button" id="sell" value="Продажу">Продать USDT</button>
           </div>
           <input type="hidden" id="selectBtnValue" name="selectBtnValue" value={selectBtnValue} />
+          
           <label>
           <h2 className="text_sum">Сумма в рублях</h2>
           <input className="sum" type="tel" id="sum"  name="sum" minLength="3"  placeholder="0"  required/>
@@ -100,7 +111,18 @@ export default function ExchangePage(event) {
       
          <label>
           <h2>номер телефона </h2>
-          <input type="tel" className="phone" id="phone"  name="phone" maxLength="16"  placeholder="+7 (XXX) XXX-XX-XX" required/>
+         <PhoneInput
+          country={"ru"}
+          value={phone} 
+          onChange={checkingTheNumbers}
+          inputProps={{
+            required: true,
+            name:"phone",
+            className:"phone",
+            placeholder: "+7(XXX) XXX-XX-XX"
+          }}
+          />
+          {/* <input type="tel" className="phone" id="phone"  name="phone" maxLength="16"  placeholder="+7 (XXX) XXX-XX-XX" required/> */}
         </label>
           <button type="submit" className="submit__btn">{isLoading ? `Отправка...`:`Отправить`}</button>
        </form>
