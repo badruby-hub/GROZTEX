@@ -47,9 +47,10 @@ export default function ExchangePage(event) {
               return
             }
             const form = event.target;
-            const {first_name, last_name, phone} = Object.fromEntries(new FormData(form).entries());
-            const applicationForm = `Заявка на ${selectBtnValue}\nИмя: ${first_name}\nФамилия: ${last_name}\nНомер телефона: ${phone} `;
+            const {first_name, last_name, phone, sum} = Object.fromEntries(new FormData(form).entries());
+            const applicationForm = `Заявка на ${selectBtnValue}\nСумма: ${sum}₽\nИмя: ${first_name}\nФамилия: ${last_name}\nНомер телефона: ${phone} `;
             setIsLoading(true);
+            console.log(applicationForm)
             try {
               let response = await fetch(API,{
                 method: "POST",
@@ -84,7 +85,10 @@ export default function ExchangePage(event) {
             <button className={`btn__select__sell ${selectBtnSell ? "active__sell" : ''}`} onClick={onFocusSell} type="button" id="sell" value="Продажу">Продать USDT</button>
           </div>
           <input type="hidden" id="selectBtnValue" name="selectBtnValue" value={selectBtnValue} />
-          
+          <label>
+          <h2 className="text_sum">Сумма в рублях</h2>
+          <input className="sum" type="tel" id="sum"  name="sum" minLength="3"  placeholder="0"  required/>
+        </label> 
          <label>
           <h2>Имя</h2>
           <input className="first__name" type="text" id="first__name"  name="first_name" minLength="3"  placeholder="Введите ваше имя"  required/>

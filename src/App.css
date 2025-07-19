@@ -85,7 +85,7 @@ body {
   font-weight: 400;
 }
 
-.block__content__exchange{
+.block__content__exchange {
   display: flex;
   justify-content: center;
 }
@@ -119,19 +119,19 @@ body {
   margin: 20px 0px;
 }
 
-.container__form h1{
-  margin: 20px 0 ;
+.container__form h1 {
+  margin: 20px 0;
   font-size: 35px;
 }
 
-.container__form select{
+.container__form select {
   width: 250px;
   height: 40px;
   font-weight: 400;
-  
+
 }
 
-label{
+label {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -139,30 +139,50 @@ label{
   height: 130px;
 }
 
-label h2{
+label h2 {
   font-size: 15px;
   font-weight: 400;
   margin: 5px 0;
 }
 
-label input{
+label input {
   font-size: 30px;
-  padding:10px;
+  padding: 10px;
   height: 50px;
   background: none;
   border: none;
   border-bottom: 1px solid #00acc8;
   color: white;
   outline: none;
- box-shadow: 0px -95px 63px -99px rgba(49, 184, 184, 0.5) inset;
- border-radius: 20px;
+  box-shadow: 0px -95px 63px -99px rgba(49, 184, 184, 0.5) inset;
+  border-radius: 20px;
 }
 
-label input::placeholder{
+label input::placeholder {
   color: rgb(44, 162, 160);
   font-size: 15px;
 }
 
+label input.sum::placeholder {
+  font-size: 45px;
+  text-align: center;
+}
+
+input.sum:focus::placeholder{
+  opacity: 0;
+}
+
+label input.sum {
+  text-align: center;
+}
+
+label .text_sum {
+  font-family: system-ui;
+  font-weight: 100;
+  font-size: 20px;
+  text-align: center;
+  margin: 25px 0;
+}
 
 .text__about,
 .text__support {
@@ -171,7 +191,7 @@ label input::placeholder{
   gap: 20px;
 }
 
-.select{
+.select {
   display: flex;
   gap: 5px;
   justify-content: space-between;
@@ -179,24 +199,24 @@ label input::placeholder{
   border-radius: 20px;
 }
 
-.select button{
+.select button {
   background: none;
   border: none;
   color: white;
   font-size: 20px;
   font-weight: 700;
-  padding: 15px ;
+  padding: 15px;
 }
 
 
-.select .btn__select__buy.active__buy{
- background-color:rgb(44, 162, 160, 0.6);
- border-radius:  20px 0  0 20px ;
+.select .btn__select__buy.active__buy {
+  background-color: rgb(44, 162, 160, 0.6);
+  border-radius: 20px 0 0 20px;
 }
 
-.btn__select__sell.active__sell{
-background-color:rgb(44, 162, 160, 0.6);
-border-radius: 0 20px 20px 0;
+.btn__select__sell.active__sell {
+  background-color: rgb(44, 162, 160, 0.6);
+  border-radius: 0 20px 20px 0;
 }
 
 .App {
@@ -257,7 +277,7 @@ li {
   font-size: 20px;
 }
 
-.submit__btn{
+.submit__btn {
   width: 350px;
   height: 55px;
   border-radius: 10px;
