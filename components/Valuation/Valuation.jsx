@@ -7,11 +7,10 @@ export default function Valuation() {
 
   useEffect(() => {
         const tg = window.Telegram.WebApp;
-          
            tg.BackButton.show();
   
       const btnBackClick = () => {
-        tg.history.back();
+        window.history.back();
       };
   
       tg.BackButton.onClick(btnBackClick);

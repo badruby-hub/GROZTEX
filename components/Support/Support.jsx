@@ -12,8 +12,7 @@ useEffect(() => {
          tg.BackButton.show();
 
     const btnBackClick = () => {
-
-      tg.history.back();
+      window.history.back();
     };
 
     tg.BackButton.onClick(btnBackClick);
