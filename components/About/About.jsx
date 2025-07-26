@@ -10,6 +10,9 @@ const [tgWindow, setTgWindow] = useState(null);
        useEffect(() => {
        const tg = window.Telegram.WebApp;
        setTgWindow(tg)
+        }, []);
+        
+        useEffect(()=>{
     tgWindow.BackButton.show();
      
 
@@ -24,7 +27,9 @@ const [tgWindow, setTgWindow] = useState(null);
     tgWindow.BackButton.hide();
     tgWindow.BackButton.offClick(btnBackClick);
     };
-  }, []);
+ 
+        },[])
+
 
 
     return  <div className={classes.block__content__about}>
