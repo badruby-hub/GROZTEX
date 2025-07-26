@@ -4,13 +4,13 @@ import classes from "./exchange.module.css"
 import toast from "react-hot-toast";
 import PhoneInput from "react-phone-input-2";
 import { useEffect, useState } from "react";
-import { useTelegram } from "@/context/TelegramProvider";
+
 
 const token = process.env.NEXT_PUBLIC_BOT_TOKEN;
 const CHAT_ID_TG = process.env.NEXT_PUBLIC_CHAT_ID;
 const API = `https://api.telegram.org/bot${token}/sendMessage`;
 
-
+ const tg = window.Telegram.WebApp ; 
 
 export default function Exchange() {
      const [selectBtnBuy, setSelectBtnBuy] = useState(false);
@@ -21,8 +21,10 @@ export default function Exchange() {
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
   const [phone, setPhone] = useState("");
-  
-    const tg = useTelegram();
+
+
+
+
     const USER_CHAT_ID_TG = tg?.initDataUnsafe?.user?.id ;
     const resetForm=()=>{
               setSelectBtnBuy(false);
