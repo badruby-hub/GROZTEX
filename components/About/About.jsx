@@ -1,35 +1,29 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import BtnBackHome from "@/components/Button/BtnBackHome"
 import classes from "./about.module.css";
 
  
 
 export default function About() {
-const [tgWindow, setTgWindow] = useState(null);
+
        useEffect(() => {
        const tg = window.Telegram.WebApp;
-       setTgWindow(tg)
-        }, []);
-        
-        useEffect(()=>{
-    tgWindow.BackButton.show();
-     
+    tg.BackButton.show();
 
+    
     const btnBackClick = () => {
       
-      tgWindow.history.back();
+      window.history.back();
     };
 
-    tgWindow.BackButton.onClick(btnBackClick);
+    tg.BackButton.onClick(btnBackClick);
 
     return () => {
-    tgWindow.BackButton.hide();
-    tgWindow.BackButton.offClick(btnBackClick);
+    tg.BackButton.hide();
+    tg.BackButton.offClick(btnBackClick);
     };
- 
-        },[])
-
+  }, []);
 
 
     return  <div className={classes.block__content__about}>
