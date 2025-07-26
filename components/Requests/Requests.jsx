@@ -1,16 +1,15 @@
 'use client';
 import classes from "./requests.module.css";
 import BtnBackHome from "@/components/Button/BtnBackHome";
-// import prisma from "@/lib/db";
+import prisma from "@/lib/db";
 import {  useEffect, useState } from "react";
 
 
 
 
-export default async function Requests() {
-    // const [chatId, setChatId] = useState([]);
-    const [requests, setRequests] = useState([]);
-
+export default  function Requests() {
+    const [chatId, setChatId] = useState([]);
+   const [requests, setRequests] = useState([]);
      useEffect(() => {
       const tg = window.Telegram.WebApp;
 
@@ -29,21 +28,30 @@ export default async function Requests() {
      }, []);
 
 
-useEffect(() => {
-  const fetchRequests = async () => {
+     useEffect(() => {
+    const fetchRequests = async () => {
     const tg = window.Telegram.WebApp;
-    const chatId = tg.initDataUnsafe?.user?.id;
+    const chatId =  tg.initDataUnsafe?.user?.id 
+     console.log("chadId", chatId);
+      setChatId(chatId);
+    };
 
-    if (chatId) {
-      const res = await fetch(`/api/requests?chatId=${chatId}`);
-      const data = await res.json();
-      setRequests(data);
-    }
-  };
+    fetchRequests();
+  }, []);
 
-  fetchRequests();
-}, []);
-
+useEffect(() => {
+        const fetchRequests = async () => {
+            if (chatId) {
+                const requestsData = await prisma.request.findMany({
+                    where: {
+                        authorId: chatId
+                    }
+                });
+                setRequests(requestsData);
+            }
+        };
+        fetchRequests();
+    }, [chatId]);
 
    const statusMap = {
   PENDING: "В обработке",
