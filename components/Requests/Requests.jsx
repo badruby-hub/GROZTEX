@@ -1,12 +1,14 @@
 'use client';
 import classes from "./requests.module.css";
 import BtnBackHome from "@/components/Button/BtnBackHome";
+// import prisma from "@/lib/db";
 import {  useEffect, useState } from "react";
 
 
 
 
-export default  function Requests() {
+export default async function Requests() {
+    // const [chatId, setChatId] = useState([]);
     const [requests, setRequests] = useState([]);
 
      useEffect(() => {
@@ -27,14 +29,21 @@ export default  function Requests() {
      }, []);
 
 
-     useEffect(() => {
+useEffect(() => {
     const fetchRequests = async () => {
-    const tg = window.Telegram.WebApp;
-    const chatId =  tg.initDataUnsafe?.user?.id 
-     console.log("chadId", chatId);
-      const res = await fetch(`/api/requests?chatId=${chatId}`);
-      const data = await res.json();
-      setRequests(data);
+      const tg = window.Telegram.WebApp;
+      const chatId = tg.initDataUnsafe?.user?.id;
+
+      if (chatId) {
+        const res = await fetch("/api/requests", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ authorId: chatId })
+        });
+
+        const data = await res.json();
+        setRequests(data);
+      }
     };
 
     fetchRequests();
