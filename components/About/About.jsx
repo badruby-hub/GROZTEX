@@ -12,12 +12,14 @@ export default function About() {
     tgWindow.BackButton.show();
 
     const btnBackClick = () => {
+       const tgWindow = window.Telegram.WebApp;
       tgWindow.history.back();
     };
 
     tgWindow.BackButton.onClick(btnBackClick);
 
     return () => {
+       const tgWindow = window.Telegram.WebApp;
     tgWindow.BackButton.hide();
     tgWindow.BackButton.offClick(btnBackClick);
     };

@@ -3,8 +3,28 @@ import Link from "next/link";
 import BtnBackHome from "@/components/Button/BtnBackHome";
 import BtnChatTg from "@/components/Button/BtnChatTg";
 import classes from './support.module.css';
+import { useEffect } from "react";
 
 export default function Support() {
+useEffect(() => {
+      const tg = window.Telegram.WebApp;
+      
+         tgWindow.BackButton.show();
+
+    const btnBackClick = () => {
+       const tgWindow = window.Telegram.WebApp;
+      tgWindow.history.back();
+    };
+
+    tgWindow.BackButton.onClick(btnBackClick);
+
+    return () => {
+       const tgWindow = window.Telegram.WebApp;
+    tgWindow.BackButton.hide();
+    tgWindow.BackButton.offClick(btnBackClick);
+    };
+     }, []);
+
    return  <div className={classes.block__content__support}>
         <div className={classes.container__text__support}>
   <h1 className={classes.zagolovok} >Поддержка</h1>
