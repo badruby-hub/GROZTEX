@@ -1,0 +1,42 @@
+.block__content__support {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 400;
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+.container__text__support {
+  display: flex;
+  flex-direction: column;
+  max-width: 375px;
+  padding-inline: 10px;
+}
+
+
+.zagolovok {
+  margin: 20px 0px;
+}
+
+
+.text__support {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.link__tg {
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 15px 35px;
+  font-weight: 600;
+  padding: 15px 0;
+  font-size: 15px;
+  text-decoration: underline;
+}

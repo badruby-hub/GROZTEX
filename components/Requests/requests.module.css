@@ -1,0 +1,41 @@
+.container__requests{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.block__req{
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+}
+
+.request__info__box{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    font-size: 20px;
+}
+
+.status{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+.block__status{
+    display: flex;
+    gap: 15px;
+    
+}
+
+.date{
+    margin: 0 0 0 auto;
+    color:gray;
+}
+
+.number{
+    color: white;
+}

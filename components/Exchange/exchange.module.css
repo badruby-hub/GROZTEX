@@ -1,0 +1,140 @@
+.block__content__exchange {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 40px;
+}
+
+
+.zagolovok {
+    margin: 20px 0;
+    font-size: 35px;
+}
+
+.container__form select {
+    width: 250px;
+    height: 40px;
+    font-weight: 400;
+
+}
+
+
+
+.label {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    margin: 15px 0;
+}
+
+.zagolovok__two {
+    font-size: 15px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+.input {
+    width: 100%;
+    font-size: 30px;
+    padding: 10px;
+    height: 50px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #00acc8;
+    color: white;
+    outline: none;
+    box-shadow: 0px -95px 63px -99px rgba(49, 184, 184, 0.5) inset;
+    border-radius: 20px;
+}
+
+.input::placeholder {
+    color: rgb(44, 162, 160);
+    font-size: 15px;
+}
+
+.sum::placeholder {
+    font-size: 45px;
+    text-align: center;
+}
+
+.sum:focus::placeholder {
+    opacity: 0;
+}
+
+.sum {
+    text-align: center;
+}
+
+.text_sum {
+    font-family: system-ui;
+    font-weight: 100;
+    font-size: 20px;
+    text-align: center;
+    margin: 25px 0;
+}
+
+.btn__select__buy.active__buy {
+    background-color: rgb(44, 162, 160, 0.6);
+    border-radius: 20px 0 0 20px;
+}
+
+.btn__select__sell.active__sell {
+    background-color: rgb(44, 162, 160, 0.6);
+    border-radius: 0 20px 20px 0;
+}
+
+.btn__select__buy {
+    
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 15px;
+}
+
+.btn__select__sell {
+    
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 15px;
+}
+
+.select {
+    font-weight: 400;
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    border: 1px solid rgba(19, 216, 197, 0.8);
+    border-radius: 20px;
+}
+
+.well {
+    font-size: 32px;
+    font-weight: 400;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container__buy {
+    margin-bottom: 7.5px;
+}
+
+.container__sell {
+    margin-top: 7.5px;
+}
+
+.submit__btn {
+  width: 350px;
+  height: 55px;
+  border-radius: 10px;
+  background-color: rgba(19, 216, 197, 0.5);
+  border: none;
+  font-size: 20px;
+  color: white;
+  padding: 5px;
+}

@@ -1,0 +1,30 @@
+.block__content__about {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 40px;
+}
+
+.block__content__about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+
+.container__text {
+  display: flex;
+  flex-direction: column;
+  max-width: 375px;
+  padding-inline: 10px;
+  gap: 15px;
+}
+
+.text__about{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

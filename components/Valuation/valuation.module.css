@@ -1,0 +1,43 @@
+.block__content__valuation {
+  position: relative;
+  z-index: 2;
+  color: white;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.container__valuation {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 15px;
+}
+
+
+.zagolovok {
+  margin: 20px 0px;
+}
+
+
+.buy,
+.sell {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.well {
+  font-size: 32px;
+  font-weight: 400;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.container__buy {
+  margin-bottom: 7.5px;
+}
+
+.container__sell {
+  margin-top: 7.5px;
+}
