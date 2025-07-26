@@ -19,7 +19,7 @@ export default function Header() {
     
 useEffect(() => {
     if (tg) {
-      console.log(tg);
+      console.log('tgtgt',tg);
       tg.ready();
       tg.expand();
     }
