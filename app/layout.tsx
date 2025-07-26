@@ -3,6 +3,7 @@ import "./globals.css";
 import Script from "next/script";
 import { TelegramProvider } from "../context/TelegramProvider";
 import { Toaster } from "react-hot-toast";
+import { useEffect, useState } from "react";
 export const metadata: Metadata = {
   title: "GROZTEX",
   description: "Лучший обменник",
@@ -13,6 +14,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+   const [tg, setTg] = useState<TelegramWebApp | null>(null);;
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.Telegram?.WebApp) {
+      const telegram = window.Telegram.WebApp;
+      telegram.ready();
+      telegram.expand();
+      setTg(telegram);
+    }
+  }, []);
   return (
     <html lang="en">
        <head>
@@ -27,7 +39,7 @@ export default function RootLayout({
         </video>
          </div>   
          <Toaster/>
-        <TelegramProvider>
+        <TelegramProvider tg={tg}>
             {children}
         </TelegramProvider>
       </body>
