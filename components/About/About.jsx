@@ -1,8 +1,8 @@
 'use client';
-import { useContext, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import BtnBackHome from "@/components/Button/BtnBackHome"
 import classes from "./about.module.css";
-import { webAppContext } from "@/app/context/context";
+
  
 
 export default function About() {
