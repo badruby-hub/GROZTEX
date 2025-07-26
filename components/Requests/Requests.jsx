@@ -38,7 +38,7 @@ export default  function Requests() {
     };
 
     fetchRequests();
-  }, [chatId]);
+  }, []);
 
    const statusMap = {
   PENDING: "В обработке",
