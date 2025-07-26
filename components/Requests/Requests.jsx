@@ -30,24 +30,20 @@ export default async function Requests() {
 
 
 useEffect(() => {
-    const fetchRequests = async () => {
-      const tg = window.Telegram.WebApp;
-      const chatId = tg.initDataUnsafe?.user?.id;
+  const fetchRequests = async () => {
+    const tg = window.Telegram.WebApp;
+    const chatId = tg.initDataUnsafe?.user?.id;
 
-      if (chatId) {
-        const res = await fetch("/api/requests", {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ authorId: chatId })
-        });
+    if (chatId) {
+      const res = await fetch(`/api/requests?chatId=${chatId}`);
+      const data = await res.json();
+      setRequests(data);
+    }
+  };
 
-        const data = await res.json();
-        setRequests(data);
-      }
-    };
+  fetchRequests();
+}, []);
 
-    fetchRequests();
-  }, []);
 
    const statusMap = {
   PENDING: "В обработке",
