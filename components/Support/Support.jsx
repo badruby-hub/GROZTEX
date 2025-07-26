@@ -1,4 +1,4 @@
-'useClient';
+'use client';
 import Link from "next/link";
 import BtnBackHome from "@/components/Button/BtnBackHome";
 import BtnChatTg from "@/components/Button/BtnChatTg";

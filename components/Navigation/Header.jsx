@@ -1,12 +1,14 @@
 "use client";
 import Link from "next/link";
 import classes from "./header.module.css"
-import {useTelegram} from "@/context/TelegramProvider"
+import { webAppContext } from "@/app/context/context";
+import { useContext } from "react";
+
 
 
 export default function Header() {
- const {tg} = useTelegram();
-        
+   
+    const tg = useContext(webAppContext);
    const onClose =()=>{
      tg?.close()
     }

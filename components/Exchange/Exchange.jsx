@@ -3,7 +3,8 @@ import BtnBackHome from "@/components/Button/BtnBackHome";
 import classes from "./exchange.module.css"
 import toast from "react-hot-toast";
 import PhoneInput from "react-phone-input-2";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { webAppContext } from "@/app/context/context";
 
 
 const token = process.env.NEXT_PUBLIC_BOT_TOKEN;
@@ -11,6 +12,7 @@ const CHAT_ID_TG = process.env.NEXT_PUBLIC_CHAT_ID;
 const API = `https://api.telegram.org/bot${token}/sendMessage`;
 
 export default function Exchange() {
+   const tg = useContext(webAppContext);
      const [selectBtnBuy, setSelectBtnBuy] = useState(false);
   const [selectBtnSell, setSelectBtnSell] = useState(false);
   const [selectBtnValue, setSelectBtnValue] = useState("");
@@ -21,18 +23,7 @@ export default function Exchange() {
   const [phone, setPhone] = useState("");
 
 
-  const [tg, setTg] = useState(null);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const telegram = window.Telegram?.WebApp;
-      if (telegram) {
-        setTg(telegram);
-      }
-    }
-  }, []);
-
-    const USER_CHAT_ID_TG = tg?.initDataUnsafe?.user?.id ;
+    const USER_CHAT_ID_TG = tg.initDataUnsafe?.user?.id ;
     const resetForm=()=>{
               setSelectBtnBuy(false);
               setSelectBtnSell(false);
@@ -45,16 +36,16 @@ export default function Exchange() {
 
 
       useEffect(()=>{
-         tg?.BackButton.show();
+         tg.BackButton.show();
          const btnBackClick=()=>{
-                window.history.back()
+                tg.history.back()
          };
    
-         tg?.BackButton.onClick(btnBackClick);
+         tg.BackButton.onClick(btnBackClick);
    
            return () => {
-         tg?.BackButton.hide();
-         tg?.BackButton.offClick(btnBackClick);
+         tg.BackButton.hide();
+         tg.BackButton.offClick(btnBackClick);
        };
        },[])
        const checkingTheNumbers = (value) => {

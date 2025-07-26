@@ -1,3 +1,4 @@
+"use client"
 import classes from "./valuation.module.css"
 import BtnBackHome from "@/components/Button/BtnBackHome"
 

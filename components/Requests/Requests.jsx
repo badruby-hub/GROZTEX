@@ -1,24 +1,19 @@
-'use client'
+'use client';
+import { webAppContext } from "@/app/context/context";
 import classes from "./requests.module.css";
 import BtnBackHome from "@/components/Button/BtnBackHome";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 
 
 
 export default  function Requests() {
+   const tg = useContext(webAppContext);
     const [requests, setRequests] = useState([]);
-    const [tg, setTg] = useState(null);
     const [chatId, setChatId] = useState(null);
 
      useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const telegram = window.Telegram?.WebApp;
-      if (telegram) {
-        setTg(telegram);
-        setChatId(telegram.initDataUnsafe?.user?.id || null);
-        };
-      }
+        setChatId(tg.initDataUnsafe?.user?.id || null);
      }, []);
 
 
@@ -50,7 +45,7 @@ export default  function Requests() {
           
           {requests.map((req)=>{
              const dateObj = new Date(req.createdAt);
-           <div className={classes.request__info__box} key={req.number}>
+             return <div className={classes.request__info__box} key={req.number}>
                <p className={classes.date}>{dateObj.toLocaleDateString("ru-RU", {
                 weekday:"long",
                 day:"numeric",
