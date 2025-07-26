@@ -32,9 +32,11 @@ export default  function Requests() {
 
     const fetchRequests = async () => {
      const chatId =  window.initDataUnsafe?.user?.id 
+     console.log("chadId", chatId);
       const res = await fetch(`/api/requests?chatId=${chatId}`);
       const data = await res.json();
       setRequests(data);
+
     };
 
     fetchRequests();
