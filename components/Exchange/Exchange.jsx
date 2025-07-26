@@ -10,8 +10,6 @@ const token = process.env.NEXT_PUBLIC_BOT_TOKEN;
 const CHAT_ID_TG = process.env.NEXT_PUBLIC_CHAT_ID;
 const API = `https://api.telegram.org/bot${token}/sendMessage`;
 
- const tg = window.Telegram.WebApp ; 
-
 export default function Exchange() {
      const [selectBtnBuy, setSelectBtnBuy] = useState(false);
   const [selectBtnSell, setSelectBtnSell] = useState(false);
@@ -23,7 +21,18 @@ export default function Exchange() {
   const [phone, setPhone] = useState("");
 
 
+  const [tg, setTg] = useState(null);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const telegram = window.Telegram?.WebApp;
+      if (telegram) {
+        telegram.ready();
+        telegram.expand();
+        setTg(telegram);
+      }
+    }
+  }, []);
 
     const USER_CHAT_ID_TG = tg?.initDataUnsafe?.user?.id ;
     const resetForm=()=>{
