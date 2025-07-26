@@ -13,12 +13,16 @@ export default function Header() {
        const telegram = window.Telegram?.WebApp;
        if (telegram) {
          setTg(telegram);
-          tg.ready();
-         tg.expand();
          };
        }
    }, []);
- 
+    
+useEffect(() => {
+    if (tg) {
+      tg.ready();
+      tg.expand();
+    }
+  }, [tg]);
         
    const onClose =()=>{
      tg?.close()
