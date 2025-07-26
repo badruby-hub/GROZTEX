@@ -1,26 +1,33 @@
 'use client'
-import { useTelegram } from "@/context/TelegramProvider";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import BtnBackHome from "@/components/Button/BtnBackHome"
 import classes from "./about.module.css";
+
+
 export default function About() {
+    const [tg, setTg] = useState(null);
 
-    const tg = useTelegram();
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const telegram = window.Telegram?.WebApp;
+      if (telegram) {
+        setTg(telegram);
 
-    useEffect(()=>{
-     if (!tg?.BackButton) return;
-      tg.BackButton.show();
-      const btnBackClick=()=>{
-             window.history.back()
-      };
+        telegram.BackButton.show();
 
-      tg.BackButton.onClick(btnBackClick);
+        const btnBackClick = () => {
+          window.history.back();
+        };
+
+        telegram.BackButton.onClick(btnBackClick);
 
         return () => {
-      tg.BackButton.hide();
-      tg.BackButton.offClick(btnBackClick);
-    };
-    },[])
+          telegram.BackButton.hide();
+          telegram.BackButton.offClick(btnBackClick);
+        };
+      }
+    }
+  }, []);
 
     return  <div className={classes.block__content__about}>
       <div className={classes.container__text}>

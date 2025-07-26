@@ -1,17 +1,26 @@
 'use client'
 import classes from "./requests.module.css";
 import BtnBackHome from "@/components/Button/BtnBackHome";
-import { useTelegram } from "@/context/TelegramProvider";
 import { useEffect, useState } from "react";
 
 
 
 
 export default  function Requests() {
-    const tg = useTelegram();
-    const chatId = tg?.initDataUnsafe?.user?.id ;
-    
     const [requests, setRequests] = useState([]);
+    const [tg, setTg] = useState(null);
+    const [chatId, setChatId] = useState(null);
+
+     useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const telegram = window.Telegram?.WebApp;
+      if (telegram) {
+        setTg(telegram);
+        setChatId(telegram.initDataUnsafe?.user?.id || null);
+        };
+      }
+     }, []);
+
 
      useEffect(() => {
     if (!chatId) return;
@@ -33,14 +42,16 @@ export default  function Requests() {
    const statusEmoji = {
   PENDING: "📨",
   ACCEPTED: "✅",
-  REJECTED: "От❌клонено"
+  REJECTED: "❌"
 } ;
 
     return <div className={classes.container__requests}>
         <div className={classes.block__req}>
-          {requests.map((req)=>(
+          
+          {requests.map((req)=>{
+             const dateObj = new Date(req.createdAt);
            <div className={classes.request__info__box} key={req.number}>
-               <p className={classes.date}>{req.createdAt.toLocaleDateString("ru-RU", {
+               <p className={classes.date}>{dateObj.toLocaleDateString("ru-RU", {
                 weekday:"long",
                 day:"numeric",
                 month:"long"
@@ -56,7 +67,7 @@ export default  function Requests() {
             </div>
             </div>
            </div>
-          ))}
+          })}
         </div>
        <BtnBackHome/>
     </div>

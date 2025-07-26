@@ -1,13 +1,22 @@
 "use client";
 import Link from "next/link";
 import classes from "./header.module.css"
-import { useTelegram } from "@/context/TelegramProvider";
+import { useEffect, useState } from "react";
 
 
 
 export default function Header() {
-   
-   const tg = useTelegram();
+ const [tg, setTg] = useState(null);
+ 
+   useEffect(() => {
+     if (typeof window !== 'undefined') {
+       const telegram = window.Telegram?.WebApp;
+       if (telegram) {
+         setTg(telegram);
+         };
+       }
+   }, []);
+ 
         
    const onClose =()=>{
      tg.close()
