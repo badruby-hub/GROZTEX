@@ -29,7 +29,8 @@ export default  function Requests() {
 
      useEffect(() => {
     const fetchRequests = async () => {
-    const chatId =  window.initDataUnsafe?.user?.id 
+    const tg = window.Telegram.WebApp;
+    const chatId =  tg.initDataUnsafe?.user?.id 
      console.log("chadId", chatId);
       const res = await fetch(`/api/requests?chatId=${chatId}`);
       const data = await res.json();
