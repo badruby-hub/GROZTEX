@@ -8,11 +8,9 @@ import {  useEffect, useState } from "react";
 
 export default  function Requests() {
     const [requests, setRequests] = useState([]);
-    const [chatId, setChatId] = useState(null);
 
      useEffect(() => {
       const tg = window.Telegram.WebApp;
-        setChatId(tg.initDataUnsafe?.user?.id || null);
 
          tg.BackButton.show();
 
@@ -33,6 +31,7 @@ export default  function Requests() {
     if (!chatId) return;
 
     const fetchRequests = async () => {
+     const chatId =  window.initDataUnsafe?.user?.id 
       const res = await fetch(`/api/requests?chatId=${chatId}`);
       const data = await res.json();
       setRequests(data);
