@@ -1,15 +1,14 @@
 "use client";
 import Link from "next/link";
 import classes from "./button.module.css";
-import { webAppContext } from "@/app/context/context";
-import { useContext } from "react";
+
 
 
 
 export default function BtnChatTg(){
-  
- const tg = useContext(webAppContext);
+
       const onClose =()=>{
+        const tg = window.Telegram.WebApp
          tg.close();
        }
 

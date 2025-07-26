@@ -3,8 +3,8 @@ import BtnBackHome from "@/components/Button/BtnBackHome";
 import classes from "./exchange.module.css"
 import toast from "react-hot-toast";
 import PhoneInput from "react-phone-input-2";
-import { useContext, useEffect, useState } from "react";
-import { webAppContext } from "@/app/context/context";
+import {  useEffect, useState } from "react";
+
 
 
 const token = process.env.NEXT_PUBLIC_BOT_TOKEN;
@@ -12,7 +12,6 @@ const CHAT_ID_TG = process.env.NEXT_PUBLIC_CHAT_ID;
 const API = `https://api.telegram.org/bot${token}/sendMessage`;
 
 export default function Exchange() {
-   const tg = useContext(webAppContext);
      const [selectBtnBuy, setSelectBtnBuy] = useState(false);
   const [selectBtnSell, setSelectBtnSell] = useState(false);
   const [selectBtnValue, setSelectBtnValue] = useState("");
@@ -21,9 +20,6 @@ export default function Exchange() {
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
   const [phone, setPhone] = useState("");
-
-
-    const USER_CHAT_ID_TG = tg.initDataUnsafe?.user?.id ;
     const resetForm=()=>{
               setSelectBtnBuy(false);
               setSelectBtnSell(false);
@@ -36,18 +32,21 @@ export default function Exchange() {
 
 
       useEffect(()=>{
-         tg.BackButton.show();
+        
+        const tgWindow = window.Telegram.WebApp;
+         tgWindow.BackButton.show();
          const btnBackClick=()=>{
                 tg.history.back()
          };
    
-         tg.BackButton.onClick(btnBackClick);
+         tgWindow.BackButton.onClick(btnBackClick);
    
            return () => {
-         tg.BackButton.hide();
-         tg.BackButton.offClick(btnBackClick);
+         tgWindow.BackButton.hide();
+         tgWindow.BackButton.offClick(btnBackClick);
        };
        },[])
+
        const checkingTheNumbers = (value) => {
   if (value && value.length > 0 && value[1] !== '7') {
     value = '7' + value.slice(1);
@@ -89,6 +88,8 @@ export default function Exchange() {
     };
 
   const sendEmailTelegram = async (event) =>{
+    const tg = window.Telegram.WebApp;
+    const USER_CHAT_ID_TG = tg.initDataUnsafe?.user?.id ;
             event.preventDefault();
             if(!tg?.initDataUnsafe?.user){
               toast.error("Для отправки заявки, войдите в мини приложение через телеграм",{

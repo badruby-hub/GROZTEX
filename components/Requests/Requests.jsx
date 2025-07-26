@@ -1,18 +1,17 @@
 'use client';
-import { webAppContext } from "@/app/context/context";
 import classes from "./requests.module.css";
 import BtnBackHome from "@/components/Button/BtnBackHome";
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 
 
 
 
 export default  function Requests() {
-   const tg = useContext(webAppContext);
     const [requests, setRequests] = useState([]);
     const [chatId, setChatId] = useState(null);
 
      useEffect(() => {
+      const tg = window.Telegram.WebApp;
         setChatId(tg.initDataUnsafe?.user?.id || null);
      }, []);
 

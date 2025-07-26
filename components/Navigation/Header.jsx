@@ -2,21 +2,20 @@
 import Link from "next/link";
 import classes from "./header.module.css"
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 
 
 export default function Header() {
-   const tg = useRef(null);
    useEffect(()=>{
       const tgWindow = window.Telegram.WebApp;
        tgWindow.expand();
        tgWindow.ready();
-       tg.current = tgWindow; 
    },[]);
 
    const onClose =()=>{
-     tg.close()
+    const tgWindow = window.Telegram.WebApp;
+     tgWindow.close()
     }
 
      
