@@ -12,7 +12,7 @@ const CHAT_ID_TG = process.env.NEXT_PUBLIC_CHAT_ID;
 const API = `https://api.telegram.org/bot${token}/sendMessage`;
 
 export default function Exchange() {
-     const [selectBtnBuy, setSelectBtnBuy] = useState(false);
+  const [selectBtnBuy, setSelectBtnBuy] = useState(false);
   const [selectBtnSell, setSelectBtnSell] = useState(false);
   const [selectBtnValue, setSelectBtnValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,7 @@ export default function Exchange() {
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
   const [phone, setPhone] = useState("");
-    const resetForm=()=>{
+  const resetForm=()=>{
               setSelectBtnBuy(false);
               setSelectBtnSell(false);
               setSelectBtnValue("");
@@ -33,17 +33,17 @@ export default function Exchange() {
 
       useEffect(()=>{
         
-        const tgWindow = window.Telegram.WebApp;
-         tgWindow.BackButton.show();
+        const tg = window.Telegram.WebApp;
+         tg.BackButton.show();
          const btnBackClick=()=>{
-                tgWindow.history.back()
+                tg.history.back()
          };
    
-         tgWindow.BackButton.onClick(btnBackClick);
+         tg.BackButton.onClick(btnBackClick);
    
            return () => {
-         tgWindow.BackButton.hide();
-         tgWindow.BackButton.offClick(btnBackClick);
+         tg.BackButton.hide();
+         tg.BackButton.offClick(btnBackClick);
        };
        },[])
 
@@ -54,7 +54,7 @@ export default function Exchange() {
   setPhone(value);
 };
       const onFocusBuy = (e) => {
-         const valueBuy = e.target.value;
+  const valueBuy = e.target.value;
         setSelectBtnBuy(true);
         setSelectBtnSell(false); 
         setSelectBtnValue(valueBuy);

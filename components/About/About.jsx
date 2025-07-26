@@ -8,20 +8,18 @@ import classes from "./about.module.css";
 export default function About() {
 
        useEffect(() => {
-       const tgWindow = window.Telegram.WebApp;
-    tgWindow.BackButton.show();
+       const tg = window.Telegram.WebApp;
+    tg.BackButton.show();
 
     const btnBackClick = () => {
-       const tgWindow = window.Telegram.WebApp;
-      tgWindow.history.back();
+      tg.history.back();
     };
 
-    tgWindow.BackButton.onClick(btnBackClick);
+    tg.BackButton.onClick(btnBackClick);
 
     return () => {
-       const tgWindow = window.Telegram.WebApp;
-    tgWindow.BackButton.hide();
-    tgWindow.BackButton.offClick(btnBackClick);
+    tg.BackButton.hide();
+    tg.BackButton.offClick(btnBackClick);
     };
   }, []);
 

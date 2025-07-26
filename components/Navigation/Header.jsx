@@ -8,14 +8,14 @@ import { useEffect } from "react";
 
 export default function Header() {
    useEffect(()=>{
-      const tgWindow = window.Telegram.WebApp;
-       tgWindow.expand();
-       tgWindow.ready();
+      const tg = window.Telegram.WebApp;
+       tg.expand();
+       tg.ready();
    },[]);
 
    const onClose =()=>{
-    const tgWindow = window.Telegram.WebApp;
-     tgWindow.close()
+    const tg = window.Telegram.WebApp;
+     tg.close()
     }
 
      
