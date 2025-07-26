@@ -36,7 +36,7 @@ export default function Exchange() {
         const tgWindow = window.Telegram.WebApp;
          tgWindow.BackButton.show();
          const btnBackClick=()=>{
-                tg.history.back()
+                tgWindow.history.back()
          };
    
          tgWindow.BackButton.onClick(btnBackClick);
