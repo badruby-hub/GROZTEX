@@ -23,9 +23,9 @@ export default function Requests() {
    const currentUserId = tg.initDataUnsafe?.user?.id;
          setUserId(currentUserId);
 
-async function checkAdmin(chatId) {
+async function checkAdmin() {
     try {
-      const res = await fetch(`/api/user/admin?chatId=${chatId}`);
+      const res = await fetch(`/api/user/admin?chatId=${userId}`);
         const data = await res.json();
         setIsAdmin(data.isAdmin === true);
     } catch (error) {
@@ -34,10 +34,10 @@ async function checkAdmin(chatId) {
     }
   }
       
-    async function fetchPost(chatId, isAdmin) {
+    async function fetchPost() {
      const url = isAdmin
       ? `/api/requests?admin=true`
-      : `/api/requests?authorId=${chatId}`;
+      : `/api/requests?authorId=${userId}`;
 
          try {
                const res = await fetch(url);
