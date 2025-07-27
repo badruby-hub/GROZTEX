@@ -1,24 +1,21 @@
-import prisma from "@/lib/db";
+import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
-  const chatId = req.nextUrl.searchParams.get("chatId");
+const prisma = new PrismaClient();
 
-  if (!chatId) {
-    return NextResponse.json([], { status: 200 });
-  }
 
-  const user = await prisma.user.findMany();
-
-  if (!user) {
-    return NextResponse.json([], { status: 200 });
-  }
-
-  const requests = await prisma.request.findMany({
-    where: {
-      authorId: BigInt(chatId),
-    },
-  });
-console.log("chatId:", chatId, 'req:', requests);
-  return NextResponse.json(requests);
+export  async function GET(req: NextRequest) {
+      if (req.method === "GET") {
+         try {
+            const requests = await prisma.request.findMany();
+            return NextResponse.json(requests, { status: 200 });
+         } catch (error) {
+            console.log(error);
+            return NextResponse.json({error: "Ошибка при получении постов"},{status: 500});
+         }finally{
+            await prisma.$disconnect();
+         }
+      }else{
+         return NextResponse.json({message: "метод не разрешен"},{status:405});
+      }
 }
