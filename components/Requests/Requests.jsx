@@ -20,7 +20,7 @@ export default function Requests() {
 
       tg.BackButton.onClick(btnBackClick);
 
-  const userId = tg.initDataUnsafe?.user?.id;
+   const currentUserId = tg.initDataUnsafe?.user?.id;
       setUserId(currentUserId)
       setIsAdmin(userId === 7992841421);
       
