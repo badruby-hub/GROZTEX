@@ -9,6 +9,7 @@ export  async function GET(req: NextRequest) {
          try {
         const { searchParams } = new URL(req.url);
         const admin = searchParams.get("admin");
+         const authorIdParam = searchParams.get("authorId");
         if(admin === "true"){
             const requests = await prisma.request.findMany({
            
@@ -23,8 +24,8 @@ export  async function GET(req: NextRequest) {
             return NextResponse.json(safeRequests, { status: 200 });
         }
 
-        
-        const authorIdParam = searchParams.get("authorId");
+
+       
       if (!authorIdParam) {
         return NextResponse.json({ error: "authorId обязателен" }, { status: 400 });
       }
