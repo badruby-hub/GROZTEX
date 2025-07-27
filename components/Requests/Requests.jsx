@@ -24,8 +24,6 @@ export default function Requests() {
          const res = await fetch(`/api/requests?authorId=${authorId}`);
          const data = await res.json();
          console.log("дата:",data);
-         console.log("typeof data:", typeof data);
-         console.log("Array.isArray(data):", Array.isArray(data));
 
                setRequests(data);
        }

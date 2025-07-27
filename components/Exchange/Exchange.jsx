@@ -20,6 +20,7 @@ export default function Exchange() {
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
   const [phone, setPhone] = useState("");
+  const [chatId, setChatId] = useState(null);
   const resetForm=()=>{
               setSelectBtnBuy(false);
               setSelectBtnSell(false);
@@ -35,6 +36,9 @@ export default function Exchange() {
         
         const tg = window.Telegram.WebApp;
          tg.BackButton.show();
+
+         const chatId =  tg.initDataUnsafe?.user?.id 
+               setChatId(chatId);
 
 
          const btnBackClick=()=>{
@@ -140,6 +144,11 @@ export default function Exchange() {
                   text: notificationForm,
                 })
               })
+              await fetch("api/requests",{
+               method: "POST",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify(payload),
+              });
               toast.success("Заявка успешно отправлена");
               form.reset();
               resetForm();
