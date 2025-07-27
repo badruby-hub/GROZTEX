@@ -25,7 +25,7 @@ export default function Requests() {
 
 async function checkAdmin(chatId) {
     try {
-      const res = await fetch(`/api/user/is-admin?chatId=${chatId}`);
+      const res = await fetch(`/api/user/admin?chatId=${chatId}`);
         const data = await res.json();
         setIsAdmin(data.isAdmin === true);
     } catch (error) {
@@ -93,7 +93,7 @@ async function checkAdmin(chatId) {
          console.error("Ошибка при обновлении статуса", error);
    }
   }
-  
+
     return <div className={classes.container__requests}>
         <div className={classes.block__req}>
           
