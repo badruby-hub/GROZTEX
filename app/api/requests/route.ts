@@ -8,6 +8,22 @@ export  async function GET(req: NextRequest) {
       if (req.method === "GET") {
          try {
         const { searchParams } = new URL(req.url);
+        const admin = searchParams.get("admin");
+        if(admin === "true"){
+            const requests = await prisma.request.findMany({
+           
+             orderBy: {
+             createdAt: "desc",
+          },
+            });
+             const safeRequests = requests.map((r) => ({...r,
+             number: r.number.toString(),
+             authorId: r.authorId.toString(),
+          }));
+            return NextResponse.json(safeRequests, { status: 200 });
+        }
+
+        
         const authorIdParam = searchParams.get("authorId");
       if (!authorIdParam) {
         return NextResponse.json({ error: "authorId обязателен" }, { status: 400 });
@@ -83,3 +99,4 @@ export async function POST(req: NextRequest) {
          }
       }
 }
+
