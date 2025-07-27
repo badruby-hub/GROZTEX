@@ -2,8 +2,8 @@ import prisma from "@/lib/db";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
-   const { searchParams } = new URL(request.url);
-   const chatId = searchParams.get("chatId"); // Получите chatId из параметров запроса
+   const url = request.nextUrl; // Используйте nextUrl для получения корректного URL
+   const chatId = url.searchParams.get("chatId"); // Получите chatId из параметров запроса
 
    if (!chatId) {
       return new Response("chatId is required", { status: 400 });
