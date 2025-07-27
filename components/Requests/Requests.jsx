@@ -1,13 +1,13 @@
 'use client';
 import classes from "./requests.module.css";
 import BtnBackHome from "@/components/Button/BtnBackHome";
-import prisma from "@/lib/db";
+// import prisma from "@/lib/db";
 import {  useEffect, useState } from "react";
 
 
 
 
-export default async function Requests() {
+export default function Requests() {
     const [chatId, setChatId] = useState(null);
      
   
@@ -35,7 +35,7 @@ export default async function Requests() {
     const tg = window.Telegram.WebApp;
     const chatId =  tg.initDataUnsafe?.user?.id 
 
-      setChatId(BigInt(chatId));
+      setChatId(chatId);
     };
 
     fetchRequests();
