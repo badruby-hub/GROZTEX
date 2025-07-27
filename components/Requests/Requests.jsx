@@ -20,7 +20,7 @@ export default function Requests() {
 
 
     async function fetchPost() {
-         const res = await fetch("/api/request");
+         const res = await fetch("/api/requests");
          const data = await res.json();
                setRequests(data);
        }
