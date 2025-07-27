@@ -2,11 +2,7 @@ import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
 
-function generateRandomNumber() {
-  const min = 500;
-  const max = 55000;
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+
 
 export  async function GET(req: NextRequest) {
       if (req.method === "GET") {
@@ -39,6 +35,15 @@ export  async function GET(req: NextRequest) {
          }
       }
 
+}
+
+
+export async function POST(req: NextRequest) {
+   function generateRandomNumber() {
+  const min = 500;
+  const max = 55000;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
       if (req.method === "POST") {
          try {
