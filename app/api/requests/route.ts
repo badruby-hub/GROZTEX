@@ -20,7 +20,10 @@ export  async function GET(req: NextRequest) {
             const requests = await prisma.request.findMany({
            where:{
                authorId: authorId
-           }
+           },
+             orderBy: {
+           createdAt: "desc",
+  },
             });
              const safeRequests = requests.map((r) => ({...r,
              number: r.number.toString(),
