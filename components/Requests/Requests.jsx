@@ -11,9 +11,6 @@ export default function Requests() {
       const tg = window.Telegram.WebApp;
       tg.BackButton.show();
       
-    
-      const userId = tg.initDataUnsafe?.user?.id;
-      setIsAdmin(userId === 7992841421);
 
 
       const btnBackClick = () => {
@@ -23,7 +20,10 @@ export default function Requests() {
       tg.BackButton.onClick(btnBackClick);
 
 
+      
     async function fetchPost() {
+      const userId = tg.initDataUnsafe?.user?.id;
+            setIsAdmin(userId === 7992841421);
       let url;
       if(userId === isAdmin ){
           url = `/api/requests?admin=true`;
