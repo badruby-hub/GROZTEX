@@ -22,6 +22,7 @@ export default function Requests() {
     async function fetchPost() {
          const res = await fetch("/api/requests");
          const data = await res.json();
+         console.log(data);
                setRequests(data);
        }
         fetchPost();
