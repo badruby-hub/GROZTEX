@@ -21,16 +21,17 @@ export default function Requests() {
       tg.BackButton.onClick(btnBackClick);
 
    const currentUserId = tg.initDataUnsafe?.user?.id;
+   const adminCheck = currentUserId === 7992841421;
+
+   
       setUserId(currentUserId)
-      setIsAdmin(userId === 7992841421);
+      setIsAdmin(adminCheck);
       
     async function fetchPost() {
-      let url;
-      if(currentUserId === isAdmin ){
-          url = `/api/requests?admin=true`;
-      }else{
-          url = `/api/requests?authorId=${currentUserId}`
-      }
+     const url = isAdmin
+      ? `/api/requests?admin=true`
+      : `/api/requests?authorId=${currentUserId}`;
+
          const res = await fetch(url);
          const data = await res.json();
          console.log("дата:",data);
