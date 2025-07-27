@@ -29,7 +29,7 @@ export default function Requests() {
       if(currentUserId === isAdmin ){
           url = `/api/requests?admin=true`;
       }else{
-          url = `/api/requests?authorId=${userId}`
+          url = `/api/requests?authorId=${currentUserId}`
       }
          const res = await fetch(url);
          const data = await res.json();
