@@ -12,7 +12,8 @@ const CHAT_ID_TG = process.env.NEXT_PUBLIC_CHAT_ID;
 const API = `https://api.telegram.org/bot${token}/sendMessage`;
 
 export default function Exchange() {
-  const [selectBtnBuy, setSelectBtnBuy] = useState(false);
+  const validCharsTron = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+  const [selectBtnBuy, setSelectBtnBuy] = useState(true);
   const [selectBtnSell, setSelectBtnSell] = useState(false);
   const [selectBtnValue, setSelectBtnValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -21,6 +22,7 @@ export default function Exchange() {
   const [lastName,setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [chatId, setChatId] = useState(null);
+  const [addressTron, setAddressTron] = useState("")
   const resetForm=()=>{
               setSelectBtnBuy(false);
               setSelectBtnSell(false);
@@ -93,6 +95,26 @@ export default function Exchange() {
 
     };
 
+        const formatTRON = (event)=>{
+         const value = event.target.value;
+         const text = value.replace(/\s+/g, '');
+         let filtered = '';
+
+
+         for (const char of text) {
+          if (validCharsTron.includes(char)) {
+             filtered += char;
+          }
+         }
+
+          if (filtered.length > 0 && filtered[0] !== 'T') {
+                filtered = 'T' + filtered.slice(1);
+          }
+
+          
+           setAddressTron(filtered);
+        };
+
   const sendEmailTelegram = async (event) =>{
     const tg = window.Telegram.WebApp;
     const USER_CHAT_ID_TG = tg.initDataUnsafe?.user?.id ;
@@ -120,9 +142,44 @@ export default function Exchange() {
                     status: "PENDING",
                    };
             const form = event.target;
-            const {first_name, last_name, phone, sum} = Object.fromEntries(new FormData(form).entries());
-            const applicationForm = `Заявка на ${selectBtnValue}\nСумма: ${sum}₽\nИмя: ${first_name}\nФамилия: ${last_name}\nНик телеграм: @${tg?.initDataUnsafe?.user?.username}\nНомер телефона: ${phone}\n`;
-            const notificationForm = `Оформлена заявка на ${selectBtnValue}.\n\nСумма в размере: ${sum}₽.\n\nВ ближайшее время с Вами свяжется наш специалист для дальнейшего обсуждения.\n\nСпасибо за обращение!\nС уважением,\n  GROZTEX`;
+            const {first_name, last_name, phone, sum, addressTron} = Object.fromEntries(new FormData(form).entries());
+            let walletInfo = '';
+               
+            
+            if(selectBtnBuy){
+                walletInfo = `Номер кошелька:${addressTron}`
+               }
+const applicationForm = `
+Заявка на ${selectBtnValue}
+
+Сумма: ${sum}₽
+
+Имя: ${first_name}
+
+Фамилия: ${last_name}
+
+Ник телеграм: @${tg?.initDataUnsafe?.user?.username}
+
+Номер телефона: ${phone}
+
+${walletInfo}`;
+
+
+const notificationForm = `
+Оформлена заявка на ${selectBtnValue}.
+
+Сумма в размере: ${sum}₽.
+
+В ближайшее время с Вами свяжется наш специалист для дальнейшего обсуждения.
+
+Спасибо за обращение!
+
+С уважением,
+
+  GROZTEX`;
+
+
+
             setIsLoading(true);
             
             console.log(`${applicationForm}`)
@@ -181,6 +238,10 @@ export default function Exchange() {
           <h2 className={`${classes.text_sum}`}>Сумма в рублях</h2>
           <input className={`${classes.sum} ${classes.input}`} type="tel" id="sum"  name="sum" minLength="3"  placeholder="0" value={count} onChange={formatCountChange} required/>
         </label > 
+       { selectBtnBuy ? <label className={classes.label} >
+          <h2 className={classes.zagolovok__two}> номер кошелька </h2>
+          <input className={`${classes.wallet__tron} ${classes.input}`} value={addressTron} onChange={formatTRON} type="text" id="wallet__tron"  name="addressTron" minLength="34" maxLength="34"  placeholder="Введите ваш кошелёк"  required/> 
+        </label> : null }
          <label className={classes.label}>
           <h2 className={classes.zagolovok__two}>Имя</h2>
           <input className={`${classes.first__name} ${classes.input}`} value={firstName} onChange={formatFirstName} type="text" id="first__name"  name="first_name" minLength="3"  placeholder="Введите ваше имя"  required/>

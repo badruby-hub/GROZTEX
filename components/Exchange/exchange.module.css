@@ -54,6 +54,11 @@
     font-size: 15px;
 }
 
+.wallet__tron{
+    font-size: 15px;
+    font-weight: 600;
+}
+
 .sum::placeholder {
     font-size: 45px;
     text-align: center;
