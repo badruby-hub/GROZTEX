@@ -23,12 +23,12 @@ export default function Requests() {
    const currentUserId = tg.initDataUnsafe?.user?.id;
    const adminCheck = currentUserId === 7992841421;
 
-   
+
       setUserId(currentUserId)
       setIsAdmin(adminCheck);
       
     async function fetchPost() {
-     const url = isAdmin
+     const url = adminCheck
       ? `/api/requests?admin=true`
       : `/api/requests?authorId=${currentUserId}`;
 
