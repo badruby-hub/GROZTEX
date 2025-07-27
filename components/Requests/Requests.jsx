@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export default function Requests() {
    const [requests, setRequests] = useState([]);
    const [isAdmin, setIsAdmin] = useState(false);
+    const [userId, setUserId] = useState(null);
 
    useEffect(() => {
       const tg = window.Telegram.WebApp;
@@ -19,13 +20,13 @@ export default function Requests() {
 
       tg.BackButton.onClick(btnBackClick);
 
-
+  const userId = tg.initDataUnsafe?.user?.id;
+      setUserId(currentUserId)
+      setIsAdmin(userId === 7992841421);
       
     async function fetchPost() {
-      const userId = tg.initDataUnsafe?.user?.id;
-            setIsAdmin(userId === 7992841421);
       let url;
-      if(userId === isAdmin ){
+      if(currentUserId === isAdmin ){
           url = `/api/requests?admin=true`;
       }else{
           url = `/api/requests?authorId=${userId}`
