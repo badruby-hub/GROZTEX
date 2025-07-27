@@ -12,14 +12,9 @@ export default function Header() {
       const tg = window.Telegram.WebApp;
        tg.expand();
        tg.ready();
-        const fetchRequests = async () => {
-    const tg = window.Telegram.WebApp;
-    const chatId =  tg.initDataUnsafe?.user?.id 
+const chatId =  tg.initDataUnsafe?.user?.id 
 
       setChatId(chatId);
-    };
-
-    fetchRequests();
    },[]);
 
    const onClose =()=>{

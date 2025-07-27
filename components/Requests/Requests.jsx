@@ -2,7 +2,6 @@
 import classes from "./requests.module.css";
 import BtnBackHome from "@/components/Button/BtnBackHome";
 import { useEffect, useState } from "react";
-import { GET } from "@/app/api/requests/route"; // Импортируйте функцию
 
 export default function Requests() {
    const [requests, setRequests] = useState([]);
@@ -10,16 +9,8 @@ export default function Requests() {
    useEffect(() => {
       const tg = window.Telegram.WebApp;
       tg.BackButton.show();
-
-      const chatId = tg.initDataUnsafe?.user?.id; // Получите chatId
       
-      const fetchRequests = async () => {
-        // const chatId = tg.initDataUnsafe?.user?.id;
-         const userRequests = await GET(chatId); // Вызовите функцию с chatId
-         setRequests(userRequests);
-      };
-
-      fetchRequests();
+    
 
       const btnBackClick = () => {
          window.history.back();
