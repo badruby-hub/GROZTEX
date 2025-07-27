@@ -26,7 +26,7 @@ export default function Header() {
     const tg = window.Telegram.WebApp;
           tg.close()
     }
-
+ console.log(`chatID:${chatId}`);
      
      return<header className={classes.block__content__home}>
         <nav className={classes.App}>
