@@ -49,9 +49,9 @@ export default function Requests() {
       
    }, []);
    const statusMap = {
-      PENDING: "В обработке",
-      ACCEPTED: "Принято",
-      REJECTED: "Отклонено"
+      PENDING: "Обмен в работе",
+      ACCEPTED: "Обмен завершён",
+      REJECTED: "Обмен отменён"
    };
 
    const statusEmoji = {
