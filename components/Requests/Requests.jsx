@@ -21,24 +21,39 @@ export default function Requests() {
       tg.BackButton.onClick(btnBackClick);
 
    const currentUserId = tg.initDataUnsafe?.user?.id;
-   const adminCheck = currentUserId === 7992841421;
+         setUserId(currentUserId);
 
-
-      setUserId(currentUserId)
-      setIsAdmin(adminCheck);
+async function checkAdmin(chatId) {
+    try {
+      const res = await fetch(`/api/user/is-admin?chatId=${chatId}`);
+        const data = await res.json();
+        setIsAdmin(data.isAdmin === true);
+    } catch (error) {
+      console.error("Ошибка проверки админа:", error);
+        setIsAdmin(false);
+    }
+  }
       
-    async function fetchPost() {
+    async function fetchPost(chatId, isAdmin) {
      const url = adminCheck
       ? `/api/requests?admin=true`
       : `/api/requests?authorId=${currentUserId}`;
 
-         const res = await fetch(url);
-         const data = await res.json();
-         console.log("дата:",data);
-
-               setRequests(data);
+         try {
+               const res = await fetch(url);
+        const data = await res.json();
+        setRequests(data);
+         } catch (error) {
+            console.error("Ошибка загрузки заявок:", error);
+         }
        }
-        fetchPost();
+          if (currentUserId) {
+        checkAdmin(currentUserId).then(() => {
+        setTimeout(() => {
+          fetchPost(currentUserId, isAdmin);
+        }, 100); // небольшая задержка
+      });
+    }
 
 
       return () => {
@@ -47,7 +62,8 @@ export default function Requests() {
       };
 
       
-   }, []);
+   }, [isAdmin]);
+
    const statusMap = {
       PENDING: "Обмен в работе",
       ACCEPTED: "Обмен завершён",
@@ -67,13 +83,17 @@ export default function Requests() {
          body: JSON.stringify({ status }),
        });
        const updated = await res.json();
+
+
        setRequests((prev) =>
+
          prev.map((r) => (r.number === updated.number ? updated : r))
        );
    } catch (error) {
          console.error("Ошибка при обновлении статуса", error);
    }
   }
+  
     return <div className={classes.container__requests}>
         <div className={classes.block__req}>
           

@@ -22,6 +22,7 @@ model User {
   firstName String?
   lastName  String?
   chatId    BigInt    @unique
+  isAdmin   Boolean   @default(false)
   Request   Request[]
 }
 
