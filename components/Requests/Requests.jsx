@@ -8,64 +8,55 @@ export default function Requests() {
    const [isAdmin, setIsAdmin] = useState(false);
     const [userId, setUserId] = useState(null);
 
-   useEffect(() => {
-      const tg = window.Telegram.WebApp;
-      tg.BackButton.show();
-      
+useEffect(() => {
+  const tg = window.Telegram.WebApp;
+  tg.BackButton.show();
 
+  const btnBackClick = () => {
+    window.history.back();
+  };
+  tg.BackButton.onClick(btnBackClick);
 
-      const btnBackClick = () => {
-         window.history.back();
-      };
+  const currentUserId = tg.initDataUnsafe?.user?.id;
+  if (!currentUserId) {
+    console.error("Telegram user ID не найден");
+    return;
+  }
 
-      tg.BackButton.onClick(btnBackClick);
+  setUserId(currentUserId);
 
-   const currentUserId = tg.initDataUnsafe?.user?.id;
-         setUserId(currentUserId);
-
-async function checkAdmin() {
+  async function init() {
     try {
-      const res = await fetch(`/api/user/admin?chatId=${userId}`);
-        const data = await res.json();
-        setIsAdmin(data.isAdmin === true);
+      const resAdmin = await fetch(`/api/user/admin?chatId=${currentUserId}`);
+      const dataAdmin = await resAdmin.json();
+      const isAdminResult = dataAdmin.isAdmin === true;
+      setIsAdmin(isAdminResult);
+
+      const url = isAdminResult
+        ? `/api/requests?admin=true`
+        : `/api/requests?authorId=${currentUserId}`;
+
+      const resReq = await fetch(url);
+      const dataReq = await resReq.json();
+
+      if (!Array.isArray(dataReq)) {
+        throw new Error("Ожидался массив заявок, получено: " + JSON.stringify(dataReq));
+      }
+
+      setRequests(dataReq);
     } catch (error) {
-      console.error("Ошибка проверки админа:", error);
-        setIsAdmin(false);
+      console.error("Ошибка инициализации:", error);
     }
   }
-      
-    async function fetchPost() {
-     const url = isAdmin
-      ? `/api/requests?admin=true`
-      : `/api/requests?authorId=${userId}`;
 
-         try {
-               const res = await fetch(url);
-        const data = await res.json();
-        setRequests(data);
-         } catch (error) {
-            console.error("Ошибка загрузки заявок:", error);
-         }
-       
-       }
+  init();
 
-   
+  return () => {
+    tg.BackButton.hide();
+    tg.BackButton.offClick(btnBackClick);
+  };
+}, []);
 
- if (currentUserId) {
-    checkAdmin(currentUserId).then((isAdminResult) => {
-      fetchPost(currentUserId, isAdminResult);
-    });
-  }
-        
-
-
-      return () => {
-         tg.BackButton.hide();
-         tg.BackButton.offClick(btnBackClick);
-      };
-
-      
-   }, [isAdmin]);
 
    const statusMap = {
       PENDING: "Обмен в работе",
