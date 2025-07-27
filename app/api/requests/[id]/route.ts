@@ -13,7 +13,7 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ error: "ID не передан" }, { status: 400 });
     }
          const body = await req.json();
-         const status = body;
+         const status = body.status;
          
          if (!["PENDING", "ACCEPTED", "REJECTED"].includes(status)) {
       return NextResponse.json({ error: "Некорректный статус" }, { status: 400 });
