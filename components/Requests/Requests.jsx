@@ -35,9 +35,9 @@ async function checkAdmin(chatId) {
   }
       
     async function fetchPost(chatId, isAdmin) {
-     const url = adminCheck
+     const url = isAdmin
       ? `/api/requests?admin=true`
-      : `/api/requests?authorId=${currentUserId}`;
+      : `/api/requests?authorId=${chatId}`;
 
          try {
                const res = await fetch(url);
@@ -46,14 +46,17 @@ async function checkAdmin(chatId) {
          } catch (error) {
             console.error("Ошибка загрузки заявок:", error);
          }
+       
        }
-          if (currentUserId) {
-        checkAdmin(currentUserId).then(() => {
-        setTimeout(() => {
-          fetchPost(currentUserId, isAdmin);
-        }, 100); // небольшая задержка
-      });
-    }
+
+   
+
+ if (currentUserId) {
+    checkAdmin(currentUserId).then((isAdminResult) => {
+      fetchPost(currentUserId, isAdminResult);
+    });
+  }
+        
 
 
       return () => {
@@ -115,7 +118,7 @@ async function checkAdmin(chatId) {
             <p className={classes.number}>Номер заявки: {req.number}</p>
             </div>
             </div>
-              {userId === 7992841421 && req.status === "PENDING" && (
+              {isAdmin && req.status === "PENDING" && (
                  <div>
                    <button onClick={() => updateStatus(req.number, "ACCEPTED")}>Принять</button>
                    <button onClick={() => updateStatus(req.number, "REJECTED")}>Отклонить</button>
