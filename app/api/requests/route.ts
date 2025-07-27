@@ -1,28 +1,24 @@
 import prisma from "@/lib/db";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest) {
-  const chatId = req.nextUrl.searchParams.get("chatId");
+export async function GET(request: NextRequest) {
+   const { searchParams } = new URL(request.url);
+   const chatId = searchParams.get("chatId"); // Получите chatId из параметров запроса
 
-  if (!chatId) {
-    return NextResponse.json([], { status: 200 });
-  }
+   if (!chatId) {
+      return new Response("chatId is required", { status: 400 });
+   }
 
-  const user = await prisma.user.findUnique({
-    where: {
-      chatId: Number(chatId),
-    },
-  });
+   const requests = await prisma.request.findMany({
+      where: {
+         authorId: BigInt(chatId), // Убедитесь, что chatId преобразован в bigint
+      },
+   });
 
-  if (!user) {
-    return NextResponse.json([], { status: 200 });
-  }
-
-  const requests = await prisma.request.findMany({
-    where: {
-      authorId: BigInt(chatId),
-    },
-  });
-
-  return NextResponse.json(requests);
+   return new Response(JSON.stringify(requests), {
+      status: 200,
+      headers: {
+         "Content-Type": "application/json",
+      },
+   });
 }

@@ -2,20 +2,29 @@
 import Link from "next/link";
 import classes from "./header.module.css"
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
 
 export default function Header() {
+   const [chatId, setChatId] = useState(null);
    useEffect(()=>{
       const tg = window.Telegram.WebApp;
        tg.expand();
        tg.ready();
+        const fetchRequests = async () => {
+    const tg = window.Telegram.WebApp;
+    const chatId =  tg.initDataUnsafe?.user?.id 
+
+      setChatId(chatId);
+    };
+
+    fetchRequests();
    },[]);
 
    const onClose =()=>{
     const tg = window.Telegram.WebApp;
-     tg.close()
+          tg.close()
     }
 
      
