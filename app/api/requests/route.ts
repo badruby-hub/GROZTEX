@@ -2,6 +2,12 @@ import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
 
+function generateRandomNumber() {
+  const min = 500;
+  const max = 55000;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export  async function GET(req: NextRequest) {
       if (req.method === "GET") {
          try {
@@ -37,11 +43,13 @@ export  async function GET(req: NextRequest) {
       if (req.method === "POST") {
          try {
             const body = await req.json();
-            const {number,authorId, status} = body;
+            const {authorId, status} = body;
 
-            if (!number || !authorId) {
+            if (!authorId) {
             return NextResponse.json({ error: "number и authorId обязательны" }, { status: 400 });
            }
+
+            const number = generateRandomNumber();
             const numberBigInt = BigInt(number);
             const authorIdBigInt = BigInt(authorId);
 

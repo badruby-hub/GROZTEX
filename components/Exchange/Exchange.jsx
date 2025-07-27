@@ -115,6 +115,10 @@ export default function Exchange() {
               toast.error("Выберите Покупку или Продажу")
               return
             }
+             const payload = {
+                    authorId: chatId, 
+                    status: "PENDING",
+                   };
             const form = event.target;
             const {first_name, last_name, phone, sum} = Object.fromEntries(new FormData(form).entries());
             const applicationForm = `Заявка на ${selectBtnValue}\nСумма: ${sum}₽\nИмя: ${first_name}\nФамилия: ${last_name}\nНик телеграм: @${tg?.initDataUnsafe?.user?.username}\nНомер телефона: ${phone}\n`;
