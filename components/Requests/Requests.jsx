@@ -20,9 +20,13 @@ export default function Requests() {
 
 
     async function fetchPost() {
-         const res = await fetch("/api/requests");
+         const authorId = tg.initDataUnsafe?.user?.id;
+         const res = await fetch(`/api/requests?authorId=${authorId}`);
          const data = await res.json();
-         console.log(data);
+         console.log("дата:",data);
+         console.log("typeof data:", typeof data);
+         console.log("Array.isArray(data):", Array.isArray(data));
+
                setRequests(data);
        }
         fetchPost();
@@ -35,7 +39,7 @@ export default function Requests() {
 
       
    }, []);
-
+   console.log("requests:", requests);
    const statusMap = {
       PENDING: "В обработке",
       ACCEPTED: "Принято",
