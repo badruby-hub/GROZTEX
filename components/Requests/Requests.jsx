@@ -7,9 +7,11 @@ import {  useEffect, useState } from "react";
 
 
 
-export default  function Requests() {
-    const [chatId, setChatId] = useState([]);
-   const [requests, setRequests] = useState([]);
+export default async function Requests() {
+    const [chatId, setChatId] = useState(null);
+     
+  
+
      useEffect(() => {
       const tg = window.Telegram.WebApp;
 
@@ -32,27 +34,12 @@ export default  function Requests() {
     const fetchRequests = async () => {
     const tg = window.Telegram.WebApp;
     const chatId =  tg.initDataUnsafe?.user?.id 
-     console.log("chadId", chatId);
-      setChatId(chatId);
+
+      setChatId(BigInt(chatId));
     };
 
     fetchRequests();
   }, []);
-
-useEffect(() => {
-        const fetchRequests = async () => {
-            if (chatId) {
-                const requestsData = await prisma.request.findMany({
-                    where: {
-                        authorId: chatId
-                    }
-                });
-                setRequests(requestsData);
-            }
-        };
-        fetchRequests();
-    }, [chatId]);
-
    const statusMap = {
   PENDING: "В обработке",
   ACCEPTED: "Принято",
@@ -63,11 +50,11 @@ useEffect(() => {
   ACCEPTED: "✅",
   REJECTED: "❌"
 } ;
-
+     console.log("chadId", chatId);
     return <div className={classes.container__requests}>
         <div className={classes.block__req}>
           
-          {requests.map((req)=>{
+          {/* {requests.map((req)=>{
              const dateObj = new Date(req.createdAt);
              return <div className={classes.request__info__box} key={req.number}>
                <p className={classes.date}>{dateObj.toLocaleDateString("ru-RU", {
@@ -86,7 +73,7 @@ useEffect(() => {
             </div>
             </div>
            </div>
-          })}
+          })} */}
         </div>
        <BtnBackHome/>
     </div>
