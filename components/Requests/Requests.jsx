@@ -3,10 +3,11 @@ import classes from "./requests.module.css";
 import BtnBackHome from "@/components/Button/BtnBackHome";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-
+import Loader from "@/components/Loader/Loader";
 export default function Requests() {
    const [requests, setRequests] = useState([]);
    const [isAdmin, setIsAdmin] = useState(false);
+   const [isLoading, setIsLoading] = useState(false);
 
 useEffect(() => {
   const tg = window.Telegram.WebApp;
@@ -25,6 +26,7 @@ useEffect(() => {
 
   async function init() {
     try {
+      setIsLoading(true);
       const resAdmin = await fetch(`/api/user/admin?chatId=${currentUserId}`);
       const dataAdmin = await resAdmin.json();
       const isAdminResult = dataAdmin.isAdmin === true;
@@ -44,6 +46,8 @@ useEffect(() => {
       setRequests(dataReq);
     } catch (error) {
       console.error("Ошибка инициализации:", error);
+    }finally{
+      setIsLoading(false);
     }
   }
 
@@ -88,9 +92,10 @@ useEffect(() => {
   }
 
     return <div className={classes.container__requests}>
+      
         <div className={classes.block__req}>
-          
-          {requests.map((req)=>{
+          <h1 className={classes.zagolovok}>Все заявки</h1>
+          { isLoading ? <Loader/> : requests.map((req)=>{
              const dateObj = new Date(req.createdAt);
              return <div className={classes.request__info__box} key={req.number}>
                <p className={classes.date}>{dateObj.toLocaleDateString("ru-RU", {

@@ -3,6 +3,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: white;
+    position: relative;
 }
 
 .block__req {
@@ -10,6 +12,7 @@
     flex-direction: column;
     gap: 25px;
     min-width: 350px;
+    margin-top: 50px;
 }
 
 .request__info__box {
@@ -17,6 +20,8 @@
     flex-direction: column;
     position: relative;
     font-size: 20px;
+    border-radius: 25px;
+    border-bottom: 2px solid rgba(19, 216, 197, .5);
 }
 
 .status {
@@ -29,7 +34,7 @@
 .block__status {
     display: flex;
     gap: 15px;
-
+    margin-block: 15px;
 }
 
 .btn_block_status {
@@ -58,4 +63,9 @@
 
 .number {
     color: white;
+}
+
+.zagolovok {
+    margin: 20px 0;
+    font-size: 35px;
 }
