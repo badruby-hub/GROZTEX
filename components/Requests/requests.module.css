@@ -1,41 +1,61 @@
-.container__requests{
+.container__requests {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.block__req{
+.block__req {
     display: flex;
     flex-direction: column;
+    gap: 25px;
     min-width: 350px;
 }
 
-.request__info__box{
+.request__info__box {
     display: flex;
     flex-direction: column;
     position: relative;
     font-size: 20px;
 }
 
-.status{
+.status {
     display: flex;
     align-items: center;
     gap: 10px;
     color: white;
 }
 
-.block__status{
+.block__status {
     display: flex;
     gap: 15px;
-    
+
 }
 
-.date{
+.btn_block_status {
+    display: flex;
+    justify-content: space-around;
+}
+
+.status__accepted,
+.status__rejected {
+    margin-block: 20px;
+    background-color: rgba(19, 216, 197, .5);
+    border: none;
+    font-size: 25px;
+    color: white;
+    padding: 5px;
+    border-radius: 11px;
+    user-select: none;
+}
+
+
+
+.date {
     margin: 0 0 0 auto;
-    color:gray;
+    color: gray;
 }
 
-.number{
+.number {
     color: white;
 }

@@ -13,7 +13,7 @@ const API = `https://api.telegram.org/bot${token}/sendMessage`;
 
 export default function Exchange() {
   const validCharsTron = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
-  const [selectBtnBuy, setSelectBtnBuy] = useState(true);
+  const [selectBtnBuy, setSelectBtnBuy] = useState(false);
   const [selectBtnSell, setSelectBtnSell] = useState(false);
   const [selectBtnValue, setSelectBtnValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -157,6 +157,7 @@ const applicationForm = `
 Ник телеграм: @${tg?.initDataUnsafe?.user?.username}
 Номер телефона: ${phone}
 
+Сеть: TRON (TRC20)
 ${walletInfo}`;
 
 

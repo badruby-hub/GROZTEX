@@ -109,7 +109,7 @@ useEffect(() => {
             </div>
             </div>
               {isAdmin && req.status === "PENDING" && (
-                 <div>
+                 <div className={classes.btn_block_status}>
                    <button className={classes.status__accepted} onClick={() => updateStatus(req.number, "ACCEPTED")}>Принять</button>
                    <button className={classes.status__rejected} onClick={() => updateStatus(req.number, "REJECTED")}>Отклонить</button>
                  </div>
