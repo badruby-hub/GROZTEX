@@ -12,7 +12,6 @@
     flex-direction: column;
     gap: 25px;
     min-width: 350px;
-    margin-top: 50px;
 }
 
 .request__info__box {

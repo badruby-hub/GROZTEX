@@ -98,8 +98,8 @@ useEffect(() => {
     return <div className={classes.container__requests}>
       
         <div className={classes.block__req}>
-          <h1 className={classes.zagolovok}>Все заявки</h1>
-          { isLoading ? <Loader/> : requests.map((req)=>{
+          <h1 className={classes.zagolovok}>Заявки</h1>
+          {isLoading? <Loader/> : requests.map((req)=>{
              const dateObj = new Date(req.createdAt);
              return <div className={classes.request__info__box} key={req.number}>
                <p className={classes.date}>{dateObj.toLocaleDateString("ru-RU", {
@@ -125,7 +125,7 @@ useEffect(() => {
                )}
            </div>
           })}
+          <BtnBackHome/>
         </div>
-       <BtnBackHome/>
     </div>
 }

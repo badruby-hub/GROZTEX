@@ -1,10 +1,12 @@
 import classes from "./loading.module.css";
 
-
-export default function Loader() {
-    return <div className={classes.wrapper}>
-    <div className={`${classes.content} ${classes.is__loading}`}>
-
+export default function Loader(){
+    return  <div className={classes.body}> <div class={classes.L}>L</div>
+  <div class={classes.outter}>
+    <div class={classes.mid}>
+      
     </div>
-</div>
+  </div>
+  <div class={classes.ADING}>ADING</div>
+  </div>
 }
