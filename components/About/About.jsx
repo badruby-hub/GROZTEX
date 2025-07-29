@@ -28,7 +28,7 @@ export default function About() {
 
     return  <div className={classes.block__content__about}>
       <div className={classes.container__text}>
-      <h1>О нас</h1>
+      <h1 className={classes.zagolovok}>О нас</h1>
       <div className={classes.text__about}>
         <p>Мы занимаемся обменом криптовалют более 3х лет.</p>
         <p>Работаем 24/7. При первом визите необходимо иметь паспорт.</p>

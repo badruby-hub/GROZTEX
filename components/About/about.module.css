@@ -28,3 +28,8 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.zagolovok {
+    margin: 20px 0;
+    font-size: 35px;
+}
