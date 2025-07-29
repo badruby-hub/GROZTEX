@@ -1,6 +1,7 @@
 
 
-.body {
+.loader {
+
     display: flex;
     position: relative;
     color: rgba(19, 216, 197, .5);
@@ -9,6 +10,7 @@
     font-family: Oswald, sans-serif;
     font-size: 100px;
     align-items: center;
+    max-width: 250px;
 }
 
 .L {
