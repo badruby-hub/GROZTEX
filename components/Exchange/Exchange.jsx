@@ -147,19 +147,14 @@ export default function Exchange() {
                
             
             if(selectBtnBuy){
-                walletInfo = `Номер кошелька:${addressTron}`
+                walletInfo = `Номер кошелька: ${addressTron}`
                }
 const applicationForm = `
 Заявка на ${selectBtnValue}
-
 Сумма: ${sum}₽
-
 Имя: ${first_name}
-
 Фамилия: ${last_name}
-
 Ник телеграм: @${tg?.initDataUnsafe?.user?.username}
-
 Номер телефона: ${phone}
 
 ${walletInfo}`;
@@ -167,15 +162,11 @@ ${walletInfo}`;
 
 const notificationForm = `
 Оформлена заявка на ${selectBtnValue}.
-
 Сумма в размере: ${sum}₽.
-
 В ближайшее время с Вами свяжется наш специалист для дальнейшего обсуждения.
-
 Спасибо за обращение!
 
 С уважением,
-
   GROZTEX`;
 
 

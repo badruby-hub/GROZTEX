@@ -2,11 +2,11 @@
 import classes from "./requests.module.css";
 import BtnBackHome from "@/components/Button/BtnBackHome";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Requests() {
    const [requests, setRequests] = useState([]);
    const [isAdmin, setIsAdmin] = useState(false);
-    const [userId, setUserId] = useState(null);
 
 useEffect(() => {
   const tg = window.Telegram.WebApp;
@@ -19,11 +19,9 @@ useEffect(() => {
 
   const currentUserId = tg.initDataUnsafe?.user?.id;
   if (!currentUserId) {
-    console.error("Telegram user ID не найден");
+    console.error("телеграм id не найден");
     return;
   }
-
-  setUserId(currentUserId);
 
   async function init() {
     try {
@@ -69,6 +67,7 @@ useEffect(() => {
       ACCEPTED: "✅",
       REJECTED: "❌"
    };
+
   async function updateStatus(number, status) {
    try {
         const res = await fetch(`/api/requests/${number}`, {
@@ -76,15 +75,15 @@ useEffect(() => {
          headers: { "Content-Type": "application/json" },
          body: JSON.stringify({ status }),
        });
-       const updated = await res.json();
-
-
-       setRequests((prev) =>
-
-         prev.map((r) => (r.number === updated.number ? updated : r))
-       );
+       if(res.ok){
+           const updated = await res.json();
+           setRequests((prev) =>prev.map((r) => (r.number === updated.number ? updated : r)));
+           toast.success("статус заявки обновлен")
+       }else{
+        toast.error("статус заявки не обновлен");
+       }
    } catch (error) {
-         console.error("Ошибка при обновлении статуса", error);
+         toast.error("произошла ошибка при обновлении статуса", error);
    }
   }
 
@@ -111,8 +110,8 @@ useEffect(() => {
             </div>
               {isAdmin && req.status === "PENDING" && (
                  <div>
-                   <button onClick={() => updateStatus(req.number, "ACCEPTED")}>Принять</button>
-                   <button onClick={() => updateStatus(req.number, "REJECTED")}>Отклонить</button>
+                   <button className={classes.status__accepted} onClick={() => updateStatus(req.number, "ACCEPTED")}>Принять</button>
+                   <button className={classes.status__rejected} onClick={() => updateStatus(req.number, "REJECTED")}>Отклонить</button>
                  </div>
                )}
            </div>
