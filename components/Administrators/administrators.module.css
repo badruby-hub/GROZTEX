@@ -11,24 +11,68 @@
 .zagolovok {
     margin: 10px 0;
 }
-
-
-.block__info{
-    font-size: 15px;
-    border-collapse: collapse;
+.card {
+  background-color: #00adc89e;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.td,
-.th {
-    border: 1px solid #00acc8;
-    border-left-width: 0;
-    padding: 5px;
-    vertical-align: top;
-    line-height: 1.2;
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.td:first-child,
-.th:first-child {
-    text-align: left;
-    padding-left: 0;
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
 }
+
+.userName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.role {
+  padding: 4px 10px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2); /* полупрозрачный бейдж */
+  font-size: 0.85rem;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.cardBody {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  font-size: 0.95rem;
+  color: #e0f7fa;
+}
+
+.block__main{
+    display: flex;
+    align-items: end;
+}
+
+.btn__give{
+    border: none;
+    background-color: rgba(255, 255, 255, .2);
+    padding: 10px;
+    margin-left: auto;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
+}
+
+.btn__give:active{
+    background-color: #008aa0;
+}
+

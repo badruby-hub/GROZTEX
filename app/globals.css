@@ -71,3 +71,12 @@ li:active,
   padding: 10px;
   width: 100%;
 }
+
+/* Настроим цвет и уберём спиннер */
+#nprogress .bar {
+  background: #00acc8 !important;
+}
+
+#nprogress .spinner {
+  display: none !important;
+}
