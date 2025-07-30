@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import classes from "./administrators.module.css";
+import Loader from "../Loader/Loader";
 
 export default function Administrators() {
  const [result, setResult] = useState([]);
+ const [isLoading, setIsLoading] = useState(false);
     useEffect(()=>{
       const tg = window.Telegram.WebApp;
       tg.BackButton.show();
@@ -13,11 +15,14 @@ export default function Administrators() {
        tg.BackButton.onClick(btnBackClick);
            async function users() {
         try {
+            setIsLoading(true);
             const response = await fetch(`/api/user`);
             const data = await response.json();
             setResult(data);
         } catch (error) {
             console.error("Ошибка инициализации:", error);
+        } finally{
+            setIsLoading(false);
         }
     }
     users()
@@ -27,8 +32,9 @@ export default function Administrators() {
       false: "Клиент"
    };
 
-    return <div className={classes.container__users}>
-        <h1 className={classes.zagolovok}>Пользователи</h1>
+    return  <div className={classes.container__users}>
+         <h1 className={classes.zagolovok}>Пользователи</h1>
+         {isLoading? <Loader/> :
           <table className={classes.block__info}>
              <thead>
                 <tr>
@@ -54,5 +60,5 @@ export default function Administrators() {
         </tbody>
       
          </table>
-    </div>
+}</div>
 }
