@@ -130,9 +130,7 @@ useEffect(() => {
                )}
            </div>
           })}
-          <div className={classes.fixedBackBtn}>
-             <BtnBackHome />
-          </div>
+           {!isLoading && <BtnBackHome />}
         </div>
     </div>
 }
