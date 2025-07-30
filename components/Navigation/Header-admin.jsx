@@ -34,16 +34,16 @@ const chatId =  tg.initDataUnsafe?.user?.id
              <div className={classes.logo__title}>best exchange</div></div>
             <ul>
                <li className={classes.exchange}>
-                  <Link className={classes.link} href="/admins">Администраторы</Link>
+                  <Link className={classes.link} href="/administrators">Администраторы</Link>
                </li>
                <li className={classes.about}>
-                  <Link className={classes.link} href="/blocks">Заблокированные</Link>
+                  <Link className={classes.link} href="/blocked-users">Заблокированные</Link>
                </li>
                <li className={classes.requests}>
                   <Link className={classes.link} href="/requests">Все заявки</Link>
                </li>
                <li className={classes.support}>
-                  <Link className={classes.link} href="/static">Статистика</Link>
+                  <Link className={classes.link} href="/statistics">Статистика</Link>
                </li>
                <li className={classes.valuation}>
                   <Link className={classes.link} href="/valuation">Курс</Link>
