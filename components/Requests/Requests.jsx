@@ -24,10 +24,15 @@ useEffect(() => {
 
   const currentUserId = tg.initDataUnsafe?.user?.id;
   if (!currentUserId) {
+    toast(
+  "Войдите через телеграм приложение!",
+  {
+    duration: 6000,
+  }
+);
     console.error("телеграм id не найден");
     return;
   }
-
   async function init() {
     try {
       setIsLoading(true);
@@ -125,7 +130,9 @@ useEffect(() => {
                )}
            </div>
           })}
-          <BtnBackHome/>
+          <div className={classes.fixedBackBtn}>
+             <BtnBackHome />
+          </div>
         </div>
     </div>
 }

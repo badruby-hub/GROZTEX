@@ -68,3 +68,11 @@
     margin: 30px 0;
     font-size: 35px;
 }
+
+.fixedBackBtn {
+  position: fixed;
+  bottom: 230px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
