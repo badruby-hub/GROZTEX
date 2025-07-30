@@ -1,99 +1,67 @@
-.eye{
-  width: 20px; height: 8px;
-  background-color: rgba(19, 216, 197, .5);
-  border-radius:0px 0px 20px 20px;
-  position: relative;
-  left: 10px; top: 40px;
-  box-shadow:  40px 0px 0px 0px rgba(19, 216, 197, .5);     
-      
+.loaderWrapper {
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 220px;
+  margin: auto; 
+  z-index: 9999;
 }
 
-.head{
-  -webkit-backface-visibility: hidden;
-  position: relative;
-  margin: -250px auto;
-  width: 80px; height: 80px;
-  background-color: #111;
-  border-radius:50px;
-  box-shadow: inset -4px 2px 0px 0px rgba(19, 216, 197, .5);
-  -webkit-animation:headAnim 1.5s infinite alternate;
-  -webkit-animation-timing-function:ease-out;
+.spinner {
+  width: 150px; 
+  height: 150px; 
+  animation: rotate 2s linear infinite;
+  margin-bottom: 20px;
 }
 
-.body{ 
-  position: relative;
-  margin: 90px auto;
-  width: 140px; height: 120px;
-  background-color: #111;
-  border-radius: 50px/25px ;
-  box-shadow: inset -5px 2px 0px 0px rgba(19, 216, 197, .5);
-  -webkit-animation:bodyAnim 1.5s infinite alternate;
-  -webkit-animation-timing-function:ease-out;  
+.path {
+  stroke:rgba(19, 216, 197, .5);
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
 }
 
-  @-webkit-keyframes headAnim{
-         0%{ top:0px; }
-         50%{ top:10px; }
-         100% { top:0px;} 
+.text {
+  color: rgba(19, 216, 197, .5);
+  font-size: 28px;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  animation: flicker 2s infinite;
+  user-select: none;
+}
+
+/* Вращение всей SVG */
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
   }
+}
 
-  @-webkit-keyframes bodyAnim{
-         0%{ top:-5px; }
-         50%{ top:10px; }
-         100% { top:-5px;} 
+/* Анимация штриха по кругу */
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
   }
-
-.circ{
-  -webkit-backface-visibility: hidden;
-  margin: 60px auto;
-  width: 350px; height: 180px;
-  border-radius: 0px 0px 50px 50px;
-  position: relative;
-   z-index: 9;     
-  left: 0%; top: 20%;
-  overflow: hidden;
-}
-
-.hands{
-  -webkit-backface-visibility: hidden;
-  margin-top: 140px;
-  width: 120px;height: 120px;
-  position: absolute;
-  background-color: #111;
-  border-radius:20px;
-  box-shadow:-1px -4px 0px 0px rgba(19, 216, 197, .5);
-  -webkit-transform:rotate(45deg);
-  top:75%;left: 32%;
-  z-index: 1;
-  -webkit-animation:bodyAnim 1.5s infinite alternate;
-  -webkit-animation-timing-function:ease-out;
-}
-
-.load{  
-  position: absolute;
-  width: 7ch; height: 40px;
-  text-align: left;
-  line-height: 32px;
-  margin: -10px auto;
-  -webkit-font-smoothing: antialiased;
-  font-family: 'Julius Sans One', sans-serif;
-  font-size:40px;
-  font-weight:400;
-  color:white;
-  left: 2%; top:12%;
-  -webkit-animation:fontAnim 3.75s infinite;
-  -webkit-animation-timing-function:ease-out;
-  word-wrap: break-word;
-  display:block;
-  overflow: hidden;
-}
-
-  @-webkit-keyframes fontAnim{
-        0%{ width:7ch; }
-       16%{ width:8ch; }
-       32%{ width:9ch; }
-       48%{ width:10ch; }
-       64%{ width:11ch; }
-       80%{ width:12ch; }
-     100% { width:13ch;} 
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
   }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+/* Лёгкое мигание текста */
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
