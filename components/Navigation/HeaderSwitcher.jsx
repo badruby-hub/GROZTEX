@@ -1,5 +1,7 @@
 "use client";
 import Loader from "@/components/Loader/Loader";
+import AdminHeader from "./Header-admin";
+import Header from "./Header";
 import { useEffect, useState } from "react";
 
 export default function HeaderSwitcher() {
