@@ -1,6 +1,6 @@
 "use client";
-import Header from "../components/Navigation/Header"
+import HeaderSwitcher from "../components/Navigation/HeaderSwitcher";
 
 export default function Home() {
-  return <Header/>
+  return <HeaderSwitcher/>
 }

@@ -147,7 +147,7 @@ export default function Exchange() {
                
             
             if(selectBtnBuy){
-                walletInfo = `Номер кошелька: ${addressTron}`
+                walletInfo = `Сеть: TRON (TRC20)\nНомер кошелька: ${addressTron}`
                }
 const applicationForm = `
 Заявка на ${selectBtnValue}
@@ -157,7 +157,6 @@ const applicationForm = `
 Ник телеграм: @${tg?.initDataUnsafe?.user?.username}
 Номер телефона: ${phone}
 
-Сеть: TRON (TRC20)
 ${walletInfo}`;
 
 
