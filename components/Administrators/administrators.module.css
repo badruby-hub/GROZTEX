@@ -9,13 +9,14 @@
 }
 
 .zagolovok {
-    margin: 10px 0;
+    margin: 15px;
 }
 .card {
   background-color: #00adc89e;
   color: #ffffff;
   border-radius: 16px;
   padding: 20px;
+  margin: 15px;
   margin-bottom: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
