@@ -1,5 +1,5 @@
 "use client";
-import Administrators from "@/components/ListOfAdministrators/administrators";
+import Administrators from "@/components/Administrators/Administrators";
 
 
 export default function Page() {
