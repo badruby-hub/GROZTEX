@@ -72,9 +72,10 @@ li:active,
   width: 100%;
 }
 
-/* Настроим цвет и уберём спиннер */
+
 #nprogress .bar {
-  background: #00acc8 !important;
+  background: #0dacc5 !important;
+  height: 7px
 }
 
 #nprogress .spinner {

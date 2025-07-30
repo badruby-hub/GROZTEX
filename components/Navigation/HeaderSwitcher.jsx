@@ -1,8 +1,9 @@
 "use client";
-import Loader from "@/components/Loader/Loader";
 import AdminHeader from "./Header-admin";
 import Header from "./Header";
 import { useEffect, useState } from "react";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 export default function HeaderSwitcher() {
     const [isAdmin, setIsAdmin] = useState(null);
@@ -16,7 +17,7 @@ export default function HeaderSwitcher() {
       setIsAdmin(false);
       return;
     }
-
+    NProgress.start();
     fetch(`/api/user/admin?chatId=${chatId}`)
     .then(res=>res.json())
     .then(data=>{
@@ -24,11 +25,13 @@ export default function HeaderSwitcher() {
     })
     .catch(() => {
         setIsAdmin(false);
-      });
-
+      })
+    .finally(()=>{
+       NProgress.done();
+    })
     },[]);
       
-  if (isAdmin === null) return <Loader/>; 
+  if (isAdmin === null) return null; 
   return isAdmin ? <AdminHeader /> : <Header />;
 
 }
