@@ -10,8 +10,8 @@ import Loader from "@/components/Loader/Loader";
 
 export default function Requests() {
    const [requests, setRequests] = useState([]);
-   const [isAdmin, setIsAdmin] = useState(false);
-   const [isLoading, setIsLoading] = useState(false);
+   const [isAdmin, setIsAdmin] = useState(true);
+   const [isLoading, setIsLoading] = useState(true);
 
 useEffect(() => {
   const tg = window.Telegram.WebApp;
@@ -22,7 +22,7 @@ useEffect(() => {
   };
   tg.BackButton.onClick(btnBackClick);
 
-  const currentUserId = tg.initDataUnsafe?.user?.id;
+  const currentUserId = 7992841421;
   if (!currentUserId) {
     console.error("телеграм id не найден");
     return;
@@ -51,7 +51,7 @@ useEffect(() => {
     } catch (error) {
       console.error("Ошибка инициализации:", error);
     }finally{
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   }
 

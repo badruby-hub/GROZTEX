@@ -1,12 +1,12 @@
 import classes from "./loading.module.css";
 
 export default function Loader(){
-    return  <div className={classes.loader}> <div class={classes.L}>L</div>
-  <div class={classes.outter}>
-    <div class={classes.mid}>
-      
-    </div>
+    return <div class={classes.circ}>
+  <div class={classes.load}>Loading . . . </div>
+  <div class={classes.hands}></div>
+  <div class={classes.body}></div>
+  <div class={classes.head}>
+    <div class={classes.eye}></div>
   </div>
-  <div class={classes.ADING}>ADING</div>
-  </div>
+</div>
 }
