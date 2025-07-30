@@ -13,7 +13,7 @@ export default function HeaderSwitcher() {
 
          
     if (!chatId) {
-      setIsAdmin(false);
+      setIsAdmin(true);
       return;
     }
 
