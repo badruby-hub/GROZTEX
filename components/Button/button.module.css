@@ -2,7 +2,7 @@
 .btn__chat__tg,
 .btn__back__exchange {
   position: relative;
-  width: 350px;
+  min-width: 350px;
   height: 55px;
   user-select: none;
   background-color: rgba(19, 216, 197, 0.5);
