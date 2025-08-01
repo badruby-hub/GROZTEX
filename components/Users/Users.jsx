@@ -83,7 +83,7 @@ export default function UserControl() {
       </div>
       <div className={classes.block__main}>
       <div className={classes.cardBody}>
-        <div className={classes.id}><strong>ID:</strong> {user.id}</div>
+        <div className={classes.id}><strong>id:</strong> {user.id}</div>
         <div className={classes.firstName}><strong>Имя:</strong> {user.firstName || "Пусто"}</div>
         <div className={classes.lastName}><strong>Фамилия:</strong> {user.lastName || "Пусто"}</div>
         <div className={classes.chatId}><strong>Chat ID:</strong> {user.chatId}</div>
