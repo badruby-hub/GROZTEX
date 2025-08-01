@@ -16,6 +16,7 @@ export default function HeaderSwitcher() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ chatId }),
+            credentials: 'include',
 });
 
          
