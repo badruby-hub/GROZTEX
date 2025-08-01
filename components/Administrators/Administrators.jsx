@@ -17,6 +17,13 @@ export default function Administrators() {
         window.history.back();
       } 
        tg.BackButton.onClick(btnBackClick);
+
+        return () => {
+         tg.BackButton.hide();
+         tg.BackButton.offClick(btnBackClick);
+       };
+
+
            async function users() {
         try {
             

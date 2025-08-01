@@ -6,21 +6,18 @@ import { useEffect, useState } from "react";
 
 
 export default function AdminHeader(){
-    const [chatId, setChatId] = useState(null);
+
    useEffect(()=>{
       const tg = window.Telegram.WebApp;
        tg.expand();
        tg.ready();
-const chatId =  tg.initDataUnsafe?.user?.id 
-
-      setChatId(chatId);
    },[]);
 
    const onClose =()=>{
     const tg = window.Telegram.WebApp;
           tg.close()
     }
- console.log(`chatID:${chatId}`);
+ 
      
      return<header className={classes.block__content__home}>
         <nav className={classes.App}>
