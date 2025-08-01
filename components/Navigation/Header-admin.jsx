@@ -48,7 +48,7 @@ const chatId =  tg.initDataUnsafe?.user?.id
                <li className={`${classes.valuation} ${classes.li}`}>
                   <Link className={classes.link} href="/valuation">Курс</Link>
                </li>
-               <li onClick={onClose} className={classes.close}><div className={classes.btn__close}>Закрыть приложение</div></li>
+               <li onClick={onClose} className={`${classes.close} ${classes.li}`}><div className={classes.btn__close}>Закрыть приложение</div></li>
             </ul>
         </nav>
      </header>
