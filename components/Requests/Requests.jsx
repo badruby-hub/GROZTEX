@@ -12,7 +12,7 @@ export default function Requests() {
    const [requests, setRequests] = useState([]);
    const [isAdmin, setIsAdmin] = useState(false);
    const [isLoading, setIsLoading] = useState(false);
-
+   const API = `https://api.telegram.org/bot${token}/sendMessage`;
 useEffect(() => {
   const tg = window.Telegram.WebApp;
   tg.BackButton.show();
@@ -103,6 +103,8 @@ useEffect(() => {
            const updated = await res.json();
            setRequests((prev) =>prev.map((r) => (r.number === updated.number ? updated : r)));
            toast.success("статус заявки обновлен")
+
+
 const notificationText = `
 ${statusMessageMap[status] || ""}
 Номер заявки: ${updated.number}
