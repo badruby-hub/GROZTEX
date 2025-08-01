@@ -9,8 +9,9 @@ export async function POST(req: NextRequest) {
 
     const response = NextResponse.json({ isAdmin: user?.isAdmin || false });
 
-    response.cookies.set("chatId", chatId.toString(), { path: "/" });
-    response.cookies.set("isAdmin", String(user?.isAdmin || false), { path: "/" });
+response.cookies.set("chatId", chatId.toString(), { path: "/", httpOnly: true, sameSite: "lax" });
+response.cookies.set("isAdmin", String(user?.isAdmin || false), { path: "/", httpOnly: true, sameSite: "lax" });
+
 
     return response;
   } catch (error) {
