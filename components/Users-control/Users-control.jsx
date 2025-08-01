@@ -18,10 +18,6 @@ export default function UsersControl() {
       } 
        tg.BackButton.onClick(btnBackClick);
 
-                  return () => {
-         tg.BackButton.hide();
-         tg.BackButton.offClick(btnBackClick);
-       };
 
        
            async function users() {
@@ -38,7 +34,12 @@ export default function UsersControl() {
             
         }
     }
-    users()
+    users();
+         return () => {
+         tg.BackButton.hide();
+         tg.BackButton.offClick(btnBackClick);
+         };
+
     },[]);
        const status = {
       true: "Администратор",
