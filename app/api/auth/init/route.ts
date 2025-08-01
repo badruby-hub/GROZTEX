@@ -14,8 +14,9 @@ export async function POST(req: NextRequest) {
 
     return response;
   } catch (error) {
+        console.log("ошибка init", error)
     return NextResponse.json({ error: "Ошибка инициализации" }, { status: 500 });
-    console.log("ошибка init", error)
+
   } finally {
     await prisma.$disconnect();
   }
