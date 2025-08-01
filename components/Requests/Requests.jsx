@@ -81,7 +81,23 @@ useEffect(() => {
       REJECTED: "❌"
    };
 
+
+
   async function updateStatus(number, status) {
+    const tg = window.Telegram.WebApp;
+    const USER_CHAT_ID_TG = tg.initDataUnsafe?.user?.id ;
+
+    const statusMessageMap = {
+        ACCEPTED: "✅ Ваша заявка принята!",
+        REJECTED: "❌ Ваша заявка отклонена.",
+      };
+
+          const notificationText = `
+${statusMessageMap[status] || ""}
+Номер заявки: ${updated.number}
+
+С уважением,  
+GROZTEX`;
    try {
         const res = await fetch(`/api/requests/${number}`, {
          method: "PATCH",
@@ -92,6 +108,16 @@ useEffect(() => {
            const updated = await res.json();
            setRequests((prev) =>prev.map((r) => (r.number === updated.number ? updated : r)));
            toast.success("статус заявки обновлен")
+           await fetch(API,{
+                method: "POST",
+                headers:{
+                  'Content-Type':"application/json"
+                }, 
+                body: JSON.stringify({
+                  chat_id: USER_CHAT_ID_TG,
+                  text: notificationText,
+                })
+              })
        }else{
         toast.error("статус заявки не обновлен");
        }

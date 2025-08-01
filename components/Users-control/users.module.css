@@ -1,17 +1,19 @@
 .container__users {
-    display: flex;
-    flex-direction: column;
-    justify-self: center;
-    align-items: left;
-    position: relative;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: left;
+  position: relative;
+  color: white;
 
 }
 
 .zagolovok {
-    margin: 15px;
+  margin: 15px;
 }
+
 .card {
+  position: relative;
   background-color: #00adc89e;
   color: #ffffff;
   border-radius: 16px;
@@ -43,7 +45,8 @@
 .role {
   padding: 4px 10px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.2); /* полупрозрачный бейдж */
+  background-color: rgba(255, 255, 255, 0.2);
+  /* полупрозрачный бейдж */
   font-size: 0.85rem;
   color: #ffffff;
   font-weight: 500;
@@ -57,23 +60,47 @@
   color: #e0f7fa;
 }
 
-.block__main{
-    display: flex;
-    align-items: flex-end;
+.block__main {
+  display: flex;
+  align-items: flex-end;
 }
 
-.btn__give{
-    border: none;
-    background-color: rgba(255, 255, 255, .2);
-    padding: 10px;
-    margin-left: auto;
-    border-radius: 10px;
-    font-size: 17px;
-    font-weight: 600;
-    color: white;
+.btn__give,
+.add__block {
+  border: none;
+  background-color: rgba(255, 255, 255, .2);
+  padding: 10px;
+    margin:  10px 5px 0 0;
+  margin-left: auto;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
 }
 
-.btn__give:active{
-    background-color: #008aa0;
+.btn__give:active,
+.add__block:active {
+  background-color: #008aa0;
+
 }
 
+.btn__menu {
+  list-style-type: disc;
+}
+
+.btn__menu>li {
+  height: 10px;
+}
+
+
+.block__menu {
+  border-radius: 0 15px 15px 0;
+  background-color: rgba(35, 85, 87, .624);
+  flex-direction: column;
+  width: 200px;
+  height: 195px;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

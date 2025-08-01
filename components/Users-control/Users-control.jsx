@@ -10,6 +10,7 @@ import BtnBackHome from "../Button/BtnBackHome";
 export default function UsersControl() {
  const [result, setResult] = useState([]);
  const [isLoading, setIsLoading] = useState(false);
+ const [visible, setVisible] = useState(false);
     useEffect(()=>{
       const tg = window.Telegram.WebApp;
       tg.BackButton.show();
@@ -77,11 +78,18 @@ export default function UsersControl() {
          return <div className={classes.card} key={user.id}>
       <div className={classes.cardHeader}>
         <span className={classes.role}>
-          {status[user.isAdmin]}
+          {status[user.isAdmin]}: <span className={classes.userName}>@{user.userName || "Пусто"}</span>  
         </span>
-        <div className={classes.userName}>
-          <span>@{user.userName || "Пусто"}</span>
-           <div>...</div>
+        <div>  
+        {!visible && <ol onClick={()=>{setVisible(true)}} className={classes.btn__menu}>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>}
+       { visible && <div className={classes.block__menu}>
+<button onClick={()=>{flagSwitch(user), setVisible(false)}} className={classes.btn__give}>{user.isAdmin ? "Удалить права": "Дать права"}</button>
+<button onClick={()=>{setVisible(false)}} className={classes.add__block}>Заблокировать</button>
+        </div>}
         </div>
       </div>
       <div className={classes.block__main}>
@@ -90,8 +98,9 @@ export default function UsersControl() {
         <div className={classes.firstName}><strong>Имя:</strong> {user.firstName || "Пусто"}</div>
         <div className={classes.lastName}><strong>Фамилия:</strong> {user.lastName || "Пусто"}</div>
         <div className={classes.chatId}><strong>Chat ID:</strong> {user.chatId}</div>
+               
         </div>
-            <button onClick={()=>flagSwitch(user)} className={classes.btn__give}>{user.isAdmin ? "Удалить права": "Дать права"}</button>
+            
       </div>
     </div>
  })
