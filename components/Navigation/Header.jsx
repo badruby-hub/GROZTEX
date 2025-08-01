@@ -34,7 +34,7 @@ const chatId =  tg.initDataUnsafe?.user?.id
              </svg>EX</div>
              <div className={classes.logo__title}>best exchange</div></div>
             <ul className={classes.ul}>
-               <li className={`${classes.exchange} ${classes.li}`}>
+               <li className={`${classes.exchange}`}>
                   <Link className={classes.link} href="/exchange">Купить/Продать USDT</Link>
                </li>
                <li className={`${classes.about} ${classes.li}`}>
