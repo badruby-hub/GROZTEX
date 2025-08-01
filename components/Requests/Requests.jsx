@@ -85,8 +85,7 @@ useEffect(() => {
 
 
   async function updateStatus(number, status) {
-    const tg = window.Telegram.WebApp;
-    const USER_CHAT_ID_TG = tg.initDataUnsafe?.user?.id ;
+  
 
     const statusMessageMap = {
         ACCEPTED: "✅ Ваша заявка принята!",
@@ -118,11 +117,10 @@ GROZTEX`;
                   'Content-Type':"application/json"
                 }, 
                 body: JSON.stringify({
-                  chat_id: USER_CHAT_ID_TG,
+                  chat_id: updated.authorId,
                   text: notificationText,
                 })
               })
-              
        }else{
         toast.error("статус заявки не обновлен");
        }
