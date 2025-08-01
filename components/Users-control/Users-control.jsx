@@ -6,7 +6,7 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
 
-export default function UserControl() {
+export default function UsersControl() {
  const [result, setResult] = useState([]);
  const [isLoading, setIsLoading] = useState(false);
     useEffect(()=>{
