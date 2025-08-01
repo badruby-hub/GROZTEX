@@ -1,0 +1,29 @@
+.container__rules{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    color: white;
+    font-size: 15px;
+}
+
+.block__rules{
+    width: 350px;
+}
+
+.zagolovok{
+    margin-block: 10px;
+}
+
+.zagolovok__two{
+    margin-block: 10px;
+}
+
+.conditions__buy,.conditions__sell{
+    margin-block: 10px;
+    padding: 0 5px 0 17px;
+}
+
+.conditions__buy>li,.conditions__sell>li, .block__rules>p{
+    margin-block: 5px;
+}

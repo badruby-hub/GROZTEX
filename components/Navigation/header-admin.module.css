@@ -52,3 +52,21 @@
 }
 
 
+.ul {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-weight: 400;
+}
+
+
+.li {
+  user-select: none;
+  background-color: rgba(19, 216, 197, 0.5);
+  margin: 7px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 20px;
+  text-wrap: nowrap;
+}

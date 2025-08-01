@@ -33,23 +33,23 @@ const chatId =  tg.initDataUnsafe?.user?.id
              v3.346c0.96,0.06,1.96,0.08,3,0.08s2.04-0.02,3-0.08v-3.346c5.173,0.25,9,1.128,9,2.176C36,22.993,30.627,24,24,24z"></path>
              </svg>EX</div>
              <div className={classes.logo__title}>best exchange</div></div>
-            <ul>
-               <li className={classes.exchange}>
+            <ul className={classes.ul}>
+               <li className={`${classes.exchange} ${classes.li}`}>
                   <Link className={classes.link} href="/exchange">Купить/Продать USDT</Link>
                </li>
-               <li className={classes.about}>
+               <li className={`${classes.about} ${classes.li}`}>
                   <Link className={classes.link} href="/about">О нас</Link>
                </li>
-               <li className={classes.requests}>
+               <li className={`${classes.requests} ${classes.li}`}>
                   <Link className={classes.link} href="/requests">Все заявки</Link>
                </li>
-               <li className={classes.support}>
+               <li className={`${classes.support} ${classes.li}`}>
                   <Link className={classes.link} href="/support">Поддержка</Link>
                </li>
-               <li className={classes.valuation}>
+               <li className={`${classes.valuation} ${classes.li}`}>
                   <Link className={classes.link} href="/valuation">Курс</Link>
                </li>
-               <li onClick={onClose} className={classes.close}><div className={classes.btn__close}>Закрыть приложение</div></li>
+               <li onClick={onClose} className={`${classes.close} ${classes.li}`}><div className={classes.btn__close}>Закрыть приложение</div></li>
             </ul>
         </nav>
      </header>

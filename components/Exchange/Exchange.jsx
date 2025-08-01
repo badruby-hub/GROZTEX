@@ -4,6 +4,7 @@ import classes from "./exchange.module.css"
 import toast from "react-hot-toast";
 import PhoneInput from "react-phone-input-2";
 import {  useEffect, useState } from "react";
+import Link from "next/link";
 
 
 
@@ -22,7 +23,9 @@ export default function Exchange() {
   const [lastName,setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [chatId, setChatId] = useState(null);
-  const [addressTron, setAddressTron] = useState("")
+  const [addressTron, setAddressTron] = useState("");
+  const [rulesChecked, setRulesChecked] = useState(false);
+  
   const resetForm=()=>{
               setSelectBtnBuy(false);
               setSelectBtnSell(false);
@@ -119,6 +122,8 @@ export default function Exchange() {
     const tg = window.Telegram.WebApp;
     const USER_CHAT_ID_TG = tg.initDataUnsafe?.user?.id ;
             event.preventDefault();
+
+
             if(!tg?.initDataUnsafe?.user){
               toast.error("Для отправки заявки, войдите в мини приложение через телеграм",{
                  style: {
@@ -137,6 +142,7 @@ export default function Exchange() {
               toast.error("Выберите Покупку или Продажу")
               return
             }
+
              const payload = {
                     authorId: chatId, 
                     status: "PENDING",
@@ -255,7 +261,24 @@ const notificationForm = `
           }}
           />
         </label>
-          <button type="submit" className={classes.submit__btn}>{isLoading ? `Отправка...`:`Отправить`}</button>
+       <div className={classes.block__rules}>
+  <label className={classes.checkboxWrapper}>
+       <input
+      type="checkbox"
+      name="rules"
+      id="rules"
+      className={classes.hiddenCheckbox}
+      checked={rulesChecked}
+      onChange={(e) => setRulesChecked(e.target.checked)}
+    />
+    <span className={classes.roundCheckbox}></span>
+         <span>
+          Я прочитал <Link className={classes.link} href="/rules">правила</Link> и принимаю условия сервиса
+        </span>
+      </label>
+      </div>
+
+      <button type="submit" className={classes.submit__btn} disabled={!rulesChecked || isLoading}>{isLoading ? `Отправка...`:`Отправить`}</button>
        </form>
         <BtnBackHome/>
         </div>
