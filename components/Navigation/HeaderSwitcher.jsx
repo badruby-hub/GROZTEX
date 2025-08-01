@@ -12,19 +12,12 @@ export default function HeaderSwitcher() {
       const tg = window.Telegram.WebApp;
       const chatId =  tg?.initDataUnsafe?.user?.id;
 
-
-         
     if (!chatId) {
       setIsAdmin(false);
       return;
     }
     NProgress.start();
-       fetch('/api/auth/init', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chatId }),
-            credentials: 'include',
-                        })
+    fetch(`/api/user/admin?chatId=${chatId}`)
     .then(res=>res.json())
     .then(data=>{
         setIsAdmin(data.isAdmin);
