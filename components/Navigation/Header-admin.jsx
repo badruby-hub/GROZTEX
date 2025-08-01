@@ -10,7 +10,8 @@ export default function AdminHeader(){
    useEffect(()=>{
       const tg = window.Telegram.WebApp;
        tg.expand();
-       tg.ready();
+       tg.ready(); 
+
    },[]);
 
    const onClose =()=>{

@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 
 export default function Header() {
-   const [chatId, setChatId] = useState(null);
    useEffect(()=>{
       const tg = window.Telegram.WebApp;
        tg.expand();
@@ -21,7 +20,7 @@ const chatId =  tg.initDataUnsafe?.user?.id
     const tg = window.Telegram.WebApp;
           tg.close()
     }
- console.log(`chatID:${chatId}`);
+
      
      return<header className={classes.block__content__home}>
         <nav className={classes.App}>

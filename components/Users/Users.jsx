@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
-import classes from "./administrators.module.css";
+import classes from "./users.module.css";
 import Loader from "../Loader/Loader";
 import toast from "react-hot-toast";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
 
-export default function Administrators() {
+export default function UserControl() {
  const [result, setResult] = useState([]);
  const [isLoading, setIsLoading] = useState(false);
     useEffect(()=>{
@@ -18,12 +18,12 @@ export default function Administrators() {
       } 
        tg.BackButton.onClick(btnBackClick);
 
-        return () => {
+                  return () => {
          tg.BackButton.hide();
          tg.BackButton.offClick(btnBackClick);
        };
 
-
+       
            async function users() {
         try {
             
