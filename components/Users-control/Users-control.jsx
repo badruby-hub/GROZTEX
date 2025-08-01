@@ -96,5 +96,5 @@ export default function UsersControl() {
     </div>
  })
    
-} {!isLoading && <BtnBackHome />} </div>
+} {!isLoading && <BtnBackHome/>} </div>
 }
