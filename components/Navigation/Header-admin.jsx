@@ -32,7 +32,7 @@ export default function AdminHeader(){
              <div className={classes.logo__title}>best exchange</div></div>
             <ul className={classes.ul}>
                <li className={`${classes.administrator} ${classes.li}`}>
-                  <Link className={classes.link} href="/administrators">Управление пользователями</Link>
+                  <Link className={classes.link} href="/users">Управление пользователями</Link>
                </li>
                <li className={`${classes.blocked__users} ${classes.li}`}>
                   <Link className={classes.link} href="/blocked-users">Заблокированные</Link>
