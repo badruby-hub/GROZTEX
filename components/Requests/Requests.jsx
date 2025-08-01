@@ -12,6 +12,7 @@ export default function Requests() {
    const [requests, setRequests] = useState([]);
    const [isAdmin, setIsAdmin] = useState(false);
    const [isLoading, setIsLoading] = useState(false);
+   const token = process.env.NEXT_PUBLIC_BOT_TOKEN;
    const API = `https://api.telegram.org/bot${token}/sendMessage`;
 useEffect(() => {
   const tg = window.Telegram.WebApp;
