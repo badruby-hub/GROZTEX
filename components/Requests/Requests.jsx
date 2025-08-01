@@ -92,12 +92,7 @@ useEffect(() => {
         REJECTED: "❌ Ваша заявка отклонена.",
       };
 
-          const notificationText = `
-${statusMessageMap[status] || ""}
-Номер заявки: ${updated.number}
 
-С уважением,  
-GROZTEX`;
    try {
         const res = await fetch(`/api/requests/${number}`, {
          method: "PATCH",
@@ -108,6 +103,12 @@ GROZTEX`;
            const updated = await res.json();
            setRequests((prev) =>prev.map((r) => (r.number === updated.number ? updated : r)));
            toast.success("статус заявки обновлен")
+const notificationText = `
+${statusMessageMap[status] || ""}
+Номер заявки: ${updated.number}
+
+С уважением,  
+GROZTEX`;
            await fetch(API,{
                 method: "POST",
                 headers:{
@@ -118,6 +119,7 @@ GROZTEX`;
                   text: notificationText,
                 })
               })
+              
        }else{
         toast.error("статус заявки не обновлен");
        }
