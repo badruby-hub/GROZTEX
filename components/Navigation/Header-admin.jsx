@@ -34,7 +34,7 @@ const chatId =  tg.initDataUnsafe?.user?.id
              <div className={classes.logo__title}>best exchange</div></div>
             <ul className={classes.ul}>
                <li className={`${classes.administrator} ${classes.li}`}>
-                  <Link className={classes.link} href="/administrators">Администраторы</Link>
+                  <Link className={classes.link} href="/administrators">Пользователи</Link>
                </li>
                <li className={`${classes.blocked__users} ${classes.li}`}>
                   <Link className={classes.link} href="/blocked-users">Заблокированные</Link>
