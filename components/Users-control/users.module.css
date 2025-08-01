@@ -59,7 +59,7 @@
 
 .block__main{
     display: flex;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .btn__give{

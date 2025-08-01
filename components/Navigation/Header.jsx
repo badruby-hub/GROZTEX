@@ -11,9 +11,6 @@ export default function Header() {
       const tg = window.Telegram.WebApp;
        tg.expand();
        tg.ready();
-const chatId =  tg.initDataUnsafe?.user?.id 
-
-      setChatId(chatId);
    },[]);
 
    const onClose =()=>{
