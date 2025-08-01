@@ -4,6 +4,7 @@ import Loader from "../Loader/Loader";
 import toast from "react-hot-toast";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import BtnBackHome from "../Button/BtnBackHome";
 
 
 export default function UsersControl() {
@@ -78,9 +79,10 @@ export default function UsersControl() {
         <span className={classes.role}>
           {status[user.isAdmin]}
         </span>
-        <span className={classes.userName}>
-          @{user.userName || "Пусто"}
-        </span>
+        <div className={classes.userName}>
+          <span>@{user.userName || "Пусто"}</span>
+           <div>...</div>
+        </div>
       </div>
       <div className={classes.block__main}>
       <div className={classes.cardBody}>
@@ -93,5 +95,6 @@ export default function UsersControl() {
       </div>
     </div>
  })
-}</div>
+   
+} {!isLoading && <BtnBackHome />} </div>
 }
