@@ -25,13 +25,12 @@ useEffect(() => {
 
   const currentUserId = tg.initDataUnsafe?.user?.id;
   if (!currentUserId) {
-    toast(
+    toast.error(
   "Войдите через телеграм приложение!",
   {
     duration: 6000,
   }
-);
-    console.error("телеграм id не найден");
+    );
     return;
   }
   async function init() {
@@ -107,10 +106,10 @@ useEffect(() => {
 
 const notificationText = `
 ${statusMessageMap[status] || ""}
-Номер заявки: ${updated.number}
+  Номер заявки: ${updated.number}
 
 С уважением,  
-GROZTEX`;
+   GROZTEX`;
            await fetch(API,{
                 method: "POST",
                 headers:{
