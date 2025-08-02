@@ -70,7 +70,7 @@
   border: none;
   background-color: rgba(255, 255, 255, .2);
   padding: 10px;
-    margin:  10px 5px 0 0;
+  margin: 10px 5px 0 0;
   margin-left: auto;
   border-radius: 10px;
   font-size: 17px;
@@ -94,13 +94,12 @@
 
 
 .block__menu {
-  border-radius: 0 15px 15px 0;
-  background-color: rgba(35, 85, 87, .624);
+  border-radius: 0 0 15px 0;
   flex-direction: column;
-  width: 200px;
-  height: 100%;
+  width: 160px;
+  height: 65%;
   display: flex;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 60px;
+  right: 0px;
 }

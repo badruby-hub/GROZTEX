@@ -81,7 +81,7 @@ export default function UsersControl() {
           {status[user.isAdmin]}: <span className={classes.userName}>@{user.userName || "Пусто"}</span>  
         </span>
         <div>  
-         <ol onClick={()=>{setVisible(user.id)}} className={classes.btn__menu}>
+         <ol onClick={()=>{setVisible(prev =>( prev=== prev.id ? null : user.id))}} className={classes.btn__menu}>
           <li></li>
           <li></li>
           <li></li>
