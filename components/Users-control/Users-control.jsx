@@ -75,7 +75,7 @@ export default function UsersControl() {
     return  <div className={classes.container__users}>
          <h1 className={classes.zagolovok}>Карточки пользователей</h1>
          {isLoading? <Loader/> : result.map((user)=>{
-         return <div className={classes.card} key={user.id}>
+         return <div className={classes.card} onClick={()=>{setVisible(null)}} key={user.id}>
       <div className={classes.cardHeader}>
         <span className={classes.role}>
           {status[user.isAdmin]}: <span className={classes.userName}>@{user.userName || "Пусто"}</span>  
