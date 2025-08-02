@@ -98,7 +98,7 @@
   background-color: rgba(35, 85, 87, .624);
   flex-direction: column;
   width: 200px;
-  height: 195px;
+  height: 100%;
   display: flex;
   position: absolute;
   top: 0;

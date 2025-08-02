@@ -10,7 +10,7 @@ import BtnBackHome from "../Button/BtnBackHome";
 export default function UsersControl() {
  const [result, setResult] = useState([]);
  const [isLoading, setIsLoading] = useState(false);
- const [visible, setVisible] = useState(false);
+ const [visible, setVisible] = useState(null);
     useEffect(()=>{
       const tg = window.Telegram.WebApp;
       tg.BackButton.show();
@@ -81,14 +81,14 @@ export default function UsersControl() {
           {status[user.isAdmin]}: <span className={classes.userName}>@{user.userName || "Пусто"}</span>  
         </span>
         <div>  
-        {!visible && <ol onClick={()=>{setVisible(true)}} className={classes.btn__menu}>
+         <ol onClick={()=>{setVisible(user.id)}} className={classes.btn__menu}>
           <li></li>
           <li></li>
           <li></li>
-        </ol>}
-       { visible && <div className={classes.block__menu}>
-<button onClick={()=>{flagSwitch(user), setVisible(false)}} className={classes.btn__give}>{user.isAdmin ? "Удалить права": "Дать права"}</button>
-<button onClick={()=>{setVisible(false)}} className={classes.add__block}>Заблокировать</button>
+        </ol>
+       { visible === user.id && <div className={classes.block__menu}>
+        <button onClick={()=>{flagSwitch(user), setVisible(null)}} className={classes.btn__give}>{user.isAdmin ? "Удалить права": "Дать права"}</button>
+        <button onClick={()=>{setVisible(null)}} className={classes.add__block}>Заблокировать</button>
         </div>}
         </div>
       </div>
