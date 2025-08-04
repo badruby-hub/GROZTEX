@@ -13,7 +13,7 @@ export default function BtnChatTg(){
        }
 
    return   <div onClick={onClose} className={classes.btn__chat__tg}>
-          <Link className={classes.link} href="https://t.me/gess13">
+          <Link className={classes.link} href="https://t.me/GROZTEX">
             чат
           </Link>
       </div>
