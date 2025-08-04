@@ -70,3 +70,13 @@
   font-size: 20px;
   text-wrap: nowrap;
 }
+
+.our__the__map{
+  max-width: 350px;
+  font-size: 19px;
+  margin-top: 30px;
+}
+
+.link__map{
+  color: white;
+}

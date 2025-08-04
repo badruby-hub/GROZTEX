@@ -47,6 +47,7 @@ export default function Header() {
                </li>
                <li onClick={onClose} className={`${classes.close} ${classes.li}`}><div className={classes.btn__close}>Закрыть приложение</div></li>
             </ul>
+            <div className={classes.our__the__map}>Наш адрес: <a className={classes.link__map} href="https://yandex.com/maps/1106/grozniy/house/malgobekskaya_ulitsa_19/YEwYcABpSEwAQFppfX9yc39lbA==/?ll=45.679198%2C43.332368&z=16">📍 Малгобекская улица,19</a></div>
         </nav>
      </header>
 }
