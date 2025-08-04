@@ -36,7 +36,11 @@ useEffect(() => {
   async function init() {
     try {
       setIsLoading(true);
-      const resAdmin = await fetch(`/api/user/admin?chatId=${currentUserId}`);
+      const resAdmin = await fetch(`/api/user/admin`,{
+           headers: {
+    "X-User-ChatId": currentUserId.toString(),
+  },
+      });
       const dataAdmin = await resAdmin.json();
       const isAdminResult = dataAdmin.isAdmin === true;
       setIsAdmin(isAdminResult);
