@@ -84,8 +84,8 @@ useEffect(() => {
 
 
   async function updateStatus(number, status) {
-    const tg = window.Telegram.WebApp;
-    const chatId = tg.initDataUnsafe?.user?.id.toString();
+  
+
     const statusMessageMap = {
         ACCEPTED: "✅ Ваша заявка принята!",
         REJECTED: "❌ Ваша заявка отклонена.",
@@ -95,9 +95,7 @@ useEffect(() => {
    try {
         const res = await fetch(`/api/requests/${number}`, {
          method: "PATCH",
-         headers: { 
-          "X-User-ChatId": chatId ,
-          "Content-Type": "application/json" },
+         headers: { "Content-Type": "application/json" },
          body: JSON.stringify({ status }),
        });
        if(res.ok){
@@ -111,11 +109,10 @@ ${statusMessageMap[status] || ""}
   Номер заявки: ${updated.number}
 
 С уважением,  
-   GROZTEX`;
+GROZTEX`;
            await fetch(API,{
                 method: "POST",
                 headers:{
-                  "X-User-ChatId": chatId,
                   'Content-Type':"application/json"
                 }, 
                 body: JSON.stringify({

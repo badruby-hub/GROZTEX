@@ -12,7 +12,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const API_MAPS = process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY;
   return (
     <html lang="en">
        <head>
