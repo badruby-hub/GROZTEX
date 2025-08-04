@@ -1,10 +1,15 @@
 import prisma from "@/lib/db";
-
 import { NextRequest, NextResponse } from "next/server";
+
 
 export async function GET(req: NextRequest) {
   try {
- const chatId = req.headers.get("x-user-chatid");
+    let chatId = req.headers.get("x-user-chatid");
+
+    if (!chatId) {
+      const url = new URL(req.url);
+      chatId = url.searchParams.get("chatId");
+    }
 
     if (!chatId) {
       return NextResponse.json({ error: "chatId обязателен" }, { status: 400 });
