@@ -47,7 +47,21 @@ export default function Header() {
                </li>
                <li onClick={onClose} className={`${classes.close} ${classes.li}`}><div className={classes.btn__close}>Закрыть приложение</div></li>
             </ul>
-            <div className={classes.our__the__map}>Наш адрес: <a className={classes.link__map} href="https://yandex.com/maps/1106/grozniy/house/malgobekskaya_ulitsa_19/YEwYcABpSEwAQFppfX9yc39lbA==/?ll=45.679198%2C43.332368&z=16">📍 Малгобекская улица,19</a></div>
+            <div >
+     <div className={classes.our__the__map}>Наш адрес: 📍 Малгобекская улица, 19</div>
+  <a
+    href="https://yandex.ru/maps/?um=constructor%3Aaa07db41b122599d65c58a93b5bf42f5073d9b0526b24c6a316149e550978a8c&source=constructorStatic"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3Aaa07db41b122599d65c58a93b5bf42f5073d9b0526b24c6a316149e550978a8c&width=350&height=200&lang=ru_RU"
+      alt="Карта с меткой"
+      style={{ border: 0 }}
+    />
+  </a>
+</div>
+
         </nav>
      </header>
 }
