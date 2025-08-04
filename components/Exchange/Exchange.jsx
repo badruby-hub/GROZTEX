@@ -236,8 +236,8 @@ const notificationForm = `
           <input className={`${classes.sum} ${classes.input}`} type="tel" id="sum"  name="sum" minLength="3"  placeholder="0" value={count} onChange={formatCountChange} required/>
         </label > 
        { selectBtnBuy ? <label className={classes.label} >
-          <h2 className={classes.zagolovok__two}> номер кошелька </h2>
-          <input className={`${classes.wallet__tron} ${classes.input}`} value={addressTron} onChange={formatTRON} type="text" id="wallet__tron"  name="addressTron" minLength="34" maxLength="34"  placeholder="Введите ваш кошелёк"  required/> 
+          <h2 className={classes.zagolovok__two}> Кошелёк TRC-20 </h2>
+          <input className={`${classes.wallet__tron} ${classes.input}`} value={addressTron} onChange={formatTRON} type="text" id="wallet__tron"  name="addressTron" minLength="34" maxLength="34"  placeholder="Введите ваш кошелёк (34 символа)"  required/> 
         </label> : null }
          <label className={classes.label}>
           <h2 className={classes.zagolovok__two}>Имя</h2>
