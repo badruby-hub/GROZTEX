@@ -36,11 +36,7 @@ useEffect(() => {
   async function init() {
     try {
       setIsLoading(true);
-      const resAdmin = await fetch(`/api/user/admin`,{
-           headers: {
-    "X-User-ChatId": currentUserId.toString(),
-  },
-      });
+      const resAdmin = await fetch(`/api/user/admin?chatId=${currentUserId}`);
       const dataAdmin = await resAdmin.json();
       const isAdminResult = dataAdmin.isAdmin === true;
       setIsAdmin(isAdminResult);
@@ -49,11 +45,7 @@ useEffect(() => {
         ? `/api/requests?admin=true`
         : `/api/requests?authorId=${currentUserId}`;
 
-      const resReq = await fetch(url,{
-          headers: {
-    "X-User-ChatId": currentUserId.toString(),
-  },
-      });
+      const resReq = await fetch(url);
       const dataReq = await resReq.json();
 
       if (!Array.isArray(dataReq)) {

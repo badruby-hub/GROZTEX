@@ -196,7 +196,6 @@ const notificationForm = `
                 await fetch(API,{
                 method: "POST",
                 headers:{
-                  "X-User-ChatId": chatId.toString(),
                   'Content-Type':"application/json"
                 }, 
                 body: JSON.stringify({
@@ -206,8 +205,7 @@ const notificationForm = `
               })
               await fetch("api/requests",{
                method: "POST",
-               headers: { 
-                "X-User-ChatId": chatId.toString(),
+               headers: {
                 "Content-Type": "application/json" 
               },
                body: JSON.stringify(payload),
