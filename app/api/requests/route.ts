@@ -2,102 +2,107 @@ import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
 
+export async function GET(req: NextRequest) {
+  try {
+    const chatId = req.headers.get("x-user-chatid");
+    if (!chatId) {
+      return NextResponse.json({ error: "Нет chatId" }, { status: 401 });
+    }
 
+    const user = await prisma.user.findUnique({
+      where: { chatId: BigInt(chatId) },
+    });
 
-export  async function GET(req: NextRequest) {
-      if (req.method === "GET") {
-         try {
-        const { searchParams } = new URL(req.url);
-        const admin = searchParams.get("admin");
-         const authorIdParam = searchParams.get("authorId");
-        if(admin === "true"){
-            const requests = await prisma.request.findMany({
-           
-             orderBy: {
-             createdAt: "desc",
-          },
-            });
-             const safeRequests = requests.map((r) => ({...r,
-             number: r.number.toString(),
-             authorId: r.authorId.toString(),
-          }));
-            return NextResponse.json(safeRequests, { status: 200 });
-        }
+    if (!user) {
+      return NextResponse.json({ error: "Пользователь не найден" }, { status: 404 });
+    }
 
+    const isAdmin = user.isAdmin;
 
-       
-      if (!authorIdParam) {
-        return NextResponse.json({ error: "authorId обязателен" }, { status: 400 });
-      }
+    let requests;
 
-        const authorId = BigInt(authorIdParam);
+    if (isAdmin) {
+      requests = await prisma.request.findMany({
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+    } else {
+      requests = await prisma.request.findMany({
+        where: {
+          authorId: user.chatId,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+    }
 
- 
-
-            const requests = await prisma.request.findMany({
-           where:{
-               authorId: authorId
-           },
-             orderBy: {
-           createdAt: "desc",
-  },
-            });
-             const safeRequests = requests.map((r) => ({...r,
-             number: r.number.toString(),
-             authorId: r.authorId.toString(),
+    const safeRequests = requests.map((r) => ({
+      ...r,
+      number: r.number.toString(),
+      authorId: r.authorId.toString(),
     }));
-            return NextResponse.json(safeRequests, { status: 200 });
-         } catch (error) {
-            console.log(error);
-            return NextResponse.json({error: "Ошибка при получении постов"},{status: 500});
-         }finally{
-            await prisma.$disconnect();
-         }
-      }
 
+    return NextResponse.json(safeRequests, { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ error: "Ошибка при получении заявок" }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
+  }
 }
 
 
-export async function POST(req: NextRequest) {
-   function generateRandomNumber() {
+
+function generateRandomNumber() {
   const min = 500;
   const max = 55000;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-      if (req.method === "POST") {
-         try {
-            const body = await req.json();
-            const {authorId, status} = body;
+export async function POST(req: NextRequest) {
+  try {
+    const chatId = req.headers.get("x-user-chatid");
+    if (!chatId) {
+      return NextResponse.json({ error: "Нет chatId" }, { status: 401 });
+    }
 
-            if (!authorId) {
-            return NextResponse.json({ error: "number и authorId обязательны" }, { status: 400 });
-           }
+    const user = await prisma.user.findUnique({
+      where: { chatId: BigInt(chatId) },
+    });
 
-            const number = generateRandomNumber();
-            const numberBigInt = BigInt(number);
-            const authorIdBigInt = BigInt(authorId);
+    if (!user) {
+      return NextResponse.json({ error: "Пользователь не найден" }, { status: 404 });
+    }
 
-             const newRequest = await prisma.request.create({
+
+    const body = await req.json();
+    const { status } = body;
+
+  
+    const number = generateRandomNumber();
+
+    const newRequest = await prisma.request.create({
       data: {
-        number: numberBigInt,
-        authorId: authorIdBigInt,
+        number: BigInt(number),
+        authorId: user.chatId,
         status: status || "PENDING",
       },
     });
 
-     return NextResponse.json({
-      ...newRequest,
-      number: newRequest.number.toString(),
-      authorId: newRequest.authorId.toString(),
-    }, { status: 201 });
-
-         } catch (error) {
-             console.error(error);
+    return NextResponse.json(
+      {
+        ...newRequest,
+        number: newRequest.number.toString(),
+        authorId: newRequest.authorId.toString(),
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error(error);
     return NextResponse.json({ error: "Ошибка при создании заявки" }, { status: 500 });
-         }finally{
-            await prisma.$disconnect();
-         }
-      }
+  } finally {
+    await prisma.$disconnect();
+  }
 }
-

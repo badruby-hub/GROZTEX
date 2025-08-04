@@ -4,18 +4,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
-    const chatIdParam = searchParams.get("chatId");
+ const chatId = req.headers.get("x-user-chatid");
 
-    if (!chatIdParam) {
+    if (!chatId) {
       return NextResponse.json({ error: "chatId обязателен" }, { status: 400 });
     }
 
-    const chatId = BigInt(chatIdParam);
-    const user = await prisma.user.findUnique({ 
-        where: { 
-            chatId 
-        } 
+    const user = await prisma.user.findUnique({
+      where: { chatId: BigInt(chatId) },
     });
 
     return NextResponse.json({ isAdmin: user?.isAdmin || false });
@@ -28,25 +24,37 @@ export async function GET(req: NextRequest) {
 }
 
 
-
-
 export async function PATCH(req: NextRequest) {
   try {
-    const body = await req.json();
-    const chatId = BigInt(body.chatId);
+    const adminChatId = req.headers.get("x-user-chatid");
 
-    const user = await prisma.user.findUnique({
-      where: { chatId },
+    if (!adminChatId) {
+      return NextResponse.json({ error: "Нет chatId в заголовке" }, { status: 401 });
+    }
+
+    const adminUser = await prisma.user.findUnique({
+      where: { chatId: BigInt(adminChatId) },
     });
 
-    if (!user) {
+    if (!adminUser || !adminUser.isAdmin) {
+      return NextResponse.json({ error: "Недостаточно прав" }, { status: 403 });
+    }
+
+    const body = await req.json();
+    const targetChatId = BigInt(body.chatId);
+
+    const targetUser = await prisma.user.findUnique({
+      where: { chatId: targetChatId },
+    });
+
+    if (!targetUser) {
       return NextResponse.json({ error: "Пользователь не найден" }, { status: 404 });
     }
 
     const updatedUser = await prisma.user.update({
-      where: { chatId },
+      where: { chatId: targetChatId },
       data: {
-        isAdmin: !user.isAdmin,
+        isAdmin: !targetUser.isAdmin,
       },
     });
 
