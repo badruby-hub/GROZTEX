@@ -17,7 +17,7 @@ export default function HeaderSwitcher() {
       return;
     }
     NProgress.start();
-    fetch(`/api/user/admin?chatId=${chatId}`,{
+    fetch(`/api/user/admin`,{
         headers: {
     "X-User-ChatId": chatId.toString(),
   },
