@@ -184,7 +184,6 @@ const notificationForm = `
               let response = await fetch(API,{
                 method: "POST",
                 headers:{
-                  "X-User-ChatId": chatId.toString(),
                   'Content-Type':"application/json"
                 }, 
                 body: JSON.stringify({
