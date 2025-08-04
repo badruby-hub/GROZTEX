@@ -1,12 +1,11 @@
 import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(req: NextRequest) {
   try {
-    const { id } = params;
+    const url = new URL(req.url);
+    const pathnameParts = url.pathname.split("/");
+    const id = pathnameParts[pathnameParts.length - 1];
 
     if (!id) {
       return NextResponse.json({ error: "ID не передан" }, { status: 400 });
