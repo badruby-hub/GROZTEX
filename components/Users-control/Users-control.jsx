@@ -20,13 +20,17 @@ export default function UsersControl() {
       } 
        tg.BackButton.onClick(btnBackClick);
 
-
+      const chatId = tg.initDataUnsafe?.user?.id;
        
            async function users() {
         try {
             
             setIsLoading(true);
-            const response = await fetch(`/api/user`);
+            const response = await fetch(`/api/user`,{
+              headers: {
+            "X-User-ChatId": chatId.toString(),
+           },
+            });
             const data = await response.json();
             setResult(data);
         } catch (error) {
