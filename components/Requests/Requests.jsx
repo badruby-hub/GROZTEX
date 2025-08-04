@@ -49,7 +49,11 @@ useEffect(() => {
         ? `/api/requests?admin=true`
         : `/api/requests?authorId=${currentUserId}`;
 
-      const resReq = await fetch(url);
+      const resReq = await fetch(url,{
+          headers: {
+    "X-User-ChatId": currentUserId.toString(),
+  },
+      });
       const dataReq = await resReq.json();
 
       if (!Array.isArray(dataReq)) {
