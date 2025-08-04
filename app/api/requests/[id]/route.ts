@@ -3,12 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { number: string } }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { number } = params;
+    const { id } = params;
 
-    if (!number) {
+    if (!id) {
       return NextResponse.json({ error: "ID не передан" }, { status: 400 });
     }
 
@@ -19,7 +19,7 @@ export async function PATCH(
       return NextResponse.json({ error: "Некорректный статус" }, { status: 400 });
     }
 
-    const requestId = BigInt(number);
+    const requestId = BigInt(id);
 
     const updatedRequest = await prisma.request.update({
       where: { number: requestId },
