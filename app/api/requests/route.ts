@@ -4,15 +4,16 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    const chatId = req.headers.get("x-user-chatid");
-    if (!chatId) {
-      return NextResponse.json({ error: "Нет chatId" }, { status: 401 });
+    const url = new URL(req.url);
+    const searchParams = url.searchParams;
+
+    const chatIdHeader = req.headers.get("x-user-chatid");
+    if (!chatIdHeader) {
+      return NextResponse.json({ error: "Не указан chatId" }, { status: 401 });
     }
 
-    const user = await prisma.user.findUnique({
-      where: { chatId: BigInt(chatId) },
-    });
-
+    const chatId = BigInt(chatIdHeader);
+    const user = await prisma.user.findUnique({ where: { chatId } });
     if (!user) {
       return NextResponse.json({ error: "Пользователь не найден" }, { status: 404 });
     }
@@ -21,37 +22,31 @@ export async function GET(req: NextRequest) {
 
     let requests;
 
-    if (isAdmin) {
+    if (searchParams.get("admin") === "true" && isAdmin) {
+      requests = await prisma.request.findMany({ orderBy: { createdAt: "desc" } });
+    } else if (searchParams.get("authorId")) {
+      const authorId = BigInt(searchParams.get("authorId")!);
+      if (authorId !== chatId) {
+        return NextResponse.json({ error: "Доступ запрещён" }, { status: 403 });
+      }
+
       requests = await prisma.request.findMany({
-        orderBy: {
-          createdAt: "desc",
-        },
+        where: { authorId },
+        orderBy: { createdAt: "desc" },
       });
     } else {
-      requests = await prisma.request.findMany({
-        where: {
-          authorId: user.chatId,
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
+      return NextResponse.json({ error: "Неверные параметры запроса" }, { status: 400 });
     }
 
-    const safeRequests = requests.map((r) => ({
-      ...r,
-      number: r.number.toString(),
-      authorId: r.authorId.toString(),
-    }));
-
-    return NextResponse.json(safeRequests, { status: 200 });
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json({ error: "Ошибка при получении заявок" }, { status: 500 });
+    return NextResponse.json(requests);
+  } catch (err) {
+    console.error("Ошибка при получении заявок:", err);
+    return NextResponse.json({ error: "Внутренняя ошибка сервера" }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }
 }
+
 
 
 
