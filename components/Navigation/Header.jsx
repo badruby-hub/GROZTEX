@@ -2,41 +2,15 @@
 import Link from "next/link";
 import classes from "./header.module.css"
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 
 
 export default function Header() {
-    const mapRef = useRef(null);
-    const mapInstanceRef = useRef(null);
-
    useEffect(()=>{
       const tg = window.Telegram.WebApp;
        tg.expand();
        tg.ready();
-      
-         const initMap = () => {
-      if (typeof ymaps === "undefined" || !mapRef.current) return;
-
-      ymaps.ready(() => {
-        const map = new ymaps.Map(mapRef.current, {
-          center: [43.332368, 45.679197], // Твои координаты
-          zoom: 15,
-          controls: ["zoomControl", "fullscreenControl"],
-        });
-
-        const placemark = new ymaps.Placemark([43.332368, 45.679197], {
-          balloonContent: "📍 Малгобекская улица, 19",
-        });
-
-        map.geoObjects.add(placemark);
-
-        mapInstanceRef.current = map;
-      });
-    };
-
-    initMap();
-
    },[]);
 
    const onClose =()=>{
@@ -74,11 +48,12 @@ export default function Header() {
                <li onClick={onClose} className={`${classes.close} ${classes.li}`}><div className={classes.btn__close}>Закрыть приложение</div></li>
             </ul>
             <div >
-        <div className={classes.our__the__map}>
-          <div style={{ marginBottom: 5 }}>Наш адрес: 📍 Малгобекская улица, 19</div>
-          <div ref={mapRef} style={{ width: 350, height: 200 }} />
-        </div>
-     </div>
+     <div className={classes.our__the__map}>
+          <Link className={classes.link__map} href="https://yandex.ru/maps/?um=constructor%3A8ccd5e2afac188c83b586644c5650dda76028d21759b34e8f334082e1c76b5b7&amp;source=constructorStatic" target="_blank">
+         <div className={classes.text__address}> Наш адрес: Малгобекская улица, 19</div>
+         <img className={classes.img__map} src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A8ccd5e2afac188c83b586644c5650dda76028d21759b34e8f334082e1c76b5b7&amp;width=350&amp;height=150&amp;lang=ru_RU"
+          alt="" style={{border: 0}} /></Link></div>
+</div>
 
         </nav>
      </header>

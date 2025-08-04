@@ -19,10 +19,6 @@ export default function RootLayout({
         <Script 
           src="https://telegram.org/js/telegram-web-app.js?58" 
           strategy="beforeInteractive"/>
-        <Script
-          src={`https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=${API_MAPS}`}
-          type="text/javascript"
-          strategy="afterInteractive"/>
         <link rel="icon" href="/logo.png" />
       </head>
       <body>

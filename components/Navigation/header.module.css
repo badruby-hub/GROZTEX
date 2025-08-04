@@ -1,33 +1,33 @@
 .block__content__home {
-    position: relative;
-    z-index: 2;
-    color: white;
-    font-size: 40px;
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 40px;
 }
 
 .App {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 
 .logo {
-    margin: 40px 0 20px 0;
+  margin: 40px 0 20px 0;
 }
 
 .logo__name {
-    display: flex;
-    align-items: center;
-    font-size: 65px;
+  display: flex;
+  align-items: center;
+  font-size: 65px;
 }
 
 
 .logo__title {
-    margin: 10px 0 5px 0;
-    font-size: 20px;
-    text-align: center;
+  margin: 10px 0 5px 0;
+  font-size: 20px;
+  text-align: center;
 }
 
 
@@ -71,11 +71,26 @@
   text-wrap: nowrap;
 }
 
-.our__the__map{
+.our__the__map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
   font-size: 19px;
-  margin: 20px 0 10px 0;
+  margin: 20px 0 100px 0;
 }
 
-.link__map{
+.link__map {
+  text-decoration: none;
+}
+
+.img__map {
+  border-radius: 0 0 10px 10px;
+}
+
+.text__address {
+  background: rgba(19, 216, 197, 0.5);
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
   color: white;
 }
