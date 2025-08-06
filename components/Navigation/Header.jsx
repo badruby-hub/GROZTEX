@@ -51,7 +51,7 @@ export default function Header() {
      <div className={classes.our__the__map}>
           <Link className={classes.link__map} href="https://yandex.ru/maps/?um=constructor%3A8ccd5e2afac188c83b586644c5650dda76028d21759b34e8f334082e1c76b5b7&amp;source=constructorStatic" target="_blank">
          <div className={classes.text__address}> Наш адрес: Малгобекская улица, 19</div>
-         <img className={classes.img__map} src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A8ccd5e2afac188c83b586644c5650dda76028d21759b34e8f334082e1c76b5b7&amp;width=350&amp;height=150&amp;lang=ru_RU"
+         <img className={classes.img__map} rel="preload" src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A8ccd5e2afac188c83b586644c5650dda76028d21759b34e8f334082e1c76b5b7&amp;width=350&amp;height=150&amp;lang=ru_RU"
           alt="" style={{border: 0}} /></Link></div>
 </div>
 
