@@ -11,7 +11,6 @@ export default function UsersControl() {
  const [result, setResult] = useState([]);
  const [isLoading, setIsLoading] = useState(false);
  const [visible, setVisible] = useState(null);
- const [tgChatId, setTgChatId] = useState(null);
 
     useEffect(()=>{
       const tg = window.Telegram.WebApp;
@@ -22,13 +21,13 @@ export default function UsersControl() {
       } 
        tg.BackButton.onClick(btnBackClick);
 
-      const chatId = tg.initDataUnsafe?.user?.id;
-            setTgChatId(chatId);
+ 
        
            async function users() {
         try {
+             const chatId = tg.initDataUnsafe?.user?.id;
             setIsLoading(true);
-            const response = await fetch(`/api/user?chatId=${tgChatId}`,{
+            const response = await fetch(`/api/user?chatId=${chatId}`,{
             });
             const data = await response.json();
             setResult(data);
@@ -52,8 +51,9 @@ export default function UsersControl() {
    };
      const flagSwitch = async (user)=>{
         try {
+            const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id;
             NProgress.start();
-            await fetch(`/api/user/admin?chatId=${tgChatId}`,{
+            await fetch(`/api/user/admin?chatId=${chatId}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
