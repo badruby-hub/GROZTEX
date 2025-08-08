@@ -31,7 +31,8 @@ export async function GET(req: NextRequest) {
 
 export async function PATCH(req: NextRequest) {
   try {
-    const adminChatId = req.headers.get("x-user-chatid");
+    const url = new URL(req.url);
+    const adminChatId = url.searchParams.get("chatId");
 
     if (!adminChatId) {
       return NextResponse.json({ error: "Нет chatId в заголовке" }, { status: 401 });

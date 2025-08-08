@@ -4,7 +4,8 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   try {
-    const chatId = req.headers.get("x-user-chatid");
+  const url = new URL(req.url);
+  const chatId = url.searchParams.get("chatId");
 
 
         if (!chatId) {
