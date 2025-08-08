@@ -11,7 +11,7 @@ export default function UsersControl() {
  const [result, setResult] = useState([]);
  const [isLoading, setIsLoading] = useState(false);
  const [visible, setVisible] = useState(null);
-
+ const [tgChatId, setTgChatId] = useState(null);
 
     useEffect(()=>{
       const tg = window.Telegram.WebApp;
@@ -22,7 +22,8 @@ export default function UsersControl() {
       } 
        tg.BackButton.onClick(btnBackClick);
 
-       const tgChatId = tg.initDataUnsafe?.user?.id;
+      const chatId = tg.initDataUnsafe?.user?.id;
+      setTgChatId(chatId);
        
            async function users() {
         try {
