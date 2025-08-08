@@ -49,30 +49,49 @@ export default function UsersControl() {
       true: "Администратор",
       false: "Клиент"
    };
-     const flagSwitch = async (user)=>{
-        try {
-            const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-            NProgress.start();
-            await fetch(`/api/user/admin?chatId=${chatId}`,{
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body:JSON.stringify({ chatId: user.chatId }),
-            });
-            const response = await fetch(`/api/user`);
-            const data = await response.json();
-            setResult(data);
-            toast.success(`${user.isAdmin?
-                 "Права администратора удалены"
-                  :
-                 "Права администратора выданы"}`);
-                 NProgress.done();
-        } catch (error) {
-                toast.error("Ошибка обновления прав");
-              console.error(error);
-        }
-     };
+
+   
+     const flagSwitch = async (user) => {
+  try {
+    const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+
+    if (!chatId) {
+      toast.error("Chat ID не найден");
+      return;
+    }
+
+    NProgress.start();
+
+    await fetch(`/api/user/admin?chatId=${chatId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ chatId: user.chatId }),
+    });
+
+    const response = await fetch(`/api/user?chatId=${chatId}`);
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      throw new Error("Ожидался массив пользователей");
+    }
+
+    setResult(data);
+
+    toast.success(
+      user.isAdmin
+        ? "Права администратора удалены"
+        : "Права администратора выданы"
+    );
+  } catch (error) {
+    toast.error("Ошибка обновления прав");
+    console.error(error);
+  } finally {
+    NProgress.done();
+  }
+};
+
 
 
     return  <div className={classes.container__users}>
