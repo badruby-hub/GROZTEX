@@ -27,7 +27,10 @@ export default function UsersControl() {
         try {
              const chatId = tg.initDataUnsafe?.user?.id;
             setIsLoading(true);
-            const response = await fetch(`/api/user?chatId=${chatId}`,{
+            const response = await fetch(`/api/user`,{
+                headers: {
+                "x-user-chatid": chatId,
+               },
             });
             const data = await response.json();
             setResult(data);
@@ -50,7 +53,7 @@ export default function UsersControl() {
       false: "Клиент"
    };
 
-   
+
      const flagSwitch = async (user) => {
   try {
     const chatId = window.Telegram.WebApp.initDataUnsafe?.user?.id;
