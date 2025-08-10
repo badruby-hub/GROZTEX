@@ -9,6 +9,8 @@ export default function Valuation() {
   const [sell,setSell] = useState(null);
 
   useEffect(() => {
+    console.log("API URL:", apiMosca);
+
         const tg = window.Telegram.WebApp;
            tg.BackButton.show();
   
