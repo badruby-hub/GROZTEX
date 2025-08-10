@@ -5,8 +5,6 @@ import BtnBackHome from "@/components/Button/BtnBackHome"
 import toast from "react-hot-toast";
 
 
-const apiMosca = process.env.NEXT_PUBLIC_API_WELL_MOSCA;
-
 
 export default function Valuation() {
 
@@ -26,12 +24,12 @@ export default function Valuation() {
 
     const fetchWell = async ()=>{
         try {
-          const response = await fetch(apiMosca);
+          const response = await fetch("/api/well-rate");
           const data = await response.json();
           const apiBuy = parseFloat(data.buy);
           const apiSell = parseFloat(data.sell);
-          setBuy((apiBuy + 0.5).toFixed(2));
-          setSell((apiSell - 0.5).toFixed(2));
+          setBuy((apiBuy - 0.5).toFixed(2));
+          setSell((apiSell + 0.5).toFixed(2));
         } catch (error) {
           toast.error("не удалось получить курс, обратитесь в поддержку ", error)
         }
@@ -52,11 +50,11 @@ export default function Valuation() {
         <h1 className={classes.zagolovok}>КУРС USDT</h1>
           <div className={classes.container__buy}>
             <p className={classes.buy}>Покупка</p>
-            <p className={classes.well}>{buy}₽</p>
+            <p className={classes.well}>{sell}₽</p>
           </div>
           <div className={classes.container__sell}>
             <p className={classes.sell}>Продажа</p>
-            <p className={classes.well}>{sell} ₽</p>
+            <p className={classes.well}>{buy} ₽</p>
           </div>
           <p>Мы не берём никаких дополнительных комиссий с Вас</p>
           <BtnBackHome/>
