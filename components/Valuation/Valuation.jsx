@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import classes from "./valuation.module.css"
 import BtnBackHome from "@/components/Button/BtnBackHome"
 import toast from "react-hot-toast";
+
+
 const apiMosca = process.env.NEXT_PUBLIC_API_WELL_MOSCA;
+
+
 export default function Valuation() {
+
   const [buy,setBuy] = useState(null);
   const [sell,setSell] = useState(null);
 
   useEffect(() => {
-    console.log("API URL:", apiMosca);
-
         const tg = window.Telegram.WebApp;
            tg.BackButton.show();
   
@@ -48,7 +51,7 @@ export default function Valuation() {
       <div className={classes.container__valuation}>
         <h1 className={classes.zagolovok}>КУРС USDT</h1>
           <div className={classes.container__buy}>
-            <p className={classes.buy}>Покупкаа</p>
+            <p className={classes.buy}>Покупка</p>
             <p className={classes.well}>{buy}₽</p>
           </div>
           <div className={classes.container__sell}>
