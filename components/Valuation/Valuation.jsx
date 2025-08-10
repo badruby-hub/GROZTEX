@@ -48,7 +48,7 @@ export default function Valuation() {
       <div className={classes.container__valuation}>
         <h1 className={classes.zagolovok}>КУРС USDT</h1>
           <div className={classes.container__buy}>
-            <p className={classes.buy}>Покупка</p>
+            <p className={classes.buy}>Покупкаа</p>
             <p className={classes.well}>{buy}₽</p>
           </div>
           <div className={classes.container__sell}>
