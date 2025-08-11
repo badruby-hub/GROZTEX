@@ -163,7 +163,6 @@ export default function Exchange() {
               },
             body: JSON.stringify(payload),
             });
-
              if (!resRequest.ok) throw new Error("Ошибка создания заявки");
 
              const createdRequest = await resRequest.json();
@@ -172,6 +171,7 @@ export default function Exchange() {
             if(selectBtnBuy){
                 walletInfo = `Сеть: TRON (TRC20)\nНомер кошелька: ${addressTron}`
                }
+
 const applicationForm = `
 Заявка (${number}) на ${selectBtnValue}
 Сумма: ${sum}₽
@@ -218,13 +218,6 @@ const notificationForm = `
                   text: notificationForm,
                 })
               })
-              await fetch("api/requests",{
-               method: "POST",
-               headers: {
-                "Content-Type": "application/json" 
-              },
-               body: JSON.stringify(payload),
-              });
               toast.success("Заявка успешно отправлена");
               form.reset();
               resetForm();
