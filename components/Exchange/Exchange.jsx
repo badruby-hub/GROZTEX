@@ -146,6 +146,7 @@ export default function Exchange() {
              const payload = {
                     authorId: chatId, 
                     status: "PENDING",
+                     sum: sum,
                    };
             const form = event.target;
             const {first_name, last_name, phone, sum, addressTron} = Object.fromEntries(new FormData(form).entries());
@@ -179,7 +180,6 @@ const notificationForm = `
 
             setIsLoading(true);
             
-            console.log(`${applicationForm}`)
             try {
               let response = await fetch(API,{
                 method: "POST",

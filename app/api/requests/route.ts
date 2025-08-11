@@ -81,21 +81,23 @@ export async function POST(req: NextRequest) {
       if (req.method === "POST") {
          try {
             const body = await req.json();
-            const {authorId, status} = body;
+            const {authorId, status, sum } = body;
 
-            if (!authorId) {
-            return NextResponse.json({ error: "number и authorId обязательны" }, { status: 400 });
+            if (!authorId || sum === undefined) {
+            return NextResponse.json({ error: " sum и authorId обязательны" }, { status: 400 });
            }
 
             const number = generateRandomNumber();
             const numberBigInt = BigInt(number);
             const authorIdBigInt = BigInt(authorId);
+            const sumFloat = parseFloat(sum);
 
              const newRequest = await prisma.request.create({
       data: {
         number: numberBigInt,
         authorId: authorIdBigInt,
         status: status || "PENDING",
+        sum: sumFloat,
       },
     });
 

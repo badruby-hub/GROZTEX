@@ -13,6 +13,7 @@ model Request {
   createdAt DateTime      @default(now()) @db.Timestamp(0)
   status    RequestStatus @default(PENDING)
   authorId  BigInt
+  sum       Float?
   User      User          @relation(fields: [authorId], references: [chatId])
 }
 
