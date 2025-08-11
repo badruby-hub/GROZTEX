@@ -148,6 +148,7 @@ GROZTEX`;
                 {statusMap[req.status]}
             </p> 
             <p className={classes.number}>Номер заявки: {req.number}</p>
+            <p className={classes.number}>Сумма: {req.sum}</p>
             <p className={classes.number}>
               Имя отправителя: {req.User?.firstName || "Пусто"} 
               Фамилия {req.User?.lastName || "Пусто"}
