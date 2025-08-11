@@ -148,6 +148,12 @@ GROZTEX`;
                 {statusMap[req.status]}
             </p> 
             <p className={classes.number}>Номер заявки: {req.number}</p>
+            <p className={classes.number}>
+              Имя отправителя: {req.User?.firstName || "Пусто"} {req.User?.lastName || "Пусто"}
+            </p>
+            <p className={classes.number}>
+              Ник: {req.User?.userName || "Пусто"}
+            </p>
             </div>
             </div>
               {isAdmin && req.status === "PENDING" && (

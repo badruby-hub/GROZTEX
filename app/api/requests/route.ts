@@ -4,57 +4,70 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 
-export  async function GET(req: NextRequest) {
-      if (req.method === "GET") {
-         try {
-        const { searchParams } = new URL(req.url);
-        const admin = searchParams.get("admin");
-         const authorIdParam = searchParams.get("authorId");
-        if(admin === "true"){
-            const requests = await prisma.request.findMany({
-           
-             orderBy: {
-             createdAt: "desc",
-          },
-            });
-             const safeRequests = requests.map((r) => ({...r,
-             number: r.number.toString(),
-             authorId: r.authorId.toString(),
-          }));
-            return NextResponse.json(safeRequests, { status: 200 });
-        }
+export async function GET(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const admin = searchParams.get("admin");
+    const authorIdParam = searchParams.get("authorId");
 
+    if (admin === "true") {
+      const requests = await prisma.request.findMany({
+        orderBy: { createdAt: "desc" },
+        include: { User: true },
+      });
 
-       
-      if (!authorIdParam) {
-        return NextResponse.json({ error: "authorId обязателен" }, { status: 400 });
-      }
+      const safeRequests = requests.map((r) => ({
+        ...r,
+        number: r.number.toString(),
+        authorId: r.authorId.toString(),
+        User: r.User
+          ? {
+              ...r.User,
+              chatId: r.User.chatId.toString(),
+            }
+          : null,
+      }));
 
-        const authorId = BigInt(authorIdParam);
+      return NextResponse.json(safeRequests, { status: 200 });
+    }
 
- 
+    if (!authorIdParam) {
+      return NextResponse.json(
+        { error: "authorId обязателен" },
+        { status: 400 }
+      );
+    }
 
-            const requests = await prisma.request.findMany({
-           where:{
-               authorId: authorId
-           },
-             orderBy: {
-           createdAt: "desc",
-  },
-            });
-             const safeRequests = requests.map((r) => ({...r,
-             number: r.number.toString(),
-             authorId: r.authorId.toString(),
+    const authorId = BigInt(authorIdParam);
+
+    const requests = await prisma.request.findMany({
+      where: { authorId },
+      orderBy: { createdAt: "desc" },
+      include: { User: true },
+    });
+
+    const safeRequests = requests.map((r) => ({
+      ...r,
+      number: r.number.toString(),
+      authorId: r.authorId.toString(),
+      User: r.User
+        ? {
+            ...r.User,
+            chatId: r.User.chatId.toString(),
+          }
+        : null,
     }));
-            return NextResponse.json(safeRequests, { status: 200 });
-         } catch (error) {
-            console.log(error);
-            return NextResponse.json({error: "Ошибка при получении постов"},{status: 500});
-         }finally{
-            await prisma.$disconnect();
-         }
-      }
 
+    return NextResponse.json(safeRequests, { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "Ошибка при получении постов" },
+      { status: 500 }
+    );
+  } finally {
+    await prisma.$disconnect();
+  }
 }
 
 

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const response = await fetch(process.env.NEXT_PUBLIC_API_WELL_MOSCA!);
     if (!response.ok) {
