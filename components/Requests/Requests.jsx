@@ -81,9 +81,14 @@ useEffect(() => {
       REJECTED: "❌"
    };
 
-
+   function formatSumWithSpaces(sum) {
+  return sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
 
   async function updateStatus(number, status) {
+
+
+
   
 
     const statusMessageMap = {
@@ -148,7 +153,7 @@ GROZTEX`;
                 {statusMap[req.status]}
             </p> 
             <p className={classes.number}>Номер заявки: {req.number}</p>
-            <p className={classes.sum}>Сумма: {req.sum || "Пусто"}</p>
+            <p className={classes.sum}>Сумма: {req.sum ? formatSumWithSpaces(req.sum) : "Пусто"}</p>
             <p className={classes.firstName}>
               Имя: {req.User?.firstName || "Пусто"} 
             </p>

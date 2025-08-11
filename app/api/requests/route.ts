@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
       if (req.method === "POST") {
          try {
             const body = await req.json();
-            const {authorId, status, sum } = body;
+            const {authorId, status, sum, firstName, lastName } = body;
 
             if (!authorId || sum === undefined) {
             return NextResponse.json({ error: " sum и authorId обязательны" }, { status: 400 });
@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
             const number = generateRandomNumber();
             const numberBigInt = BigInt(number);
             const authorIdBigInt = BigInt(authorId);
-            const sumFloat = parseFloat(sum);
+            const sumFloat = parseFloat(sum.replace(/\s/g, ''));
 
              const newRequest = await prisma.request.create({
       data: {
@@ -98,6 +98,8 @@ export async function POST(req: NextRequest) {
         authorId: authorIdBigInt,
         status: status || "PENDING",
         sum: sumFloat,
+        firstName,
+        lastName,
       },
     });
 

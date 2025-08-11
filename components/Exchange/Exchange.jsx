@@ -146,7 +146,9 @@ export default function Exchange() {
              const payload = {
                     authorId: chatId, 
                     status: "PENDING",
-                     sum: sum,
+                    sum: sum,
+                    firstName: first_name,
+                    lastName: last_name,
                    };
             const form = event.target;
             const {first_name, last_name, phone, sum, addressTron} = Object.fromEntries(new FormData(form).entries());
