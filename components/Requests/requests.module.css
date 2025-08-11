@@ -60,7 +60,11 @@
     color: gray;
 }
 
-.number {
+.number,
+.sum,
+.firstName,
+.lastName,
+.userName {
     color: white;
 }
 
