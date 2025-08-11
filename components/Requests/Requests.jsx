@@ -155,13 +155,16 @@ GROZTEX`;
             <p className={classes.number}>Номер заявки: {req.number}</p>
             <p className={classes.sum}>Сумма: {req.sum ? formatSumWithSpaces(req.sum) : "Пусто"}</p>
             <p className={classes.firstName}>
-              Имя: {req.User?.firstName || "Пусто"} 
+              Имя: {req.firstName || "Пусто"} 
             </p>
-            <p className={classes.firstName}>
-               Фамилия: {req.User?.lastName || "Пусто"}
+            <p className={classes.lastName}>
+               Фамилия: {req.lastName || "Пусто"}
             </p>
             <p className={classes.userName}>
-              Ник: {req.User?.userName || "Пусто"}
+              Ник tg: {req.User?.userName || "Пусто"}
+            </p>
+            <p className={classes.firstNametg}>
+              Имя tg: {req.User?.firstName || "Пусто"}
             </p>
             </div>
             </div>

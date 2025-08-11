@@ -64,7 +64,8 @@
 .sum,
 .firstName,
 .lastName,
-.userName {
+.userName,
+.firstNametg {
     color: white;
 }
 
