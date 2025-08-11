@@ -143,23 +143,37 @@ export default function Exchange() {
               return
             }
 
-             const payload = {
+            const form = event.target;
+            const {first_name, last_name, phone, sum, addressTron} = Object.fromEntries(new FormData(form).entries());
+               
+            const payload = {
                     authorId: chatId, 
                     status: "PENDING",
                     sum: sum,
                     firstName: first_name,
                     lastName: last_name,
                    };
-            const form = event.target;
-            const {first_name, last_name, phone, sum, addressTron} = Object.fromEntries(new FormData(form).entries());
+                   
             let walletInfo = '';
-               
+
+            const resRequest = await fetch("api/requests", {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+              },
+            body: JSON.stringify(payload),
+            });
+
+             if (!resRequest.ok) throw new Error("Ошибка создания заявки");
+
+             const createdRequest = await resRequest.json();
+             const number = createdRequest.number; 
             
             if(selectBtnBuy){
                 walletInfo = `Сеть: TRON (TRC20)\nНомер кошелька: ${addressTron}`
                }
 const applicationForm = `
-Заявка на ${selectBtnValue}
+Заявка (${number}) на ${selectBtnValue}
 Сумма: ${sum}₽
 Имя: ${first_name}
 Фамилия: ${last_name}
@@ -170,7 +184,7 @@ ${walletInfo}`;
 
 
 const notificationForm = `
-Оформлена заявка на ${selectBtnValue}.
+Оформлена заявка (${number}) на ${selectBtnValue}.
 Сумма в размере: ${sum}₽.
 В ближайшее время с Вами свяжется наш специалист для дальнейшего обсуждения.
 Спасибо за обращение!
