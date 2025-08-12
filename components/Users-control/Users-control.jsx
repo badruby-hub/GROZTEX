@@ -17,7 +17,7 @@ export default function UsersControl() {
     useEffect(() => {
       const handler = setTimeout(() => {
       setDebouncedSearch(search.trim());
-    }, 300); // 300 мс пауза
+    }, 600); // 600 мс пауза
 
     return () => {
       clearTimeout(handler);

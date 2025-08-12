@@ -129,11 +129,16 @@
   border-color: #008aa0;
 }
 
-.zagolovok__search,
-.zagolovok__count__users {
+.zagolovok__search {
   margin: 0 0 0 15px;
 }
 
+.zagolovok__count__users{
+
+    margin: 10px 0 0 15px ;
+}
+
 .count__users {
+  padding-left: 5px;
   color: gray;
 }
