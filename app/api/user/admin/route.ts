@@ -1,13 +1,13 @@
 import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
-  const SUPER_ADMINS = process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_IDS
-  ?.split(",")
-  .map(id => id.trim());
 
 export async function GET(req: NextRequest) {
 
-  
+    const SUPER_ADMINS = process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_IDS
+  ?.split(",")
+  .map(id => id.trim());
+
   try {
     let chatId = req.headers.get("x-user-chatid");
 
@@ -43,6 +43,11 @@ export async function GET(req: NextRequest) {
 
 export async function PATCH(req: NextRequest) {
   try {
+
+      const SUPER_ADMINS = process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_IDS
+  ?.split(",")
+  .map(id => id.trim());
+
     const url = new URL(req.url);
     const adminChatId = url.searchParams.get("chatId");
 

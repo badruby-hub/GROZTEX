@@ -1,3 +1,14 @@
 .zagolovok {
-  margin: 20px 0px;
+    margin: 20px 0px;
+}
+
+
+.container__blocked {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: flex-start;
+    position: relative;
+    color: white;
+
 }

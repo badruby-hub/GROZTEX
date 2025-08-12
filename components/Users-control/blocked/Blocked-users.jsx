@@ -21,8 +21,8 @@ export default function BlockedUsers() {
 
     
        }, []);
-  return <>
+  return <div className={classes.container__blocked}>
     <h1 className={classes.zagolovok}>Заблокированные пользователи</h1>
      <BtnBackHome/>
-     </>    
+     </div>    
 }
