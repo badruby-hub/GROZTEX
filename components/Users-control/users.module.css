@@ -84,13 +84,16 @@
 
 }
 
-.btn__menu{
+.btn__menu {
   list-style-type: none;
+  cursor: default;
+  padding: 10px;
 }
 
 
 .btn__menu>li {
   height: 10px;
+  user-select: none;
   font-size: 20px;
 }
 
@@ -104,4 +107,26 @@
   position: absolute;
   top: 60px;
   right: 0px;
+}
+
+.search__input {
+  color: white;
+  font-size: 20px;
+  background: rgb(13 150 180 / 30%);
+  border: none;
+  margin: 19px auto;
+  margin-top: 0;
+  width: 350px;
+  height: 37px;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.search__input:focus-visible {
+  outline: none;
+  border-color: #008aa0;
+}
+
+.zagolovok__search{
+  margin: 0 0 0 35px;
 }

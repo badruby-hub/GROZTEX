@@ -9,8 +9,21 @@ import BtnBackHome from "../Button/BtnBackHome";
 
 export default function UsersControl() {
  const [result, setResult] = useState([]);
+ const [search, setSearch] = useState("");
+ const [debouncedSearch, setDebouncedSearch] = useState("");
  const [isLoading, setIsLoading] = useState(false);
  const [visible, setVisible] = useState(null);
+    
+    useEffect(() => {
+      const handler = setTimeout(() => {
+      setDebouncedSearch(search.trim());
+    }, 300); // 300 мс пауза
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search]);
+
 
     useEffect(()=>{
       const tg = window.Telegram.WebApp;
@@ -45,10 +58,7 @@ export default function UsersControl() {
          };
 
     },[]);
-       const status = {
-      true: "Администратор",
-      false: "Клиент"
-   };
+
 
    
      const flagSwitch = async (user) => {
@@ -96,13 +106,42 @@ const superAdmins = (process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_IDS || "")
   .split(",")
   .map(id => id.trim());
 
+const getUserRoleLabel = (user) => {
+  if (superAdmins.includes(user.chatId.toString())) {
+    return "Глобальный администратор";
+  }
+  if (user.isAdmin) {
+    return "Администратор";
+  }
+  return "Клиент";
+};
+
+  const filteredUsers = result.filter((user) => {
+    const query = debouncedSearch.toLowerCase();
+    return (
+      user.firstName?.toLowerCase().includes(query) ||
+      user.lastName?.toLowerCase().includes(query) ||
+      user.userName?.toLowerCase().includes(query) ||
+      user.chatId?.toString().includes(query)
+    );
+  });
+
     return  <div className={classes.container__users}>
          <h1 className={classes.zagolovok}>Карточки пользователей</h1>
+         <h3 className={zagolovok__search}>поиск пользователей</h3>
+         <input 
+         className={classes.search__input} 
+         type="search"
+         maxLength="15" 
+         value={search} 
+         onChange={(e) => setSearch(e.target.value)}
+         placeholder="Введите данные пользователя"/>
+         <hr />
          {isLoading? <Loader/> : result.map((user)=>{
          return <div className={classes.card} key={user.id}>
       <div className={classes.cardHeader}>
         <span className={classes.role}>
-          {status[user.isAdmin]}: <span className={classes.userName}>@{user.userName || "Пусто"}</span>  
+          {getUserRoleLabel(user)}: <span className={classes.userName}>@{user.userName || "Пусто"}</span>  
         </span>
         <div>{!superAdmins.includes(user.chatId.toString()) && (  
             <>
