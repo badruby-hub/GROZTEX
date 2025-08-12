@@ -137,7 +137,7 @@ const getUserRoleLabel = (user) => {
          onChange={(e) => setSearch(e.target.value)}
          placeholder="Введите данные пользователя"/>
          <hr />
-         {isLoading? <Loader/> : result.map((user)=>{
+         {isLoading? <Loader/> : filteredUsers.map((user)=>{
          return <div className={classes.card} key={user.id}>
       <div className={classes.cardHeader}>
         <span className={classes.role}>
