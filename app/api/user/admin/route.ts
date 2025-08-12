@@ -6,7 +6,7 @@ export async function GET(req: NextRequest) {
 
     const SUPER_ADMINS = process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_IDS
   ?.split(",")
-  .map(id => id.trim());
+  .map(id => BigInt(id.trim()));
 
   try {
     let chatId = req.headers.get("x-user-chatid");
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "chatId обязателен" }, { status: 400 });
     }
 
-    if (SUPER_ADMINS?.includes(chatId.toString())) {
+    if (SUPER_ADMINS?.includes(BigInt(chatId))) {
       await prisma.user.updateMany({
         where: { chatId: BigInt(chatId), isAdmin: false },
         data: { isAdmin: true },
@@ -46,7 +46,7 @@ export async function PATCH(req: NextRequest) {
 
       const SUPER_ADMINS = process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_IDS
   ?.split(",")
-  .map(id => id.trim());
+  .map(id => BigInt(id.trim()));
 
     const url = new URL(req.url);
     const adminChatId = url.searchParams.get("chatId");
@@ -66,7 +66,7 @@ export async function PATCH(req: NextRequest) {
     const body = await req.json();
     const targetChatId = BigInt(body.chatId);
 
- if (SUPER_ADMINS?.includes(targetChatId.toString())) {
+ if (SUPER_ADMINS?.includes(targetChatId)) {
       return NextResponse.json({ error: "Нельзя изменить права супер-администратора" }, { status: 403 });
     }
 
