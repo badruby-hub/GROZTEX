@@ -84,12 +84,14 @@
 
 }
 
-.btn__menu {
-  list-style-type: disc;
+.btn__menu{
+  list-style-type: none;
 }
+
 
 .btn__menu>li {
   height: 10px;
+  font-size: 20px;
 }
 
 

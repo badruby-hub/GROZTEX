@@ -107,9 +107,9 @@ const superAdmins = (process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_IDS || "")
         <div>{!superAdmins.includes(user.chatId.toString()) && (  
             <>
          <ol onClick={()=>{setVisible(prev => (prev === user.id ? null : user.id))}} className={classes.btn__menu}>
-          <li></li>
-          <li></li>
-          <li></li>
+          <li>•</li>
+          <li>•</li>
+          <li>•</li>
         </ol>
        { visible === user.id && <div className={classes.block__menu}>
         <button onClick={()=>{flagSwitch(user), setVisible(null)}} className={classes.btn__give}>{user.isAdmin ? "Удалить права": "Дать права"}</button>
