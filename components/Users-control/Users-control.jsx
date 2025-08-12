@@ -104,20 +104,19 @@ const superAdmins = (process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_IDS || "")
         <span className={classes.role}>
           {status[user.isAdmin]}: <span className={classes.userName}>@{user.userName || "Пусто"}</span>  
         </span>
-        <div>  
+        <div>{!superAdmins.includes(user.chatId.toString()) && (  
+            <>
          <ol onClick={()=>{setVisible(prev => (prev === user.id ? null : user.id))}} className={classes.btn__menu}>
           <li></li>
           <li></li>
           <li></li>
         </ol>
-       { visible === user.id && <div className={classes.block__menu}>{!superAdmins.includes(user.chatId.toString()) && (
-        <>
+       { visible === user.id && <div className={classes.block__menu}>
         <button onClick={()=>{flagSwitch(user), setVisible(null)}} className={classes.btn__give}>{user.isAdmin ? "Удалить права": "Дать права"}</button>
         <button onClick={()=>{setVisible(null)}} className={classes.add__block}>Заблокировать</button>
-         </>
-         )}
-         
           </div>}
+             </>
+         )}
         </div>
       </div>
       <div className={classes.block__main}>
