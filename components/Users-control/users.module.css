@@ -43,6 +43,9 @@
 }
 
 .role {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   padding: 4px 10px;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.2);
@@ -114,8 +117,7 @@
   font-size: 20px;
   background: rgb(13 150 180 / 30%);
   border: none;
-  margin: 19px auto;
-  margin-top: 0;
+  margin: 5px 0 15px 15px;
   width: 350px;
   height: 37px;
   border-radius: 6px;
@@ -127,6 +129,11 @@
   border-color: #008aa0;
 }
 
-.zagolovok__search{
-  margin: 0 0 0 35px;
+.zagolovok__search,
+.zagolovok__count__users {
+  margin: 0 0 0 15px;
+}
+
+.count__users {
+  color: gray;
 }
