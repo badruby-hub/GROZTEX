@@ -35,7 +35,7 @@ export default function AdminHeader(){
                   <Link className={classes.link} href="/users-control">Управление пользователями</Link>
                </li>
                <li className={`${classes.blocked__users} ${classes.li}`}>
-                  <Link className={classes.link} href="/blocked">Заблокированные</Link>
+                  <Link className={classes.link} href="/users-control/blocked">Заблокированные</Link>
                </li>
                <li className={`${classes.requests} ${classes.li}`}>
                   <Link className={classes.link} href="/requests">Все заявки</Link>
