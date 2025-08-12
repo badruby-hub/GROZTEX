@@ -128,7 +128,7 @@ const getUserRoleLabel = (user) => {
 
     return  <div className={classes.container__users}>
          <h1 className={classes.zagolovok}>Карточки пользователей</h1>
-         <h3 className={zagolovok__search}>поиск пользователей</h3>
+         <h3 className={classes.zagolovok__search}>поиск пользователей</h3>
          <input 
          className={classes.search__input} 
          type="search"
