@@ -81,7 +81,7 @@
   font-size: 20px;
   background: rgb(13 150 180 / 30%);
   border: none;
-  margin: 5px 0 15px 15px;
+  margin: 5px 0 15px 0;
   width: 350px;
   height: 37px;
   border-radius: 6px;
@@ -93,16 +93,12 @@
   border-color: #008aa0;
 }
 
-.zagolovok__search {
-  margin: 0 0 0 15px;
-}
-
 .zagolovok__count__users{
 
-    margin: 10px 0 0 15px ;
+    margin: 10px 0 0 0 ;
 }
 
 .count__users {
-  padding-left: 5px;
+  padding-left: 0;
   color: gray;
 }

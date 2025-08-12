@@ -210,7 +210,7 @@ GROZTEX`;
                )}
            </div>
           })}
-           {!isLoading && <BtnBackHome />}
         </div>
+      {!isLoading && <BtnBackHome />}
     </div>
 }
