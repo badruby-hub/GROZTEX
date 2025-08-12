@@ -10,10 +10,23 @@ import Loader from "@/components/Loader/Loader";
 
 export default function Requests() {
    const [requests, setRequests] = useState([]);
+   const [search, setSearch] = useState("");
+   const [debouncedSearch, setDebouncedSearch] = useState("");
    const [isAdmin, setIsAdmin] = useState(false);
    const [isLoading, setIsLoading] = useState(false);
    const token = process.env.NEXT_PUBLIC_BOT_TOKEN;
    const API = `https://api.telegram.org/bot${token}/sendMessage`;
+
+       useEffect(() => {
+      const handler = setTimeout(() => {
+      setDebouncedSearch(search.trim());
+    }, 600); // 600 мс пауза
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search]);
+
 useEffect(() => {
   const tg = window.Telegram.WebApp;
   tg.BackButton.show();
@@ -133,11 +146,32 @@ GROZTEX`;
    }
   }
 
+    const filteredRequests = requests.filter((req) => {
+    const query = debouncedSearch.toLowerCase();
+    return (
+      req.firstName?.toLowerCase().includes(query) ||
+      req.lastName?.toLowerCase().includes(query) ||
+      req.User?.userName?.toLowerCase().includes(query) ||
+      req.User?.firstName?.toLowerCase().includes(query) ||
+      req.number?.toString().includes(query)
+    );
+  });
+
     return <div className={classes.container__requests}>
       
         <div className={classes.block__req}>
           <h1 className={classes.zagolovok}>Заявки</h1>
-          {isLoading? <Loader/> : requests.map((req)=>{
+           <h3 className={classes.zagolovok__search}>поиск пользователей</h3>
+         <input 
+         className={classes.search__input} 
+         type="search"
+         maxLength="15" 
+         value={search} 
+         onChange={(e) => setSearch(e.target.value)}
+         placeholder="Введите данные заявки"/>
+         <hr />
+          <h4 className={classes.zagolovok__count__users}>Всего заявок:<span className={classes.count__users}>{requests.length}</span></h4>
+          {isLoading? <Loader/> : filteredRequests.map((req)=>{
              const dateObj = new Date(req.createdAt);
              return <div className={classes.request__info__box} key={req.number}>
                <p className={classes.date}>{dateObj.toLocaleDateString("ru-RU", {

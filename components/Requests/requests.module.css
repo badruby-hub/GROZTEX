@@ -73,3 +73,36 @@
     margin: 30px 0;
     font-size: 35px;
 }
+
+
+
+.search__input {
+  color: white;
+  font-size: 20px;
+  background: rgb(13 150 180 / 30%);
+  border: none;
+  margin: 5px 0 15px 15px;
+  width: 350px;
+  height: 37px;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.search__input:focus-visible {
+  outline: none;
+  border-color: #008aa0;
+}
+
+.zagolovok__search {
+  margin: 0 0 0 15px;
+}
+
+.zagolovok__count__users{
+
+    margin: 10px 0 0 15px ;
+}
+
+.count__users {
+  padding-left: 5px;
+  color: gray;
+}
