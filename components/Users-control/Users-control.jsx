@@ -108,10 +108,14 @@ export default function UsersControl() {
           <li></li>
           <li></li>
         </ol>
-       { visible === user.id && <div className={classes.block__menu}>
+       { visible === user.id && <div className={classes.block__menu}>{user.chatId !== process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_ID && (
+        <>
         <button onClick={()=>{flagSwitch(user), setVisible(null)}} className={classes.btn__give}>{user.isAdmin ? "Удалить права": "Дать права"}</button>
         <button onClick={()=>{setVisible(null)}} className={classes.add__block}>Заблокировать</button>
-        </div>}
+         </>
+         )}
+         
+          </div>}
         </div>
       </div>
       <div className={classes.block__main}>

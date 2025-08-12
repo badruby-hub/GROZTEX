@@ -1,8 +1,13 @@
 import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
+  const SUPER_ADMINS = process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_IDS
+  ?.split(",")
+  .map(id => id.trim());
 
 export async function GET(req: NextRequest) {
+
+  
   try {
     let chatId = req.headers.get("x-user-chatid");
 
@@ -13,6 +18,13 @@ export async function GET(req: NextRequest) {
 
     if (!chatId) {
       return NextResponse.json({ error: "chatId обязателен" }, { status: 400 });
+    }
+
+    if (SUPER_ADMINS?.includes(chatId.toString())) {
+      await prisma.user.updateMany({
+        where: { chatId: BigInt(chatId), isAdmin: false },
+        data: { isAdmin: true },
+      });
     }
 
     const user = await prisma.user.findUnique({
@@ -48,6 +60,10 @@ export async function PATCH(req: NextRequest) {
 
     const body = await req.json();
     const targetChatId = BigInt(body.chatId);
+
+ if (SUPER_ADMINS?.includes(targetChatId.toString())) {
+      return NextResponse.json({ error: "Нельзя изменить права супер-администратора" }, { status: 403 });
+    }
 
     const targetUser = await prisma.user.findUnique({
       where: { chatId: targetChatId },
