@@ -92,7 +92,9 @@ export default function UsersControl() {
   }
 };
 
-
+const superAdmins = (process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_IDS || "")
+  .split(",")
+  .map(id => id.trim());
 
     return  <div className={classes.container__users}>
          <h1 className={classes.zagolovok}>Карточки пользователей</h1>
@@ -108,7 +110,7 @@ export default function UsersControl() {
           <li></li>
           <li></li>
         </ol>
-       { visible === user.id && <div className={classes.block__menu}>{user.chatId !== process.env.NEXT_PUBLIC_SUPER_ADMIN_CHAT_ID && (
+       { visible === user.id && <div className={classes.block__menu}>{!superAdmins.includes(user.chatId.toString()) && (
         <>
         <button onClick={()=>{flagSwitch(user), setVisible(null)}} className={classes.btn__give}>{user.isAdmin ? "Удалить права": "Дать права"}</button>
         <button onClick={()=>{setVisible(null)}} className={classes.add__block}>Заблокировать</button>
