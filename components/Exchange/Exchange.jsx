@@ -9,7 +9,7 @@ import Link from "next/link";
 
 
 const token = process.env.NEXT_PUBLIC_BOT_TOKEN;
-const CHAT_ID_TG = process.env.NEXT_PUBLIC_CHAT_ID;
+const CHAT_ID_TG = process.env.NEXT_PUBLIC_CHAT_ID.split(",");
 const API = `https://api.telegram.org/bot${token}/sendMessage`;
 
 export default function Exchange() {
@@ -197,16 +197,16 @@ const notificationForm = `
             setIsLoading(true);
             
             try {
-              let response = await fetch(API,{
-                method: "POST",
-                headers:{
-                  'Content-Type':"application/json"
-                }, 
-                body: JSON.stringify({
-                  chat_id: CHAT_ID_TG,
-                  text: applicationForm,
-                })
-              });
+                for (const adminId of CHAT_ID_TG) {
+                   await fetch(API, {
+                   method: "POST",
+                   headers: { "Content-Type": "application/json" },
+                   body: JSON.stringify({
+                     chat_id: adminId,
+                     text: applicationForm,
+                    }),
+                });
+              }
               if(response.ok){
                 await fetch(API,{
                 method: "POST",
