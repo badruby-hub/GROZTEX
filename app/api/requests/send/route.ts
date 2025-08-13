@@ -1,20 +1,19 @@
-// pages/api/requests/telegram.ts
-import type { NextApiRequest, NextApiResponse } from "next";
-
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const CHAT_IDS = (process.env.CHAT_ID || "").split(",");
 const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
-  }
+type RequestBody = {
+  message: string;
+  notifyUserId?: string;
+};
 
+export async function POST(req: Request) {
   try {
-    const { message, notifyUserId } = req.body;
+    const body: RequestBody = await req.json();
+    const { message, notifyUserId } = body;
 
     if (!message) {
-      return res.status(400).json({ message: "Message is required" });
+      return new Response(JSON.stringify({ message: "Message is required" }), { status: 400 });
     }
 
     // Отправка админам
@@ -41,9 +40,9 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
       });
     }
 
-    return res.status(200).json({ success: true });
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
     console.error("Telegram API error:", error);
-    return res.status(500).json({ message: "Ошибка отправки сообщения" });
+    return new Response(JSON.stringify({ message: "Ошибка отправки сообщения" }), { status: 500 });
   }
 }
