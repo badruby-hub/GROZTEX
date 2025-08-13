@@ -5,7 +5,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const CHAT_IDS = (process.env.CHAT_ID || "").split(",");
 const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function POST(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     return res.status(200).json({ success: true });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Telegram API error:", error);
     return res.status(500).json({ message: "Ошибка отправки сообщения" });
   }
