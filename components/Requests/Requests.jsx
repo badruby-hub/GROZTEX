@@ -211,6 +211,6 @@ GROZTEX`;
            </div>
           })}
         </div>
-      {!isLoading && <BtnBackHome />}
+       <BtnBackHome />
     </div>
 }
