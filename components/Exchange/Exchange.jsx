@@ -192,13 +192,13 @@ const notificationForm = `
             setIsLoading(true);
             
             try {
-            const response =  await fetch("/api/requests/telegram", {
+            const response =  await fetch("/api/requests/send-email/telegram", {
                    method: "POST",
                    headers: { "Content-Type": "application/json" },
                    body: JSON.stringify({ message: applicationForm }),
                 });
               if(response.ok){
-                await fetch("/api/requests/telegram",{
+                await fetch("/api/requests/send-email/telegram",{
                 method: "POST",
                 headers:{
                   'Content-Type':"application/json"
