@@ -13,8 +13,8 @@
     font-size: 35px;
 }
 
-.container__form { 
-    margin-bottom:20px;
+.container__form {
+    margin-bottom: 20px;
 }
 
 .container__form select {
@@ -101,6 +101,7 @@
     background: none;
     border: none;
     color: white;
+    text-shadow: -0px 0px 7px rgba(255, 255, 255, 1);
     font-size: 20px;
     font-weight: 700;
     padding: 15px;
@@ -111,6 +112,7 @@
     background: none;
     border: none;
     color: white;
+    text-shadow: -0px 0px 7px rgba(255, 255, 255, 1);
     font-size: 20px;
     font-weight: 700;
     padding: 15px;
@@ -143,7 +145,8 @@
     width: 350px;
     height: 55px;
     border-radius: 10px;
-    background-color: rgba(19, 216, 197, 0.5);
+      text-shadow: -0px 0px 7px rgba(255, 255, 255, 1);
+    background-color: #24aba0cc;
     border: none;
     font-size: 20px;
     color: white;
@@ -151,68 +154,68 @@
 }
 
 .submit__btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
 
 .block__rules {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 .checkboxWrapper {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  user-select: none;
-  font-size: 13px;
-  line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 13px;
+    line-height: 1.4;
 }
 
 .hiddenCheckbox {
-  display: none;
+    display: none;
 }
 
 .roundCheckbox {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #00acc8;
-  border-radius: 50%;
-  position: relative;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00acc8;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
 }
 
 .roundCheckbox::after {
-  content: '';
-  width: 6px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-  opacity: 0;
-  transition: opacity 0.2s ease;
+    content: '';
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
-.hiddenCheckbox:checked + .roundCheckbox {
-  background-color: #00acc8;
-  border-color: #00acc8;
+.hiddenCheckbox:checked+.roundCheckbox {
+    background-color: #00acc8;
+    border-color: #00acc8;
 }
 
-.hiddenCheckbox:checked + .roundCheckbox::after {
-  opacity: 1;
+.hiddenCheckbox:checked+.roundCheckbox::after {
+    opacity: 1;
 }
 
 
-.link{
-    color:#18c6e1;
+.link {
+    color: #18c6e1;
 }

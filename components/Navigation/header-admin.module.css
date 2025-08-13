@@ -47,6 +47,7 @@
 .btn__close {
   display: block;
   text-decoration: none;
+  text-shadow: -0px 0px 7px rgba(255, 255, 255, 1);
   color: white;
   padding: 15px;
 }
@@ -61,7 +62,7 @@
 
 .li {
   user-select: none;
-  background-color: rgba(19, 216, 197, 0.5);
+  background-color:#24aba0cc;
   margin: 7px;
   border-radius: 10px;
   text-align: center;
