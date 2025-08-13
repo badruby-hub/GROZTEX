@@ -7,11 +7,6 @@ import {  useEffect, useState } from "react";
 import Link from "next/link";
 
 
-
-const token = process.env.NEXT_PUBLIC_BOT_TOKEN;
-const CHAT_ID_TG = process.env.NEXT_PUBLIC_CHAT_ID.split(",");
-const API = `https://api.telegram.org/bot${token}/sendMessage`;
-
 export default function Exchange() {
   const validCharsTron = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
   const [selectBtnBuy, setSelectBtnBuy] = useState(false);
@@ -197,25 +192,20 @@ const notificationForm = `
             setIsLoading(true);
             
             try {
-                for (const adminId of CHAT_ID_TG) {
-                   await fetch(API, {
+            const response =  await fetch("/api/requests/telegram", {
                    method: "POST",
                    headers: { "Content-Type": "application/json" },
-                   body: JSON.stringify({
-                     chat_id: adminId,
-                     text: applicationForm,
-                    }),
+                   body: JSON.stringify({ message: applicationForm }),
                 });
-              }
               if(response.ok){
-                await fetch(API,{
+                await fetch("/api/requests/telegram",{
                 method: "POST",
                 headers:{
                   'Content-Type':"application/json"
                 }, 
-                body: JSON.stringify({
-                  chat_id: USER_CHAT_ID_TG,
-                  text: notificationForm,
+                body: JSON.stringify({ 
+                  message: applicationForm,
+                  notifyUserId: USER_CHAT_ID_TG,
                 })
               })
               toast.success("Заявка успешно отправлена");
