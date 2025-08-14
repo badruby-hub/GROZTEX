@@ -5,17 +5,18 @@ const CHAT_IDS = (process.env.CHAT_ID || "").split(",");
 const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
 type RequestBody = {
-  message: string;
-  notifyUserId?: string;
+  adminMessage: string;
+  userMessage?: string;
+  userChatId?: string;
 };
 
 export async function POST(req: NextRequest) {
   try {
     const body: RequestBody = await req.json();
-    const { message, notifyUserId } = body;
+    const { adminMessage, userMessage, userChatId } = body;
 
-    if (!message) {
-      return new Response(JSON.stringify({ message: "Message is required" }), {
+    if (!adminMessage) {
+      return new Response(JSON.stringify({ message: "adminMessage is required" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
       });
@@ -26,19 +27,16 @@ export async function POST(req: NextRequest) {
       await fetch(TELEGRAM_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text: message }),
+        body: JSON.stringify({ chat_id: chatId, text: adminMessage }),
       });
     }
 
-    // Если нужно уведомить конкретного пользователя
-    if (notifyUserId) {
+    // Отправка пользователю
+    if (userMessage && userChatId) {
       await fetch(TELEGRAM_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: notifyUserId,
-          text: `Ваша заявка принята!\n\n${message}`,
-        }),
+        body: JSON.stringify({ chat_id: userChatId, text: userMessage }),
       });
     }
 

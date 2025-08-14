@@ -192,23 +192,16 @@ const notificationForm = `
             setIsLoading(true);
             
             try {
-            const response =  await fetch("/api/requests/send", {
-                   method: "POST",
-                   headers: { "Content-Type": "application/json" },
-                   body: JSON.stringify({ message: applicationForm }),
-                });
-              if(response.ok){
-                await fetch("/api/requests/send",{
+            await fetch("/api/requests/send", {
                 method: "POST",
-                headers:{
-                  'Content-Type':"application/json"
-                }, 
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
-                  message: applicationForm,
-                  notifyUserId: USER_CHAT_ID_TG,
-                })
-              })
-
+                   adminMessage: applicationForm,
+                   userMessage: notificationForm,
+                   userChatId: USER_CHAT_ID_TG
+                }),
+              });
+              if(response.ok){
               toast.success("Заявка успешно отправлена");
               form.reset();
               resetForm();
