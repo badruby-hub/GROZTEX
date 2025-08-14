@@ -192,7 +192,7 @@ const notificationForm = `
             setIsLoading(true);
             
             try {
-            await fetch("/api/requests/send", {
+           const response = await fetch("/api/requests/send", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 

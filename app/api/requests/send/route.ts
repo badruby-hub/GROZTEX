@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
       await fetch(TELEGRAM_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text: adminMessage }),
+        body: JSON.stringify({ chat_id: Number(chatId), text: adminMessage }),
       });
     }
 
