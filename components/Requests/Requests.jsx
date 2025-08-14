@@ -101,9 +101,6 @@ useEffect(() => {
   async function updateStatus(number, status) {
 
 
-
-  
-
     const statusMessageMap = {
         ACCEPTED: "✅ Ваша заявка принята!",
         REJECTED: "❌ Ваша заявка отклонена.",
@@ -111,10 +108,10 @@ useEffect(() => {
 
 
    try {
-        const res = await fetch(`/api/requests/${number}`, {
+        const res = await fetch(`/api/requests/sendUpdateRequests`, {
          method: "PATCH",
          headers: { "Content-Type": "application/json" },
-         body: JSON.stringify({ status }),
+         body: JSON.stringify({number, status}),
        });
        if(res.ok){
            const updated = await res.json();
@@ -128,7 +125,7 @@ ${statusMessageMap[status] || ""}
 
 С уважением,  
 GROZTEX`;
-           await fetch(API,{
+           await fetch("/api/requests/sendUpdateRequests",{
                 method: "POST",
                 headers:{
                   'Content-Type':"application/json"
