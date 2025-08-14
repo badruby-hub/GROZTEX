@@ -126,13 +126,13 @@ ${statusMessageMap[status] || ""}
 
 С уважением,  
 GROZTEX`;
-           await fetch(`api/requests/send/sendrequests`,{
+           await fetch(`/api/requests/send/sendrequests`,{
                 method: "POST",
                 headers:{
                   'Content-Type':"application/json"
                 }, 
                 body: JSON.stringify({
-                  chat_id: updated.authorId,
+                  chatId: updated.authorId,
                   text: notificationText,
                 })
               })
