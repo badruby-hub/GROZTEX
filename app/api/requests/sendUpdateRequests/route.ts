@@ -1,9 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 
+
+export async function PATCH(req: NextRequest) {
+  try {
+    const { number, status } = await req.json();
+
+    // логика обновления заявки в БД
+    const updated = { number, status, authorId: 123 }; // пример
+
+    return NextResponse.json(updated);
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ error: "Ошибка обновления заявки" }, { status: 500 });
+  }
+}
+
+
 export async function POST(req: NextRequest) {
   try {
     const { chat_id, text } = await req.json();
-
     const token = process.env.BOT_TOKEN;
     if (!token) return NextResponse.json({ error: "BOT_TOKEN не задан" }, { status: 500 });
 
