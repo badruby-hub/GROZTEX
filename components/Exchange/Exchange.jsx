@@ -208,6 +208,7 @@ const notificationForm = `
                   notifyUserId: USER_CHAT_ID_TG,
                 })
               })
+
               toast.success("Заявка успешно отправлена");
               form.reset();
               resetForm();
