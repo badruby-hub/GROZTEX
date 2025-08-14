@@ -14,8 +14,6 @@ export default function Requests() {
    const [debouncedSearch, setDebouncedSearch] = useState("");
    const [isAdmin, setIsAdmin] = useState(false);
    const [isLoading, setIsLoading] = useState(false);
-   const token = process.env.NEXT_PUBLIC_BOT_TOKEN;
-   const API = `https://api.telegram.org/bot${token}/sendMessage`;
 
        useEffect(() => {
       const handler = setTimeout(() => {
@@ -101,6 +99,9 @@ useEffect(() => {
   async function updateStatus(number, status) {
 
 
+
+  
+
     const statusMessageMap = {
         ACCEPTED: "✅ Ваша заявка принята!",
         REJECTED: "❌ Ваша заявка отклонена.",
@@ -108,10 +109,10 @@ useEffect(() => {
 
 
    try {
-        const res = await fetch(`/api/requests/sendUpdateRequests`, {
+        const res = await fetch(`/api/requests/${number}`, {
          method: "PATCH",
          headers: { "Content-Type": "application/json" },
-         body: JSON.stringify({number, status}),
+         body: JSON.stringify({ status }),
        });
        if(res.ok){
            const updated = await res.json();
@@ -125,7 +126,7 @@ ${statusMessageMap[status] || ""}
 
 С уважением,  
 GROZTEX`;
-           await fetch("/api/requests/sendUpdateRequests",{
+           await fetch(`api/requests/send/sendrequests`,{
                 method: "POST",
                 headers:{
                   'Content-Type':"application/json"
