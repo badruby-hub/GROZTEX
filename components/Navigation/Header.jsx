@@ -21,8 +21,8 @@ export default function Header() {
      
      return<header className={classes.block__content__home}>
         <nav className={classes.App}>
-          <div className={classes.logo}><div className={classes.logo__name}>GROZ
-             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="85" height="80" viewBox="0 0 48 48">
+          <div className={classes.logo}><div className={classes.logo__name}><div className={classes.shadow}></div>GROZ
+             <svg className={classes.tether} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" height="80" viewBox="0 0 48 48">
              <polygon fill="#202421" points="24,44 2,22.5 10,5 38,5 46,22.5"></polygon>
              <path fill="#fff" d="M38,22c0-1.436-4.711-2.635-11-2.929V16h8v-6H13v6h8v3.071C14.711,19.365,10,20.564,10,22
              s4.711,2.635,11,2.929V36h6V24.929C33.289,24.635,38,23.436,38,22z M24,24c-6.627,0-12-1.007-12-2.25c0-1.048,3.827-1.926,9-2.176
@@ -48,12 +48,12 @@ export default function Header() {
                <li onClick={onClose} className={`${classes.close} ${classes.li}`}><div className={classes.btn__close}>Закрыть приложение</div></li>
             </ul>
             <div >
-     <div className={classes.our__the__map}>
+         <div className={classes.our__the__map}>
           <Link className={classes.link__map} href="https://yandex.ru/maps/?um=constructor%3A8ccd5e2afac188c83b586644c5650dda76028d21759b34e8f334082e1c76b5b7&amp;source=constructorStatic" target="_blank">
          <div className={classes.text__address}> Наш адрес: Малгобекская улица, 19</div>
          <img className={classes.img__map} rel="preload" src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A8ccd5e2afac188c83b586644c5650dda76028d21759b34e8f334082e1c76b5b7&amp;width=350&amp;height=150&amp;lang=ru_RU"
           alt="" style={{border: 0}} /></Link></div>
-</div>
+         </div>
 
         </nav>
      </header>

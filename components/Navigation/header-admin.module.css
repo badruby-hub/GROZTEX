@@ -1,34 +1,40 @@
 .block__content__home {
-    position: relative;
-    z-index: 2;
-    color: white;
-    font-size: 40px;
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 40px;
 }
 
 .App {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 
 .logo {
-    margin: 40px 0 20px 0;
+  margin: 40px 0 20px 0;
 }
 
 .logo__name {
-    display: flex;
-    align-items: center;
-    font-size: 65px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 65px;
 }
 
 
 .logo__title {
-    margin: 10px 0 5px 0;
-    font-size: 20px;
-    text-align: center;
+  margin: 10px 0 5px 0;
+  font-size: 20px;
+  text-align: center;
 }
+
+/* 
+.tether{
+  width: 16vw;
+} */
 
 
 .administrator,
@@ -47,7 +53,6 @@
 .btn__close {
   display: block;
   text-decoration: none;
-  text-shadow: -0px 0px 7px rgba(255, 255, 255, 1);
   color: white;
   padding: 15px;
 }
@@ -62,11 +67,59 @@
 
 .li {
   user-select: none;
-  background-color:#24aba0cc;
+  background-color: #24aba0cc;
   margin: 7px;
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
   font-size: 20px;
   text-wrap: nowrap;
+}
+
+
+.shadow {
+  z-index: -1;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 30px;
+  right: 111px;
+  animation: colorChange 1.5s infinite alternate ;
+}
+/* #56b298 this is original color tether*/
+
+@keyframes colorChange {
+  0% {
+   box-shadow: 0 0 40px 30px #148b66;
+  }
+  15%{
+     box-shadow: 0 0 40px 30px #13946b;
+  }
+   30%{
+     box-shadow: 0 0 40px 30px #12a778;
+  }
+   45%{
+     box-shadow: 0 0 40px 30px #12b380;
+  }
+    60%{
+     box-shadow: 0 0 40px 30px #10c28a;
+  }
+    75%{
+     box-shadow: 0 0 40px 30px #0ed093;
+  }
+  
+    90%{
+     box-shadow: 0 0 40px 30px #0ce19d;
+  }
+    100%{
+     box-shadow: 0 0 40px 30px #0ae6a0;
+  }
+  
+}
+
+@media (max-width:410px) {
+  .li {
+    font-size: 4vw;
+  }
 }

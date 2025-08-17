@@ -35,6 +35,7 @@ useEffect(() => {
   tg.BackButton.onClick(btnBackClick);
 
   const currentUserId = tg.initDataUnsafe?.user?.id;
+
   if (!currentUserId) {
     toast.error(
   "Войдите через телеграм приложение!",
