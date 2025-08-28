@@ -28,8 +28,8 @@ export default function Valuation() {
           const data = await response.json();
           const apiBuy = parseFloat(data.buy);
           const apiSell = parseFloat(data.sell);
-          setBuy((apiBuy - 0.5).toFixed(2));
-          setSell((apiSell + 0.5).toFixed(2));
+          setBuy((apiBuy - 0.4).toFixed(2));
+          setSell((apiSell + 0.4).toFixed(2));
         } catch (error) {
           toast.error("не удалось получить курс, обратитесь в поддержку ", error)
         }
@@ -50,7 +50,7 @@ export default function Valuation() {
         <h1 className={classes.zagolovok}>КУРС USDT</h1>
           <div className={classes.container__buy}>
             <p className={classes.buy}>Покупка</p>
-            <p className={classes.well}>{sell}₽</p>
+            <p className={classes.well}>{sell} ₽</p>
           </div>
           <div className={classes.container__sell}>
             <p className={classes.sell}>Продажа</p>

@@ -15,7 +15,7 @@ export default function Exchange() {
   const [isLoading, setIsLoading] = useState(false);
   const [count, setCount] = useState("");
   const [firstName,setFirstName] = useState("");
-  const [lastName,setLastName] = useState("");
+  //const [lastName,setLastName] = useState(""); // заполнение фамилии 
   const [phone, setPhone] = useState("");
   const [chatId, setChatId] = useState(null);
   const [addressTron, setAddressTron] = useState("");
@@ -27,7 +27,7 @@ export default function Exchange() {
               setSelectBtnValue("");
               setCount("");
               setFirstName("");
-              setLastName("");
+              // setLastName("");
               setPhone("");
    };
 
@@ -85,13 +85,13 @@ export default function Exchange() {
         const stringFormat = String(value.replace(/[^а-яА-ЯёЁ]/g, ''));
           setFirstName(stringFormat);
     };
+//форма заполнения фамилии 
+    //     const formatLastName = (event)=>{
+    //     const value = event.target.value;
+    //     const stringFormat = String(value.replace(/[^а-яА-ЯёЁ]/g, ''));
+    //       setLastName(stringFormat);
 
-        const formatLastName = (event)=>{
-        const value = event.target.value;
-        const stringFormat = String(value.replace(/[^а-яА-ЯёЁ]/g, ''));
-          setLastName(stringFormat);
-
-    };
+    // };
 
         const formatTRON = (event)=>{
          const value = event.target.value;
@@ -166,12 +166,11 @@ export default function Exchange() {
             if(selectBtnBuy){
                 walletInfo = `Сеть: TRON (TRC20)\nНомер кошелька: ${addressTron}`
                }
-
+//Фамилия: ${last_name}
 const applicationForm = `
 Заявка (${number}) на ${selectBtnValue}
 Сумма: ${sum}₽
 Имя: ${first_name}
-Фамилия: ${last_name}
 Ник телеграм: @${tg?.initDataUnsafe?.user?.username}
 Номер телефона: ${phone}
 
@@ -238,10 +237,10 @@ const notificationForm = `
           <h2 className={classes.zagolovok__two}>Имя</h2>
           <input className={`${classes.first__name} ${classes.input}`} value={firstName} onChange={formatFirstName} type="text" id="first__name"  name="first_name" minLength="3"  placeholder="Введите ваше имя"  required/>
         </label>
-          <label className={classes.label}>
+          {/* <label className={classes.label}>
           <h2 className={classes.zagolovok__two}>Фамилия</h2>
           <input type="text" className={`${classes.last__name} ${classes.input}`} value={lastName} onChange={formatLastName} id="last__name"  name="last_name" minLength="3" placeholder="Введите вашу фамилию" required/>
-        </label>
+        </label> */}
          <label className={classes.label}>
           <h2 className={classes.zagolovok__two}>номер телефона </h2>
          <PhoneInput

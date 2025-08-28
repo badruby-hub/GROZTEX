@@ -75,7 +75,7 @@
   font-size: 20px;
   text-wrap: nowrap;
 }
-
+/* 
 
 .shadow {
   z-index: -1;
@@ -87,7 +87,7 @@
   right: 111px;
   animation: colorChange 1.5s infinite alternate ;
 }
-/* #56b298 this is original color tether*/
+/* #56b298 this is original color tether
 
 @keyframes colorChange {
   0% {
@@ -116,7 +116,7 @@
      box-shadow: 0 0 40px 30px #0ae6a0;
   }
   
-}
+} */
 
 @media (max-width:410px) {
   .li {
