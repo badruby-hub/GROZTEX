@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import classes from "./valuation.module.css"
 import BtnBackHome from "@/components/Button/BtnBackHome"
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 
 
@@ -56,7 +57,9 @@ export default function Valuation() {
             <p className={classes.sell}>Продажа</p>
             <p className={classes.well}>{buy} ₽</p>
           </div>
-          <p>Мы не берём никаких дополнительных комиссий с Вас</p>
+          <p>Можем зафиксировать для Вас курс</p>
+          <p>Мы не берём никаких дополнительных комиссий</p>
+          <p>Обращайтесь — <Link  className={classes.link__tg} href="https://t.me/GROZTEX">GROZTEX_SUPPORT</Link></p>
           <BtnBackHome/>
       </div>
     </div>
