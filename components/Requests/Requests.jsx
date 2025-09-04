@@ -160,7 +160,7 @@ GROZTEX`;
       
         <div className={classes.block__req}>
           <h1 className={classes.zagolovok}>Заявки</h1>
-           <h3 className={classes.zagolovok__search}>поиск пользователей</h3>
+           <h3 className={classes.zagolovok__search}>Поиск пользователей</h3>
          <input 
          className={classes.search__input} 
          type="search"
