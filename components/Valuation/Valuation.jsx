@@ -29,7 +29,7 @@ export default function Valuation() {
           const data = await response.json();
           const apiBuy = parseFloat(data.buy);
           const apiSell = parseFloat(data.sell);
-          setBuy((apiBuy).toFixed(2));
+          setBuy((apiBuy + 0.4).toFixed(2));
           setSell((apiSell + 0.4).toFixed(2));
           // заметка, покупка и продажа поменяны местами, за место покупки у нас идёт продажа +0.4 копейки
           //  заместо продажи у нас идёт парсинг курса покупки
