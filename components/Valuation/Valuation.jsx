@@ -27,10 +27,10 @@ export default function Valuation() {
         try {
           const response = await fetch("/api/well-rate");
           const data = await response.json();
-          const apiBuy = parseFloat(data.buy);
-          const apiSell = parseFloat(data.sell);
-          setBuy((apiSell + 0.4).toFixed(2));
-          setSell((apiBuy).toFixed(2));
+          const apiBuy = parseFloat(data?.sell);
+          const apiSell = parseFloat(data?.buy);
+          setBuy((apiBuy + 0.4).toFixed(2));
+          setSell((apiSell).toFixed(2));
           // заметка, покупка и продажа поменяны местами, за место покупки у нас идёт продажа +0.4 копейки
           //  заместо продажи у нас идёт парсинг курса покупки
         } catch (error) {
