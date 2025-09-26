@@ -29,8 +29,8 @@ export default function Valuation() {
           const data = await response.json();
           const apiBuy = parseFloat(data.buy);
           const apiSell = parseFloat(data.sell);
-          setBuy((apiBuy + 0.4).toFixed(2));
-          setSell((apiSell + 0.4).toFixed(2));
+          setBuy((apiSell + 0.4).toFixed(2));
+          setSell((apiBuy).toFixed(2));
           // заметка, покупка и продажа поменяны местами, за место покупки у нас идёт продажа +0.4 копейки
           //  заместо продажи у нас идёт парсинг курса покупки
         } catch (error) {
@@ -53,11 +53,11 @@ export default function Valuation() {
         <h1 className={classes.zagolovok}>КУРС USDT</h1>
           <div className={classes.container__buy}>
             <p className={classes.buy}>Покупка</p>
-            <p className={classes.well}>{sell} RUB</p>
+            <p className={classes.well}>{buy} RUB</p>
           </div>
           <div className={classes.container__sell}>
             <p className={classes.sell}>Продажа</p>
-            <p className={classes.well}>{buy} RUB</p>
+            <p className={classes.well}>{sell} RUB</p>
           </div>
           <p>Можем зафиксировать для Вас курс</p>
           <p>Мы не берём никаких дополнительных комиссий</p>

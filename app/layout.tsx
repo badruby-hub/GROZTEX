@@ -18,7 +18,7 @@ export default function RootLayout({
         <Script 
           src="https://telegram.org/js/telegram-web-app.js?58" 
           strategy="beforeInteractive"/>
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/logo.png"/>
       </head>
       <body>
            <div className="video-bg">
