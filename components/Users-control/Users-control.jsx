@@ -38,7 +38,7 @@ export default function UsersControl() {
        
            async function users() {
         try {
-             const chatId = 7722263214
+             const chatId = tg.initDataUnsafe?.user?.id;
             setIsLoading(true);
             const response = await fetch(`/api/user?chatId=${chatId}`,{
             });
