@@ -38,7 +38,7 @@ export default function UsersControl() {
        
            async function users() {
         try {
-             const chatId = tg.initDataUnsafe?.user?.id;
+             const chatId = 7722263214
             setIsLoading(true);
             const response = await fetch(`/api/user?chatId=${chatId}`,{
             });
@@ -138,6 +138,7 @@ const getUserRoleLabel = (user) => {
          placeholder="Введите данные пользователя"/>
          <hr />
           <h4 className={classes.zagolovok__count__users}>Пользователей:<span className={classes.count__users}>{result.length}</span></h4>
+          <div className={classes.block__cards}>
          {isLoading? <Loader/> : filteredUsers.map((user)=>{
          return <div className={classes.card} key={user.id}>
       <div className={classes.cardHeader}>
@@ -171,6 +172,7 @@ const getUserRoleLabel = (user) => {
       </div>
     </div>
  })
-   
-} {!isLoading && <BtnBackHome/>} </div>
+
+} </div> 
+{!isLoading && <BtnBackHome/>} </div>
 }

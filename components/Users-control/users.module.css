@@ -12,13 +12,21 @@
   margin: 15px;
 }
 
+.block__cards{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card {
   position: relative;
   background-color: #00adc89e;
   color: #ffffff;
+  width: 90vw;
+  max-width: 645px;
   border-radius: 16px;
   padding: 20px;
-  margin: 15px;
+  margin: 25px;
   margin-bottom: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
