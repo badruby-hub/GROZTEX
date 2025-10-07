@@ -22,7 +22,7 @@ export default function RootLayout({
       </head>
       <body>
            <div className="video-bg">
-        <video className="video-bg__video" playsInline autoPlay loop muted preload='auto' src="/fontwo.mp4">
+        <video className="video-bg__video" playsInline autoPlay loop muted preload='auto' src="fon.mp4">
         </video>
          </div>   
          <Toaster/>

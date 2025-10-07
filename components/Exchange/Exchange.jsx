@@ -20,6 +20,7 @@ export default function Exchange() {
   const [chatId, setChatId] = useState(null);
   const [addressTron, setAddressTron] = useState("");
   const [rulesChecked, setRulesChecked] = useState(false);
+  const [selectedCurrency, setSelectedCurrency] = useState("RUB");
   
   const resetForm=()=>{
               setSelectBtnBuy(false);
@@ -64,12 +65,14 @@ export default function Exchange() {
         setSelectBtnBuy(true);
         setSelectBtnSell(false); 
         setSelectBtnValue(valueBuy);
+        setSelectedCurrency("RUB");
     };
     const onFocusSell = (e) => {
       const valueSell = e.target.value;
         setSelectBtnSell(true);
         setSelectBtnBuy(false); 
         setSelectBtnValue(valueSell); 
+        setSelectedCurrency("USDT");
     };
     const formatCountChange=(event)=>{
          const value = event.target.value;
@@ -169,7 +172,7 @@ export default function Exchange() {
 //Фамилия: ${last_name}
 const applicationForm = `
 Заявка (${number}) на ${selectBtnValue}
-Сумма: ${sum}₽
+Сумма: ${sum}${selectBtnBuy ? "₽" : "$"}
 Имя: ${first_name}
 Ник телеграм: @${tg?.initDataUnsafe?.user?.username}
 Номер телефона: ${phone}
@@ -179,7 +182,7 @@ ${walletInfo}`;
 
 const notificationForm = `
 Оформлена заявка (${number}) на ${selectBtnValue}.
-Сумма в размере: ${sum}₽.
+Сумма в размере: ${sum}${selectBtnBuy ? "₽" : "$"}
 В ближайшее время с Вами свяжется наш специалист для дальнейшего обсуждения.
 Спасибо за обращение!
 
@@ -226,7 +229,7 @@ const notificationForm = `
           </div>
           <input className={`${classes.input}`} type="hidden" id="selectBtnValue" name="selectBtnValue" value={selectBtnValue} />
           <label className={classes.label}>
-          <h2 className={`${classes.text_sum}`}>Сумма в рублях</h2>
+          <h2 className={`${classes.text_sum}`}>Сумма в {selectedCurrency === "RUB" ? "Рублях" : "USDT"}</h2>
           <input className={`${classes.sum} ${classes.input}`} type="tel" id="sum"  name="sum" minLength="3"  placeholder="0" value={count} onChange={formatCountChange} required/>
         </label > 
        { selectBtnBuy ? <label className={classes.label} >
