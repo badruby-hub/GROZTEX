@@ -141,9 +141,12 @@
   margin: 0 0 0 15px;
 }
 
-.zagolovok__count__users{
+.block__count__users{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 0 25px ;
+    max-width: 645px;
 
-    margin: 10px 0 0 15px ;
 }
 
 .count__users {

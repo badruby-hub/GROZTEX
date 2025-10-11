@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import BtnBackHome from "../Button/BtnBackHome";
+import Sletter from "../Users-control/newsletter/Newsletter";
+
 
 
 export default function UsersControl() {
@@ -137,7 +139,8 @@ const getUserRoleLabel = (user) => {
          onChange={(e) => setSearch(e.target.value)}
          placeholder="Введите данные пользователя"/>
          <hr />
-          <h4 className={classes.zagolovok__count__users}>Пользователей:<span className={classes.count__users}>{result.length}</span></h4>
+          <div className={classes.block__count__users}><h4>Пользователей:<span className={classes.count__users}>{result.length}</span> </h4><Sletter/></div>
+          
           <div className={classes.block__cards}>
          {isLoading? <Loader/> : filteredUsers.map((user)=>{
          return <div className={classes.card} key={user.id}>
@@ -166,6 +169,7 @@ const getUserRoleLabel = (user) => {
         <div className={classes.firstName}><strong>Имя:</strong> {user.firstName || "Пусто"}</div>
         <div className={classes.lastName}><strong>Фамилия:</strong> {user.lastName || "Пусто"}</div>
         <div className={classes.chatId}><strong>Chat ID:</strong> {user.chatId}</div>
+        <div className={classes.is_deleted_bot}><strong>Удален бот:</strong> {user?.isDeletedBot ? "Да" : "Нет"}</div>
                
         </div>
             

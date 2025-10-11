@@ -20,13 +20,25 @@ model Request {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  userName  String?   @unique
-  firstName String?
-  lastName  String?
-  chatId    BigInt    @unique
-  isAdmin   Boolean   @default(false)
-  Request   Request[]
+  id            Int             @id @default(autoincrement())
+  userName      String?         @unique
+  firstName     String?
+  lastName      String?
+  chatId        BigInt          @unique
+  isAdmin       Boolean         @default(false)
+  isDeletedBot  Boolean         @default(false)
+  NewsletterLog NewsletterLog[]
+  Request       Request[]
+}
+
+model NewsletterLog {
+  id           Int      @id @default(autoincrement())
+  message      String
+  sentCount    Int      @default(0)
+  removedCount Int      @default(0)
+  createdAt    DateTime @default(now())
+  createdById  BigInt?
+  CreateByUser User?    @relation(fields: [createdById], references: [chatId])
 }
 
 enum RequestStatus {
