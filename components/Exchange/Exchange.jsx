@@ -7,7 +7,9 @@ import {  useEffect, useState } from "react";
 import Link from "next/link";
 
 
-export default function Exchange() {
+export default function Exchange({rate}) {
+  const {buy, sell} = rate || null ; 
+  const [convertedSum, setConvertedSum] = useState('');
   const validCharsTron = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
   const [selectBtnBuy, setSelectBtnBuy] = useState(false);
   const [selectBtnSell, setSelectBtnSell] = useState(false);
@@ -34,7 +36,7 @@ export default function Exchange() {
 
 
       useEffect(()=>{
-        
+
         const tg = window.Telegram.WebApp;
          tg.BackButton.show();
 
@@ -52,7 +54,12 @@ export default function Exchange() {
          tg.BackButton.hide();
          tg.BackButton.offClick(btnBackClick);
        };
-       },[])
+        
+
+
+
+
+       },[selectBtnBuy,selectBtnSell]);
 
        const checkingTheNumbers = (value) => {
   if (value && value.length > 0 && value[1] !== '7') {
@@ -88,6 +95,26 @@ export default function Exchange() {
         const stringFormat = String(value.replace(/[^а-яА-ЯёЁ]/g, ''));
           setFirstName(stringFormat);
     };
+
+      useEffect(()=>{
+          const numericCount = Number(count.replace(/\s/g, ""));
+                 if (!numericCount || numericCount <= 0) {
+                   setConvertedSum('');
+                   return;
+                   }
+            // конвертация на покупку 
+     let result = 0;
+      if (selectBtnBuy && buy) {
+        result = numericCount / parseFloat(buy);
+      }// конвертация на продажу 
+     else if (selectBtnSell && sell) {
+       result = numericCount * parseFloat(sell); 
+     }
+     setConvertedSum(result ? result.toFixed(2): '');
+
+       },[count,selectBtnBuy,selectBtnSell,buy,sell]);
+
+
 //форма заполнения фамилии 
     //     const formatLastName = (event)=>{
     //     const value = event.target.value;
@@ -172,7 +199,8 @@ export default function Exchange() {
 //Фамилия: ${last_name}
 const applicationForm = `
 Заявка (${number}) на ${selectBtnValue}
-Сумма: ${sum}${selectBtnBuy ? "₽" : "$"}
+Сумма: ${sum}${selectedCurrency === "RUB" ? "RUB" : "USDT"}
+Общая сумма выплаты: ${convertedSum}${selectedCurrency === "RUB" ? "USDT" : "RUB"}
 Имя: ${first_name}
 Ник телеграм: @${tg?.initDataUnsafe?.user?.username}
 Номер телефона: ${phone}
@@ -182,7 +210,8 @@ ${walletInfo}`;
 
 const notificationForm = `
 Оформлена заявка (${number}) на ${selectBtnValue}.
-Сумма в размере: ${sum}${selectBtnBuy ? "₽" : "$"}
+Сумма в размере: ${sum}${selectedCurrency === "RUB" ? "RUB" : "USDT"}
+Сумма выплаты: ${convertedSum}${selectedCurrency === "RUB" ? "USDT" : "RUB"}
 В ближайшее время с Вами свяжется наш специалист для дальнейшего обсуждения.
 Спасибо за обращение!
 
@@ -229,9 +258,16 @@ const notificationForm = `
           </div>
           <input className={`${classes.input}`} type="hidden" id="selectBtnValue" name="selectBtnValue" value={selectBtnValue} />
           <label className={classes.label}>
-          <h2 className={`${classes.text_sum}`}>Сумма в {selectedCurrency === "RUB" ? "Рублях" : "USDT"}</h2>
-          <input className={`${classes.sum} ${classes.input}`} type="tel" id="sum"  name="sum" minLength="3"  placeholder="0" value={count} onChange={formatCountChange} required/>
+          <h2 className={`${classes.text_sum}`}>Сумма в {selectedCurrency === "RUB" ? "RUB" : "USDT"}</h2>
+          <input className={`${classes.sum} ${classes.input}`} type="tel" id="sum"  name="sum" minLength="3" maxLength="8" placeholder="0" value={count} onChange={formatCountChange} required/>
         </label > 
+        {
+         Number(count.replace(/\s/g, ""))  > 0  ? <label className={classes.label}>
+              <h2 className={classes.zagolovok__two}>Общая сумма по курсу <span className={classes.value__buy__sell}>{selectedCurrency === "RUB" ? buy : sell}</span></h2>
+              <input className={`${classes.sum} ${classes.input}`} type="tel" id="count__sum" name="count__sum" value={`${convertedSum} ${Number(count.replace(/\s/g, ""))  > 0  ? "" : selectedCurrency === "RUB" ? "USDT" : "RUB"}`} readOnly/>
+        </label> : null
+        }
+     
        { selectBtnBuy ? <label className={classes.label} >
           <h2 className={classes.zagolovok__two}>Кошелёк TRC-20</h2>
           <input className={`${classes.wallet__tron} ${classes.input}`} value={addressTron} onChange={formatTRON} type="text" id="wallet__tron"  name="addressTron" minLength="34" maxLength="34"  placeholder="Введите ваш кошелёк (34 символа)"  required/> 

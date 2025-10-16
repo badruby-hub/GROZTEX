@@ -24,7 +24,10 @@
 
 }
 
-
+.value__buy__sell{
+   font-size: 15px;
+   text-decoration: underline;
+}
 
 .label {
     display: flex;
