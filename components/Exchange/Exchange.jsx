@@ -199,8 +199,9 @@ export default function Exchange({rate}) {
 //Фамилия: ${last_name}
 const applicationForm = `
 Заявка (${number}) на ${selectBtnValue}
-Сумма: ${sum}${selectedCurrency === "RUB" ? "RUB" : "USDT"}
-Общая сумма выплаты: ${convertedSum}${selectedCurrency === "RUB" ? "USDT" : "RUB"}
+Сумма: ${sum}${selectedCurrency === "RUB" ? " RUB" : " USDT"}
+Общая сумма выплаты: ${convertedSum}${selectedCurrency === "RUB" ? " USDT" : " RUB"}
+Курс: ${selectedCurrency === "RUB" ? buy : sell}
 Имя: ${first_name}
 Ник телеграм: @${tg?.initDataUnsafe?.user?.username}
 Номер телефона: ${phone}
@@ -210,8 +211,9 @@ ${walletInfo}`;
 
 const notificationForm = `
 Оформлена заявка (${number}) на ${selectBtnValue}.
-Сумма в размере: ${sum}${selectedCurrency === "RUB" ? "RUB" : "USDT"}
-Сумма выплаты: ${convertedSum}${selectedCurrency === "RUB" ? "USDT" : "RUB"}
+Сумма в размере: ${sum}${selectedCurrency === "RUB" ? " RUB" : " USDT"}
+Сумма выплаты: ${convertedSum}${selectedCurrency === "RUB" ? " USDT" : " RUB"}
+По курсу: ${selectedCurrency === "RUB" ? buy : sell}
 В ближайшее время с Вами свяжется наш специалист для дальнейшего обсуждения.
 Спасибо за обращение!
 
