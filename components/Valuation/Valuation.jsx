@@ -55,7 +55,7 @@ export default function Valuation({rate}) {
           </div>
           <div className={classes.container__sell}>
             <p className={classes.sell}>Продажа</p>
-            <p className={classes.well}>{sell ? `${sell}RUB`: "-"} RUB</p>
+            <p className={classes.well}>{sell ? `${sell} RUB`: "-"}</p>
           </div>
           <p>Можем зафиксировать для Вас курс</p>
           <p>Мы не берём никаких дополнительных комиссий</p>
